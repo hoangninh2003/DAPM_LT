@@ -1,0 +1,80 @@
+﻿@model IEnumerable<DAPM_LT.Models.TaiKhoan>
+
+@{
+    ViewBag.Title = "Danh Sách Tài Khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+}
+
+<div class="container">
+    <h2>Danh Sách Tài Khoản</h2>
+
+    <div class="button-container">
+        @Html.ActionLink("Tạo Tài Khoản Mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ảnh Đại Diện</th>
+                <th>Họ và Tên Lót</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Điện Thoại</th>
+
+
+                <th>Địa Chỉ</th>
+                <th>Quyền</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <img src="~/Content/@item.ImgU" alt="Ảnh Đại Diện" class="profile-image" />
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Holot)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ten)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Dienthoai)</td>
+
+
+                <td>@Html.DisplayFor(modelItem => item.Diachi)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhanQuyen.TenQuyen)</td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Idtaikhoan }, new { @class = "btn btn-secondary btn-sm" })
+                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.Idtaikhoan }, new { @class = "btn btn-info btn-sm" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Idtaikhoan }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    .container {
+        margin: 20px;
+    }
+
+    .button-container {
+        margin-bottom: 20px;
+    }
+
+    .table th, .table td {
+        text-align: center;
+    }
+
+    .btn-sm {
+        padding: 5px 10px;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+    .profile-image {
+        max-width: 50px;
+        height: auto;
+        border-radius: 50%;
+    }
+
+</style>

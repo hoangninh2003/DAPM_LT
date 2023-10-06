@@ -1,0 +1,57 @@
+﻿@model DAPM_LT.Models.PhieuMua
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PhieuMua</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tongtien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tongtien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngaymua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngaymua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sach.Tieude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sach.Tieude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaiKhoan.Holot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaiKhoan.Holot)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,43 @@
+﻿@model DAPM_LT.Models.The
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>The</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngaymothe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngaymothe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trangthaithe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trangthaithe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaiKhoan.Holot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaiKhoan.Holot)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Idthe }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

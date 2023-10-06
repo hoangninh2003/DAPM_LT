@@ -1,0 +1,62 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wed thư viện</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/css/Layout.css" rel="stylesheet" />
+</head>
+<body>
+    @{ var u = Session["use"] as DAPM_LT.Models.TaiKhoan; }
+    <div class="navbar">
+        <div class="navbar-logo">
+            Nhóm 10
+        </div>
+        <div class="navbar-menu">
+            @Html.ActionLink("Trang chủ", "Index", "Home")
+            <ul class="navbar-menu">
+
+                @{ if (u != null)
+                    {
+                        <li>@Html.ActionLink("Đặt sách", "About", "Home")</li>
+                        <li>@Html.ActionLink("Giỏ hàng", "About", "Home")</li>
+
+                        <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
+
+                        {
+                            <li class="main-nav-link">
+                                <a style="color:black" href="@Url.Action("Profile", "User", new { id = u.Idtaikhoan  })">Tài khoản : @u.Email</a>
+                                <br />
+                                <a style="color:red" href="/User/DangXuat"> ĐĂNG XUẤT</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Đặt sách", "About", "Home")</li>
+                        <li>@Html.ActionLink("Giỏ hàng", "About", "Home")</li>
+
+                        <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
+
+                        <li class="main-nav-link"> @Html.ActionLink("Đăng nhập", "Dangnhap", "User", new { area = "" }, new { @class = "custom-btn" }) </li>
+                    } }
+            </ul>
+        </div>
+
+    </div>
+    <div class="container content-container">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - nhom 10</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

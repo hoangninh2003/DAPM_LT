@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DAPM_LT.Models.Sach>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+}
+
+<h2>Quản lí sách</h2>
+
+<div class="button-container">
+    <a href="@Url.Action("Create")" class="btn btn-primary">Thêm</a>
+</div>
+
+<div class="book-container">
+    @foreach (var item in Model)
+    {
+        <div class="book-item">
+            <img src="~/Content/@item.ImgSach" alt="Book Image" class="book-image" />
+            <h3 class="book-title">@item.Tieude</h3>
+            <p class="book-status">Còn</p>
+            <div class="button-group">
+                <a href="@Url.Action("Edit", new { id = item.Idsach })" class="btn btn-secondary">Sửa</a>
+                <a href="@Url.Action("Delete", new { id = item.Idsach })" class="btn btn-danger">Xóa</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .book-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .book-item {
+        width: 200px;
+        height: 300px;
+        margin: 20px;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-image {
+        max-width: 150px;
+        max-height: 150px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .book-title {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .book-status {
+        font-style: italic;
+        color: #888;
+    }
+
+</style>

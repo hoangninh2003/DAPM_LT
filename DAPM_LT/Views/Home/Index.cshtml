@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DAPM_LT.Models.Sach>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" type="text/css" href="~/Content/css/admin.css">
+
+}
+
+
+@*<div class="menuPage">
+        <div class="dropdown">
+            <button class="dropbtn">Thể loại</button>
+            <div class="dropdown-content">
+                <a href="#"> 1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Nhập từ khóa...">
+            <button type="submit">Tìm kiếm</button>
+        </div>
+    </div>*@
+<br />
+<div class="title homePage">Sách hot</div>
+
+<div class="homePage">
+
+    <div class="container-lg">
+        <div class="products">
+            @foreach (var sach in Model)
+            {
+                <div class="prod-item">
+                    <div class="image"><img src="~/Content/@sach.ImgSach" alt="@sach.Tieude" /></div>
+                    <div class="title">@sach.Tieude</div>
+                    <div class="title">Trạng thái: Còn</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

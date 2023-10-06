@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DAPM_LT.Models.TrangThaiSachMuon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Idphieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trangthaism)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kiemsoat.Imgtrangthai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sach.Tieude)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Idphieu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trangthaism)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kiemsoat.Imgtrangthai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sach.Tieude)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Idtrangthaisachmuon }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Idtrangthaisachmuon }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Idtrangthaisachmuon })
+        </td>
+    </tr>
+}
+
+</table>
