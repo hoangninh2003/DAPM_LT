@@ -5,58 +5,247 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wed thư viện</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/css/Layout.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body>
     @{ var u = Session["use"] as DAPM_LT.Models.TaiKhoan; }
     <div class="navbar">
         <div class="navbar-logo">
+            <div style="font-size: 14px; color:#f9f9f9">
+                Phương thức liên hệ :
+                Facebook
+                <i class="fa-brands fa-facebook"></i>
+                | Instagram
+                <i class="fa-brands fa-instagram"></i>
+                | Twitter
+                <i class="fa-brands fa-twitter"></i>
+            </div>
             Nhóm 10
         </div>
         <div class="navbar-menu">
-            @Html.ActionLink("Trang chủ", "Index", "Home")
-            <ul class="navbar-menu">
+            <div class="search-bar">
+                <input class="search-text" type="text" placeholder="Nhập từ khóa..." name="_name">
+                <button class="search-btn" type="submit" value="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
 
+            <ul class="navbar-menu">
+                <li> @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "white" })</li>
                 @{ if (u != null)
                     {
-                        <li>@Html.ActionLink("Đặt sách", "About", "Home")</li>
-                        <li>@Html.ActionLink("Giỏ hàng", "About", "Home")</li>
-
+                        <li>@Html.ActionLink("Đặt sách", "Index", "DatSaches")</li>
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
 
-                        {
-                            <li class="main-nav-link">
-                                <a style="color:black" href="@Url.Action("Profile", "User", new { id = u.Idtaikhoan  })">Tài khoản : @u.Email</a>
-                                <br />
-                                <a style="color:red" href="/User/DangXuat"> ĐĂNG XUẤT</a>
-                            </li>
-                        }
+
+                        <li class="main-nav-link">
+                            <div class="dropdown">
+                                <button class="dropbtn" style="color: #ffffff;">
+                                    <i class="fa fa-user fa-2x"></i>
+
+                                    @u.Holot @u.Ten
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="@Url.Action("Profile", "User", new { id = u.Idtaikhoan })">
+                                        <i class="fas fa-user"></i> Hồ sơ
+                                    </a>
+                                    <a href="/User/DangXuat">
+                                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
                     }
                     else
                     {
                         <li>@Html.ActionLink("Đặt sách", "About", "Home")</li>
-                        <li>@Html.ActionLink("Giỏ hàng", "About", "Home")</li>
-
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
-
-                        <li class="main-nav-link"> @Html.ActionLink("Đăng nhập", "Dangnhap", "User", new { area = "" }, new { @class = "custom-btn" }) </li>
-                    } }
+                        <li class="main-nav-link">
+                            @Html.ActionLink("Đăng nhập", "Dangnhap", "User", new { area = "" }, new { @class = "custom-btn" })
+                        </li>
+                    }
+                }
             </ul>
         </div>
 
     </div>
     <div class="container content-container">
+
+
+
         @RenderBody()
     </div>
 
     <footer>
+        <div class="footer">
+            <div class="columns">
+                <div class="column">
+                    <h3>Giới Thiệu Nhóm 10</h3>
+                    <ul>
+                        <li><a href="" style="color:white;text-decoration:none">Giới Thiệu</a></li>
+                        <li><a href="" style="color:white;text-decoration:none">Nội Quy</a></li>
+                        <li><a href="" style="color:white;text-decoration:none">Hướng dẫn quy trình mượn sách</a></li>
+                        <li><a href="" style="color:white;text-decoration:none">Đăng ký tham gia làm thủ thư</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Hỗ trợ chúng tôi</h3>
+                    <ul>
+                        <li><a href="">Giới thiệu</a></li>
+                        <li><a href="">Điều khoản và điều kiện</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Liên hệ</h3>
+                    <ul>
+                        <li>Số 11,Phường 12, Quận Gò Vấp, Thành phố Hồ Chí Minh</li>
+                        <li>ĐT: + 84 (035) 22 37 180</li>
+                        <li>Email: dolehaongninh0912@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Theo dõi chúng tôi</h3>
+                    <ul>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <p>&copy; @DateTime.Now.Year - nhom 10</p>
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <style>
+        .menuPage {
+            background-color: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            margin: 0px;
+            padding: 2px 0px;
+            border-bottom: 1px solid #bbbbbb;
+        }
+
+            .nav-tabs li {
+                margin-right: 10px;
+            }
+
+                .nav-tabs li a {
+                    display: block;
+                    padding: 5px 10px;
+                    text-decoration: none;
+                    position: relative;
+                }
+
+                    .nav-tabs li a::after {
+                        content: "";
+                        height: 3px;
+                        width: 100%;
+                        position: absolute;
+                        left: 0px;
+                        bottom: -3px;
+                        background: transparent;
+                    }
+
+                .nav-tabs li.tabs_sp a::after, .nav-tabs li:hover a::after {
+                    background: #d25a05;
+                }
+
+        .footer {
+            background-color: #773b11b9;
+            color: white;
+            padding: 20px;
+        }
+
+            .footer h3 {
+                color: #f8f9fa;
+            }
+
+            .footer .columns {
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .footer .column {
+                flex: 1;
+                margin: 0 10px;
+            }
+
+                .footer .column ul {
+                    list-style: none;
+                    padding: 0;
+                }
+
+                    .footer .column ul li {
+                        margin-bottom: 10px;
+                    }
+
+                .footer .column a {
+                    color: white;
+                    text-decoration: none;
+                }
+
+            .footer p {
+                background-color: #222;
+                text-align: center;
+                margin: 0;
+                padding: 10px;
+            }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: black;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+
 </body>
 </html>
