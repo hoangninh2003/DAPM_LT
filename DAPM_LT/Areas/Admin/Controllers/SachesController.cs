@@ -48,7 +48,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Idsach,Tieude,ImgSach,Tacgia,Namxuatban,GiaTienMua,GiaTienMuon,Mota,Idloai")] Sach sach)
+        public ActionResult Create([Bind(Include = "Idsach,Tieude,ImgSach,Tacgia,GiaMua,Namxuatban,Mota,Idloai")] Sach sach)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Idsach,Tieude,ImgSach,Tacgia,Namxuatban,GiaTienMua,GiaTienMuon,Mota,Idloai")] Sach sach)
+        public ActionResult Edit([Bind(Include = "Idsach,Tieude,ImgSach,Tacgia,GiaMua,Namxuatban,Mota,Idloai")] Sach sach)
         {
             if (ModelState.IsValid)
             {

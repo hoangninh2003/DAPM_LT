@@ -17,7 +17,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // GET: Admin/PhieuMuons
         public ActionResult Index()
         {
-            var phieuMuons = db.PhieuMuons.Include(p => p.Sach).Include(p => p.The);
+            var phieuMuons = db.PhieuMuons.Include(p => p.The);
             return View(phieuMuons.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // GET: Admin/PhieuMuons/Create
         public ActionResult Create()
         {
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude");
             ViewBag.Idthe = new SelectList(db.Thes, "Idthe", "Idthe");
             return View();
         }
@@ -49,7 +48,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Idphieu,Idsach,Idthe,Tongtien,Ngaymuon,Ngaytra,Trangthaimuon")] PhieuMuon phieuMuon)
+        public ActionResult Create([Bind(Include = "Idphieu,Idsach,Idthe,Ngaymuon,Ngaytra,Trangthaimuon")] PhieuMuon phieuMuon)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +57,6 @@ namespace DAPM_LT.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude", phieuMuon.Idsach);
             ViewBag.Idthe = new SelectList(db.Thes, "Idthe", "Idthe", phieuMuon.Idthe);
             return View(phieuMuon);
         }
@@ -75,7 +73,6 @@ namespace DAPM_LT.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude", phieuMuon.Idsach);
             ViewBag.Idthe = new SelectList(db.Thes, "Idthe", "Idthe", phieuMuon.Idthe);
             return View(phieuMuon);
         }
@@ -85,7 +82,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Idphieu,Idsach,Idthe,Tongtien,Ngaymuon,Ngaytra,Trangthaimuon")] PhieuMuon phieuMuon)
+        public ActionResult Edit([Bind(Include = "Idphieu,Idsach,Idthe,Ngaymuon,Ngaytra,Trangthaimuon")] PhieuMuon phieuMuon)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +90,6 @@ namespace DAPM_LT.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude", phieuMuon.Idsach);
             ViewBag.Idthe = new SelectList(db.Thes, "Idthe", "Idthe", phieuMuon.Idthe);
             return View(phieuMuon);
         }

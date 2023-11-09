@@ -7,6 +7,7 @@
 
 <h2>Edit</h2>
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -18,26 +19,18 @@
         @Html.HiddenFor(model => model.Idphieu)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Idsach, "Idsach", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Idsach, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Idsach", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Idsach, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Idsach, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdTaiKhoan, "IdTaiKhoan", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Idtaikhoan, "Idtaikhoan", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdTaiKhoan", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdTaiKhoan, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tongtien, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tongtien, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tongtien, "", new { @class = "text-danger" })
+                @Html.DropDownList("Idtaikhoan", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Idtaikhoan, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -60,3 +53,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

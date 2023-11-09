@@ -5,77 +5,66 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
 }
 
-<h2>Quản lí sách</h2>
+<h2>Index</h2>
 
-<div class="button-container">
-    <a href="@Url.Action("Create")" class="btn btn-primary">Thêm</a>
-</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tieude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tacgia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaMua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Namxuatban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loai.Tenloai)
+        </th>
+        <th></th>
+    </tr>
 
-<div class="book-container">
-    @foreach (var item in Model)
-    {
-        <div class="book-item">
-            <img src="~/Content/@item.ImgSach" alt="Book Image" class="book-image" />
-            <h3 class="book-title">@item.Tieude</h3>
-            <p class="book-status">Còn</p>
-            <div class="button-group">
-                <a href="@Url.Action("Edit", new { id = item.Idsach })" class="btn btn-secondary">Sửa</a>
-                <a href="@Url.Action("Delete", new { id = item.Idsach })" class="btn btn-danger">Xóa</a>
-            </div>
-        </div>
-    }
-</div>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tieude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImgSach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tacgia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaMua)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Namxuatban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loai.Tenloai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Idsach }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Idsach }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Idsach })
+        </td>
+    </tr>
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-    .book-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-
-    .book-item {
-        width: 200px;
-        height: 300px;
-        margin: 20px;
-        padding: 10px;
-        text-align: center;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .book-image {
-        max-width: 150px;
-        max-height: 150px;
-        object-fit: cover;
-        margin-bottom: 10px;
-    }
-
-    .book-title {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
-
-    .book-status {
-        font-style: italic;
-        color: #888;
-    }
-
-</style>
+</table>

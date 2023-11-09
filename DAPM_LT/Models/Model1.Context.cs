@@ -30,8 +30,11 @@ namespace DAPM_LT.Models
         public virtual DbSet<Loai> Loais { get; set; }
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
         public virtual DbSet<PhieuMua> PhieuMuas { get; set; }
+        public virtual DbSet<PhieuMuaChiTiet> PhieuMuaChiTiets { get; set; }
         public virtual DbSet<PhieuMuon> PhieuMuons { get; set; }
+        public virtual DbSet<PhieuMuonChiTiet> PhieuMuonChiTiets { get; set; }
         public virtual DbSet<Sach> Saches { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<The> Thes { get; set; }
         public virtual DbSet<TrangThaiSachMuon> TrangThaiSachMuons { get; set; }

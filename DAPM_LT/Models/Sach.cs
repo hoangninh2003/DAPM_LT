@@ -19,8 +19,8 @@ namespace DAPM_LT.Models
         {
             this.DatSaches = new HashSet<DatSach>();
             this.Kiemsoats = new HashSet<Kiemsoat>();
-            this.PhieuMuas = new HashSet<PhieuMua>();
-            this.PhieuMuons = new HashSet<PhieuMuon>();
+            this.PhieuMuaChiTiets = new HashSet<PhieuMuaChiTiet>();
+            this.PhieuMuonChiTiets = new HashSet<PhieuMuonChiTiet>();
             this.TrangThaiSachMuons = new HashSet<TrangThaiSachMuon>();
         }
     
@@ -28,9 +28,8 @@ namespace DAPM_LT.Models
         public string Tieude { get; set; }
         public string ImgSach { get; set; }
         public string Tacgia { get; set; }
+        public Nullable<decimal> GiaMua { get; set; }
         public Nullable<int> Namxuatban { get; set; }
-        public Nullable<double> GiaTienMua { get; set; }
-        public Nullable<double> GiaTienMuon { get; set; }
         public string Mota { get; set; }
         public Nullable<int> Idloai { get; set; }
     
@@ -40,9 +39,9 @@ namespace DAPM_LT.Models
         public virtual ICollection<Kiemsoat> Kiemsoats { get; set; }
         public virtual Loai Loai { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuMua> PhieuMuas { get; set; }
+        public virtual ICollection<PhieuMuaChiTiet> PhieuMuaChiTiets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuMuon> PhieuMuons { get; set; }
+        public virtual ICollection<PhieuMuonChiTiet> PhieuMuonChiTiets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrangThaiSachMuon> TrangThaiSachMuons { get; set; }
     }

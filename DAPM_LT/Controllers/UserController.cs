@@ -35,14 +35,14 @@ namespace ThuVien.Controllers
                     var check = db.TaiKhoans.FirstOrDefault(s => s.Email == taiKhoan.Email);
                     if (check == null)
                     {
-                        // Set quyền mặc định cho tài khoản mới
+                        // Set quyền mặc định cho tài khoản mới(dùng tên luôn)
                         taiKhoan.PhanQuyen = new PhanQuyen { TenQuyen = "Member" };
 
-                        ViewBag.RegOk = "Đăng kí thành công. Đăng nhập ngay";
+                        //ViewBag.RegOk = "Đăng kí thành công. Đăng nhập ngay";
                         ViewBag.isReg = true;
                         // Thêm người dùng mới
                         db.TaiKhoans.Add(taiKhoan);
-                        // Lưu lại vào cơ sở dữ liệu
+
                         db.SaveChanges();
                         return View("Dangky");
                     }

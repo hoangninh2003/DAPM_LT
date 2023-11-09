@@ -14,13 +14,19 @@ namespace DAPM_LT.Models
     
     public partial class PhieuMua
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PhieuMua()
+        {
+            this.PhieuMuaChiTiets = new HashSet<PhieuMuaChiTiet>();
+        }
+    
         public int Idphieu { get; set; }
         public Nullable<int> Idsach { get; set; }
-        public Nullable<int> IdTaiKhoan { get; set; }
-        public Nullable<double> Tongtien { get; set; }
+        public Nullable<int> Idtaikhoan { get; set; }
         public Nullable<System.DateTime> Ngaymua { get; set; }
     
-        public virtual Sach Sach { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuMuaChiTiet> PhieuMuaChiTiets { get; set; }
     }
 }

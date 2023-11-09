@@ -14,15 +14,21 @@ namespace DAPM_LT.Models
     
     public partial class PhieuMuon
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PhieuMuon()
+        {
+            this.PhieuMuonChiTiets = new HashSet<PhieuMuonChiTiet>();
+        }
+    
         public int Idphieu { get; set; }
         public Nullable<int> Idsach { get; set; }
         public Nullable<int> Idthe { get; set; }
-        public Nullable<double> Tongtien { get; set; }
         public Nullable<System.DateTime> Ngaymuon { get; set; }
         public Nullable<System.DateTime> Ngaytra { get; set; }
         public string Trangthaimuon { get; set; }
     
-        public virtual Sach Sach { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuMuonChiTiet> PhieuMuonChiTiets { get; set; }
         public virtual The The { get; set; }
     }
 }

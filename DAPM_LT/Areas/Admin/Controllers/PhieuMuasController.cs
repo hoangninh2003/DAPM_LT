@@ -17,7 +17,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // GET: Admin/PhieuMuas
         public ActionResult Index()
         {
-            var phieuMuas = db.PhieuMuas.Include(p => p.Sach).Include(p => p.TaiKhoan);
+            var phieuMuas = db.PhieuMuas.Include(p => p.TaiKhoan);
             return View(phieuMuas.ToList());
         }
 
@@ -39,8 +39,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // GET: Admin/PhieuMuas/Create
         public ActionResult Create()
         {
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude");
-            ViewBag.IdTaiKhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot");
+            ViewBag.Idtaikhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Idphieu,Idsach,IdTaiKhoan,Tongtien,Ngaymua")] PhieuMua phieuMua)
+        public ActionResult Create([Bind(Include = "Idphieu,Idsach,Idtaikhoan,Ngaymua")] PhieuMua phieuMua)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +57,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude", phieuMua.Idsach);
-            ViewBag.IdTaiKhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot", phieuMua.IdTaiKhoan);
+            ViewBag.Idtaikhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot", phieuMua.Idtaikhoan);
             return View(phieuMua);
         }
 
@@ -75,8 +73,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude", phieuMua.Idsach);
-            ViewBag.IdTaiKhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot", phieuMua.IdTaiKhoan);
+            ViewBag.Idtaikhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot", phieuMua.Idtaikhoan);
             return View(phieuMua);
         }
 
@@ -85,7 +82,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Idphieu,Idsach,IdTaiKhoan,Tongtien,Ngaymua")] PhieuMua phieuMua)
+        public ActionResult Edit([Bind(Include = "Idphieu,Idsach,Idtaikhoan,Ngaymua")] PhieuMua phieuMua)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +90,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude", phieuMua.Idsach);
-            ViewBag.IdTaiKhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot", phieuMua.IdTaiKhoan);
+            ViewBag.Idtaikhoan = new SelectList(db.TaiKhoans, "Idtaikhoan", "Holot", phieuMua.Idtaikhoan);
             return View(phieuMua);
         }
 

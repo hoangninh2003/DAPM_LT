@@ -1,69 +1,58 @@
 ﻿@model IEnumerable<DAPM_LT.Models.PhieuMuon>
 
 @{
-    ViewBag.Title = "Danh Sách Phiếu Mượn";
+    ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
 }
 
-<div class="container">
-    <h2>Danh Sách Phiếu Mượn</h2>
+<h2>Index</h2>
 
-    <div class="button-container">
-        @Html.ActionLink("Tạo Phiếu Mượn Mới", "Create", null, new { @class = "btn btn-primary" })
-    </div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Idsach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ngaymuon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ngaytra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trangthaimuon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.The.Idthe)
+        </th>
+        <th></th>
+    </tr>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Tổng Tiền</th>
-                <th>Ngày Mượn</th>
-                <th>Ngày Trả</th>
-                <th>Trạng Thái Mượn</th>
-                <th>Tiêu Đề Sách</th>
-                <th>ID Thẻ</th>
-                <th>Thao Tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Tongtien)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Ngaymuon)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Ngaytra)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Trangthaimuon)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Sach.Tieude)</td>
-                    <td>@Html.DisplayFor(modelItem => item.The.Idthe)</td>
-                    <td>
-                        @Html.ActionLink("Sửa", "Edit", new { id = item.Idphieu }, new { @class = "btn btn-secondary btn-sm" })
-                        @Html.ActionLink("Chi Tiết", "Details", new { id = item.Idphieu }, new { @class = "btn btn-info btn-sm" })
-                        @Html.ActionLink("Xóa", "Delete", new { id = item.Idphieu }, new { @class = "btn btn-danger btn-sm" })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-<style>
-    .container {
-        margin: 20px;
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Idsach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngaymuon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngaytra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trangthaimuon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.The.Idthe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Idphieu }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Idphieu }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Idphieu })
+        </td>
+    </tr>
+}
 
-    .button-container {
-        margin-bottom: 20px;
-    }
-
-    .table th, .table td {
-        text-align: center;
-    }
-
-    .btn-sm {
-        padding: 5px 10px;
-        font-size: 14px;
-    }
-
-    .btn-secondary, .btn-info, .btn-danger {
-        margin-right: 5px;
-    }
-
-</style>
+</table>
