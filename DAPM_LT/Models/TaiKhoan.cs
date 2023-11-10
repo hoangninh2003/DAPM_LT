@@ -58,7 +58,7 @@ namespace DAPM_LT.Models
         public string Dienthoai { get; set; }
 
         [Display(Name = "ID quyền")]
-        public int? Idphanquyen { get; set; }
+        public int? IDQuyen { get; set; }
 
         [Display(Name = "Địa chỉ")]
         [StringLength(200, MinimumLength = 5, ErrorMessage = "Địa chỉ phải từ 5-200 ký tự")]

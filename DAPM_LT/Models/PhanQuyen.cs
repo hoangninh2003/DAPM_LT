@@ -11,7 +11,8 @@ namespace DAPM_LT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PhanQuyen
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +21,7 @@ namespace DAPM_LT.Models
             this.TaiKhoans = new HashSet<TaiKhoan>();
         }
 
-        public int Idphanquyen { get; set; }
+        public int IDQuyen { get; set; }
 
         [Display(Name = "Tên quyền")]
         [Required(ErrorMessage = "Tên quyền không được để trống")]
