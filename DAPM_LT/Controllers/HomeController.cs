@@ -12,25 +12,47 @@ namespace DAPM_LT.Controllers
     {
         private dapmEntities db = new dapmEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(string _selectedValue, string _name)
         {
             
-            List<Sach> sachList = db.Saches.ToList();
-            List<string> dsl = sachList.Select(s => s.Loai.Tenloai).Distinct().ToList();
+            IQueryable<Sach> query = db.Saches;
+
+            
+            if (!string.IsNullOrEmpty(_selectedValue) && _selectedValue != "Tất cả")
+            {
+                query = query.Where(s => s.Loai.Tenloai == _selectedValue);
+            }
+
+            
+            if (!string.IsNullOrEmpty(_name))
+            {
+                query = query.Where(s => s.Tieude.Contains(_name));
+            }
+
+            
+            List<Sach> sachList = query.ToList();
+
+           
+            List<string> dsl = db.Saches.Select(s => s.Loai.Tenloai).Distinct().ToList();
             ViewBag.Categories = dsl;
 
+           
             foreach (var sach in sachList)
             {
                 sach.GiaMua = (decimal)Math.Floor(sach.GiaMua ?? 0);
             }
+
+           
             Random random = new Random();
             foreach (var sach in sachList)
-            { 
-
+            {
+                
             }
 
-                return View(sachList);
+          
+            return View(sachList);
         }
+
 
 
         public ActionResult About()
@@ -62,6 +84,11 @@ namespace DAPM_LT.Controllers
         [HttpPost]
         public ActionResult MuaSach(int idSach)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Dangnhap", "User");
+            }
+
             var sach = db.Saches.Find(idSach);
             if (sach == null)
             {
@@ -84,6 +111,7 @@ namespace DAPM_LT.Controllers
 
             return View("Details", sach);
         }
+
 
 
     }
