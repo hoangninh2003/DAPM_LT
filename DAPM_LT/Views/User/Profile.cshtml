@@ -1,50 +1,54 @@
-﻿@model  DAPM_LT.Models.TaiKhoan
+﻿@model DAPM_LT.Models.TaiKhoan
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" type="text/css" href="~/Content/css/profile.css">
+}
 
-@{ ViewBag.Title = "Profile";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<center>
-    <h2 class=""> Thông tin cá nhân</h2>
+<body>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary" style="color: white;">Trở về</a>
     <br />
-    <table class="table-hover table-bordered divGioHang">
-        <tr style="">
-            <th> Họ & tên</th>
 
-            <th> Email </th>
+    <h2 style="text-align:center">Hồ sơ</h2>
+    <br />
+    <div class="profile-container">
 
-            <th> Số điện thoại </th>
-
-            <th> Mật khẩu </th>
-
-            <th> Địa chỉ </th>
-
-        </tr>
-
-        <tr class="font-italic">
-            <td>
-                @Html.DisplayFor(model => model.Holot)
-                @Html.DisplayFor(model => model.Ten)
-            </td>
-
-            <td>  @Html.DisplayFor(model => model.Email) </td>
-
-            <td>  @Html.DisplayFor(model => model.Dienthoai)</td>
-
-            <td>  @Html.DisplayFor(model => model.Matkhau)</td>
-
-            <td>  @Html.DisplayFor(model => model.Diachi)</td>
-        </tr>
-
-
-        <tr>
-            <td colspan="5" style="text-align:right">
-                @*<button class="btn btn-info">
-                        @Html.ActionLink("Xem đơn hàng", "Index", "Donhangs", new { area = "" }, new { @class = "nav-link py-3 px-0 px-lg-3 rounded" })
-                    </button>*@
-                <button class="btn btn-primary">
-                    @Html.ActionLink("Chỉnh sửa hồ sơ", "Edit", new { id = Model.Idtaikhoan }, new { @class = "black" })
-                </button>
-            </td>
-        </tr>
-    </table>
-</center>
+        <div class="profile-left">
+            <div class="profile-picture-container">
+                <img src="~/Content/@Model.ImgU" alt="Hình ảnh đại diện" class="profile-picture">
+            </div>
+            <div class="profile-actions">
+                <a href="@Url.Action("Edit", new { id = Model.Idtaikhoan })">Chỉnh sửa hồ sơ</a>
+            </div>
+        </div>
+        <div class="profile-right">
+            <div class="profile-info">
+                <div class="profile-field">
+                    <span class="profile-label">Mã tài khoản:</span>
+                    <span class="profile-value" style="color:red">@Model.Idtaikhoan</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Họ và tên:</span>
+                    <span class="profile-value">@Model.Holot @Model.Ten</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Email:</span>
+                    <span class="profile-value">@Model.Email</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Điện thoại:</span>
+                    <span class="profile-value">@Model.Dienthoai</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Chức vụ:</span>
+                    <span class="profile-value">@Model.PhanQuyen.TenQuyen</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Địa chỉ:</span>
+                    <span class="profile-value">@Model.Diachi</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

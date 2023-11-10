@@ -14,12 +14,23 @@ namespace DAPM_LT.Areas.Admin.Controllers
     {
         private dapmEntities db = new dapmEntities();
 
-        // GET: Admin/Kiemsoats
-        public ActionResult Index()
+        // GET: Admin/Kiemsoats/Index/{id}
+        public ActionResult Index(int? id)
         {
-            var kiemsoats = db.Kiemsoats.Include(k => k.Sach);
-            return View(kiemsoats.ToList());
+            if (id == null)
+            {
+               
+                var kiemsoats = db.Kiemsoats.Include(k => k.Sach);
+                return View(kiemsoats.ToList());
+            }
+            else
+            {
+                
+                var kiemsoats = db.Kiemsoats.Include(k => k.Sach).Where(k => k.Idsach == id);
+                return View(kiemsoats.ToList());
+            }
         }
+
 
         // GET: Admin/Kiemsoats/Details/5
         public ActionResult Details(int? id)

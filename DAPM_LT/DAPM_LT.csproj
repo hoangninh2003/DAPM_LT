@@ -209,11 +209,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\account.css" />
     <Content Include="Content\css\admin.css" />
+    <Content Include="Content\css\IndexUser.css" />
     <Content Include="Content\css\Layout.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\Image\admin.jpg" />
     <Content Include="Content\Image\conan.jpg" />
+    <Content Include="Content\Image\dk.jpg" />
+    <Content Include="Content\Image\dn %282%29.jpg" />
     <Content Include="Content\Image\dnt.jpg" />
     <Content Include="Content\Image\h1.jpg" />
     <Content Include="Content\Image\h2.jpg" />
@@ -323,6 +326,7 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\User\Dangnhap.cshtml" />
     <Content Include="Views\User\Dangky.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

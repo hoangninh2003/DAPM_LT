@@ -27,15 +27,14 @@
             Nhóm 10
         </div>
         <div class="navbar-menu">
-            <div class="search-bar">
-                <input class="search-text" type="text" placeholder="Nhập từ khóa..." name="_name">
-                <button class="search-btn" type="submit" value="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+
+
 
             <ul class="navbar-menu">
                 <li> @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "white" })</li>
                 @{ if (u != null)
                     {
+                        <li>@Html.ActionLink("Giỏ hàng", "Index", "DatSaches")</li>
                         <li>@Html.ActionLink("Đặt sách", "Index", "DatSaches")</li>
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
 
@@ -61,6 +60,7 @@
                     }
                     else
                     {
+                        <li>@Html.ActionLink("Giỏ hàng", "Index", "DatSaches")</li>
                         <li>@Html.ActionLink("Đặt sách", "About", "Home")</li>
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
                         <li class="main-nav-link">
@@ -246,6 +246,148 @@
             display: block;
         }
     </style>
+    <style>
 
+        body, div, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        .custom-link {
+            font-size: 20px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #773b11b9;
+            color: white;
+            padding: 10px 20px;
+        }
+
+
+        .navbar-logo {
+            font-size: 34px;
+            font-weight: bold;
+            order: -1;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            font-size: 18px;
+        }
+
+            .navbar-menu a {
+                color: white;
+                text-decoration: none;
+                margin: 0 15px;
+                transition: color 0.3s ease;
+            }
+
+                .navbar-menu a:hover {
+                    color: #f39c12;
+                }
+
+            .navbar-menu ul, .navbar-menu li {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            /*Nút search*/
+            .navbar-menu .search-bar {
+                margin-left: auto;
+                height: 100%;
+                background: #ffffff;
+                border-radius: 30px;
+                border: 1px solid #5d1fcb;
+            }
+
+        .search-bar .search-text {
+            border: none;
+            outline: none;
+            background: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            height: 100%;
+            color: #000000;
+        }
+
+        .search-bar .search-btn {
+            background: #5d1fcb;
+            border: none;
+            padding: 7px 10px;
+            height: 100%;
+            border-radius: 30px;
+        }
+
+
+
+        /*#search-box {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+    #search-box input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #search-box button {
+        margin-left: 10px;
+        background-color: #f39c12;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        #search-box button:hover {
+            background-color: #e67e22;
+        }*/
+
+        .custom-btn {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .custom-btn:hover {
+                background-color: #e67e22;
+            }
+
+
+
+        footer {
+            background-color: #773b11b9;
+            color: white;
+            text-align: left;
+            padding: 10px 0;
+            margin-top: auto;
+            margin-top: 100px;
+        }
+
+        .content-container {
+            margin-top: 20px;
+        }
+
+    </style>
 </body>
 </html>
