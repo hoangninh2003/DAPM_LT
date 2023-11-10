@@ -21,12 +21,12 @@ namespace DAPM_LT.Models
             this.Saches = new HashSet<Sach>();
         }
 
-        public int MaLoai { get; set; }
+        public int Idloai { get; set; }
 
         [Display(Name = "Tên loại")]
         [Required(ErrorMessage = "Tên loại không được để trống")]
         public string Tenloai { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sach> Saches { get; set; }
     }

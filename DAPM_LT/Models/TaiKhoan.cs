@@ -18,7 +18,6 @@ namespace DAPM_LT.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoan()
         {
-            this.DatSaches = new HashSet<DatSach>();
             this.PhieuMuas = new HashSet<PhieuMua>();
             this.Thes = new HashSet<The>();
         }
@@ -26,10 +25,6 @@ namespace DAPM_LT.Models
         [Key]
         [Display(Name = "Mã người dùng")]
         public int Idtaikhoan { get; set; }
-
-        [Key]
-        [Display(Name = "Hình ảnh người dùng")]
-        public string Imgtaikhoan { get; set; }
 
         [Display(Name = "Họ & tên lót")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Họ tên phải từ 1-50 ký tự")]
@@ -47,26 +42,28 @@ namespace DAPM_LT.Models
         [EmailAddress(ErrorMessage = "Bạn phải điền email hợp lệ")]
         public string Email { get; set; }
 
-        [Display(Name = "Mật khẩu")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Mật khẩu phải từ 3-50 ký tự")]
-        [Required]
-        public string Matkhau { get; set; }
-
         [Required(ErrorMessage = "Số điện thoại không được để trống")]
         [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Số điện thoại phải có 10 chữ số")]
         public string Dienthoai { get; set; }
 
+        [Display(Name = "Mật khẩu")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Mật khẩu phải từ 3-50 ký tự")]
+        [Required]
+        public string Matkhau { get; set; }
+        [Key]
+        [Display(Name = "Hình ảnh người dùng")]
+
+        public string ImgU { get; set; }
+
         [Display(Name = "ID quyền")]
-        public int? IDQuyen { get; set; }
+        public Nullable<int> IDQuyen { get; set; }
 
         [Display(Name = "Địa chỉ")]
         [StringLength(200, MinimumLength = 5, ErrorMessage = "Địa chỉ phải từ 5-200 ký tự")]
         [Required]
         public string Diachi { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatSach> DatSaches { get; set; }
+    
         public virtual PhanQuyen PhanQuyen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuMua> PhieuMuas { get; set; }

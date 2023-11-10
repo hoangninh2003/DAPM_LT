@@ -31,6 +31,7 @@ namespace DAPM_LT.Models
         [Required(ErrorMessage = "Số lượng không được để trống.")]
         [Range(1, int.MaxValue, ErrorMessage = "Số lượng phải là số nguyên dương.")]
         public Nullable<int> SoLuong { get; set; }
+
         public virtual PhieuMua PhieuMua { get; set; }
         public virtual Sach Sach { get; set; }
     }

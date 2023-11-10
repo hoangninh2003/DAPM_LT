@@ -18,7 +18,7 @@ namespace DAPM_LT.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sach()
         {
-            this.DatSaches = new HashSet<DatSach>();
+           
             this.Kiemsoats = new HashSet<Kiemsoat>();
             this.PhieuMuaChiTiets = new HashSet<PhieuMuaChiTiet>();
             this.PhieuMuonChiTiets = new HashSet<PhieuMuonChiTiet>();
@@ -81,8 +81,6 @@ namespace DAPM_LT.Models
         [Required(ErrorMessage = "Mã loại không được để trống")]
         public Nullable<int> Idloai { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatSach> DatSaches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kiemsoat> Kiemsoats { get; set; }
         public virtual Loai Loai { get; set; }

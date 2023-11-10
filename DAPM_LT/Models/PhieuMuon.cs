@@ -77,8 +77,6 @@ namespace DAPM_LT.Models
         [Required(ErrorMessage = "Trạng thái mượn không được để trống")]
         public string Trangthaimuon { get; set; }
 
-        
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuMuonChiTiet> PhieuMuonChiTiets { get; set; }
         public virtual The The { get; set; }
