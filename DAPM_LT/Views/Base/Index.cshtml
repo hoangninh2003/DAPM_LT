@@ -1,0 +1,311 @@
+﻿@model DAPM_LT.Models.Sach
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+
+<section class="h-100 h-custom">
+    <div class="container h-100 py-5">
+        <div class="main_row">
+            <div class="col">
+                <div class="table-responsive" style="margin-top:100px">
+                    <div class="header">
+                        <div style="display: flex">
+                            <h1 style="font-weight: bold">Giỏ hàng</h1>
+                            <i class="fa-solid fa-otter" style="width: 50px; height: auto; padding: 0px 5px"></i>
+                        </div>
+                        <button>lịch sử mua hàng</button>
+                    </div>
+                    <br />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="main_td">Tên sản phẩm</th>
+                                <th scope="col" class="td">Thể Loại</th>
+                                <th scope="col" class="td">Số lượng</th>
+                                <th scope="col" class="td">Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="sp">
+                                    <div class="row_sup">
+                                        <img src="https://i.imgur.com/2DsA49b.webp" class="img" alt="Book">
+                                    </div>
+                                    <div class="tensp">
+                                        <p class="tensp_sup">Conan</p>
+                                    </div>
+                                </th>
+                                <td class="theloai">
+                                    <p class="theloai_sup">Hoạt Hình</p>
+                                </td>
+                                <td class="main_sl">
+                                    <div class="soluong">
+                                        <button class="btn btn-link px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+
+                                        <input id="form1" min="0" name="quantity" value="2" type="number"
+                                               class="form-control form-control-sm" />
+
+                                        <button class="btn btn-link px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="gia">
+                                    <p class="gia_sp">50.000VNĐ</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="sp">
+                                    <div class="row_sup">
+                                        <img src="https://i.imgur.com/Oj1iQUX.webp" class="img" alt="Book">
+                                    </div>
+                                    <div class="tensp">
+                                        <p class="tensp_sup">Thỏ bảy màu</p>
+                                    </div>
+                                </th>
+                                <td class="theloai">
+                                    <p class="theloai_sup">Hoạt Hình</p>
+                                </td>
+                                <td class="main_sl">
+                                    <div class="soluong">
+                                        <button class="btn btn-link px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+
+                                        <input id="form1" min="0" name="quantity" value="2" type="number"
+                                               class="form-control form-control-sm" />
+
+                                        <button class="btn btn-link px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="gia">
+                                    <p class="gia_sp">500.000VNĐ</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="body-content">
+                    <div class="card-body p-4">
+                        <div class="row" style="display: flex">
+                            <div class="card-body" style="padding: 10px 10px">
+                                <form>
+                                    <div class="card">
+                                        <div class="checkbox">
+                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1v"
+                                                   value="" aria-label="..." checked />
+                                        </div>
+                                        <div class="nd_check">
+                                            <p class="icon">
+                                                <i class="fab fa-cc-mastercard fa-2x text-dark pe-2"></i>
+                                                <label>Credit Card</label>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="checkbox">
+                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2v"
+                                                   value="" aria-label="..." />
+                                        </div>
+                                        <div class="nd_check">
+                                            <p class="icon">
+                                                <i class="fab fa-cc-visa fa-2x fa-lg text-dark pe-2"></i>
+                                                <label>Debit Card</label>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="checkbox">
+                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3v"
+                                                   value="" aria-label="..." />
+                                        </div>
+                                        <div class="nd_check">
+                                            <p class="icon">
+                                                <i class="fab fa-cc-paypal fa-2x fa-lg text-dark pe-2"></i>
+                                                <label>PayPal</label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="nd_body" style="padding: 10px 10px">
+                                <div class="rownd">
+                                    <div class="nd">
+                                        <div class="sup_nd">
+                                            <label class="tennd" for="typeName">Tên người dùng</label>
+                                            <input type="text" id="typeName" class="sup_tennd" siez="17"
+                                                   placeholder="John Smith" />
+                                        </div>
+
+                                        <div class="sup_nd">
+                                            <label class="tennd" for="typeExp">Hạn sử dụng thẻ</label>
+                                            <input type="text" id="typeExp" class="sup_tennd" placeholder="MM/YY"
+                                                   size="7" minlength="7" maxlength="7" />
+                                        </div>
+
+                                        <div class="sup_nd">
+                                            <label class="tennd" for="typeText">Mã thẻ</label>
+                                            <input type="text" id="typeText" class="sup_tennd" siez="17"
+                                                   placeholder="1111 2222 3333 4444" minlength="19" @*maxlength="19"*@ />
+                                        </div>
+
+                                        <div class="sup_nd">
+                                            <label class="tennd" for="typeText">Cvv</label>
+                                            <input type="password" id="typeText" class="sup_tennd"
+                                                   placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" @*maxlength="3"*@ />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tt_body" style="padding: 10px 10px">
+                                <div>
+                                    <label>Tiền sách: </label>
+                                </div>
+                                <div>
+                                    <label>Phí ship: </label>
+                                </div>
+                                <br />
+                                <div>
+                                    <label>Tổng tiền: </label>
+                                </div>
+                                <button type="button" class="btn_tt">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Thanh Toán</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .header {
+        width: auto;
+        height: 35px;
+        display: flex;
+    }
+
+        .header button {
+            padding: 5px 5px;
+            margin-left: auto;
+            background: #f5b07f;
+            border: 2px #ae591c;
+            color: #ae591c;
+        }
+
+    .main_td {
+        font-size: 25px;
+    }
+
+    .td {
+        font-size: 15px;
+    }
+
+    .sp {
+        display: flex;
+    }
+
+    .img {
+        width: 75px;
+        height: 100px;
+    }
+
+    .row_sup img {
+        width: 150px;
+        height: 200px;
+    }
+
+    .tensp {
+        padding: 70px 10px;
+        font-size: 18px;
+    }
+
+    .td {
+        text-align: center;
+    }
+
+    .soluong {
+        display: flex;
+        padding: 5px 10px
+    }
+
+    .theloai {
+        text-align: center;
+    }
+
+    .form-control {
+        width: 50px;
+        margin: auto;
+    }
+
+    .main_sl {
+        width: 100px;
+    }
+
+    .gia {
+        text-align: center;
+    }
+
+    .card {
+        display: flex;
+        width: 150px;
+    }
+
+    .icon {
+        padding: 5px 0px;
+    }
+
+        .icon label {
+            padding: 0px 5px;
+        }
+
+    .btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .sup_nd {
+        display: flex;
+        width: 300px;
+    }
+
+    .tennd {
+        width: auto;
+        height: auto;
+        padding: 5px 5px;
+    }
+
+    .sup_tennd {
+        margin-left: auto;
+        height: 35px;
+        width: 150px;
+    }
+
+    .btn_tt {
+        width: 200px;
+        height: 50px;
+        background: #ff0000;
+        border: 2px #6e0000;
+        color: #ffffff;
+    }
+</style>
