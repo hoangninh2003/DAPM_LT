@@ -325,6 +325,7 @@
     <Content Include="Views\User\Dangky.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\User\Changepass.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

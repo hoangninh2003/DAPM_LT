@@ -32,19 +32,19 @@
             <div class="products">
                 @foreach (var sach in Model)
                 {
-                <div class="prod-item">
-                    <div class="image" style="width: auto"><img src="~/Content/@sach.ImgSach" alt="@sach.Tieude" /></div>
-                    <div class="title">@sach.Tieude</div>
-                    <div class="price">Thể loại: @sach.Loai.Tenloai</div>
-                    <div><span style="font-size: 1.5em; color: red; margin-right: 0px;">@sach.GiaMua.ToString("N0") VND</span></div>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Idsach })*@
-                    <a class="btn" href="@Url.Action("Details", "Home", new { id = sach.Idsach})">
-                        <span>
-                            Mua ngay!
-                        </span>
-                    </a>
+                    <div class="prod-item">
+                        <div class="image" style="width: auto"><img src="~/Content/@sach.ImgSach" alt="@sach.Tieude" /></div>
+                        <div class="title">@sach.Tieude</div>
+                        <div class="price">Thể loại: @sach.Loai.Tenloai</div>
+                        <div><span style="font-size: 1.5em; color: red; margin-right: 0px;">@sach.GiaMua.ToString("N0") VND</span></div>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.Idsach })*@
+                        <a class="btn" href="@Url.Action("Details", "Home", new { id = sach.Idsach})">
+                            <span>
+                                Mua ngay!
+                            </span>
+                        </a>
 
-                </div>
+                    </div>
                 }
             </div>
         </div>
@@ -69,6 +69,7 @@
             width: 230px;
             height: 35px;
         }
+
     .menuPage {
         background-color: #f9f9f9;
         padding: 10px;
