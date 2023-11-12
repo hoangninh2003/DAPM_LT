@@ -3,87 +3,93 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Areas/Areas/Views/Shared/_LayoutAd.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
 }
+<div style="margin-top: 100px">
+    <a href="@Url.Action("Index", "TaiKhoans")" class="btn btn-primary" style="color: white;">Trở về</a>
 
-<a href="@Url.Action("Index", "TaiKhoans")" class="btn btn-primary" style="color: white;">Trở về</a>
-<div>
     <h4>Xóa tài khoản</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Họ lót
-        </dt>
+    <div class="profile-container">
 
-        <dd>
-            @Html.DisplayFor(model => model.Holot)
-        </dd>
+        <div class="profile-left">
+            <div class="profile-picture-container">
+                <img src="~/Content/@Model.ImgU" alt="Hình ảnh đại diện" class="profile-picture">
+            </div>
 
-        <dt>
-            Tên
-        </dt>
+        </div>
+        <div class="profile-right">
+            <div class="profile-info">
+                <div class="profile-field">
+                    <span class="profile-label">Mã tài khoản:</span>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Họ và tên:</span>
 
-        <dt>
-            Email
-        </dt>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Email:</span>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Điện thoại:</span>
 
-        <dt>
-            Điện thoại
-        </dt>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Mật khẩu:</span>
 
-        <dd>
-            @Html.DisplayFor(model => model.Dienthoai)
-        </dd>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Loại tài khoản:</span>
 
-        <dt>
-            Mật khẩu
-        </dt>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Địa chỉ:</span>
 
-        <dd>
-            @Html.DisplayFor(model => model.Matkhau)
-        </dd>
+                </div>
+            </div>
+        </div>
+        <div class="profile-right-2">
+            <div class="profile-info">
+                <div class="profile-field">
 
-        <dt>
-            Hình ảnh
-        </dt>
+                    <span class="profile-value" style="color:red">@Model.Idtaikhoan</span>
+                </div>
+                <div class="profile-field">
 
-        <dd>
-            @Html.DisplayFor(model => model.ImgU)
-        </dd>
+                    <span class="profile-value">@Model.Holot @Model.Ten</span>
+                </div>
+                <div class="profile-field">
 
-        <dt>
-            Địa chỉ
-        </dt>
+                    <span class="profile-value">@Model.Email</span>
+                </div>
+                <div class="profile-field">
 
-        <dd>
-            @Html.DisplayFor(model => model.Diachi)
-        </dd>
+                    <span class="profile-value">@Model.Matkhau</span>
+                </div>
+                <div class="profile-field">
 
-        <dt>
-            Công việc
-        </dt>
+                    <span class="profile-value">@Model.Dienthoai</span>
+                </div>
+                <div class="profile-field">
 
-        <dd>
-            @Html.DisplayFor(model => model.PhanQuyen.TenQuyen)
-        </dd>
+                    <span class="profile-value">@Model.PhanQuyen.TenQuyen</span>
+                </div>
+                <div class="profile-field">
 
-    </dl>
+                    <span class="profile-value">@Model.Diachi</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xóa" class="btn btn-danger" />
         </div>
     }
 </div>

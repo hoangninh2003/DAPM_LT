@@ -38,7 +38,11 @@
 
                     </div>
                     <div class="profile-field">
-                        <span class="profile-label">Họ và tên:</span>
+                        <span class="profile-label">Họ:</span>
+
+                    </div>
+                    <div class="profile-field">
+                        <span class="profile-label">Tên:</span>
 
                     </div>
                     <div class="profile-field">
@@ -61,38 +65,42 @@
             </div>
             <div class="profile-right">
                 <div class="profile-info">
-                    <div class="profile-field">
-
-                        @Html.EditorFor(model => model.Holot, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Holot, "", new { @class = "text-danger" })
-                    </div>
 
                     <div class="profile-field">
-                        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                        <span class="profile-value" style="color:red">@Model.Idtaikhoan</span>
+                        </div>
+                        <div class="profile-field">
+
+                            @Html.EditorFor(model => model.Holot, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Holot, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="profile-field">
+                            @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="profile-field">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="profile-field">
+                            @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Dienthoai, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="profile-field">
+                            @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
+                        </div>
+
                     </div>
 
-
-                    <div class="profile-field">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    </div>
-
-
-                    <div class="profile-field">
-                        @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Dienthoai, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="profile-field">
-                        @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
-                    </div>
 
                 </div>
-
-
-            </div>
         </div>
 
         <div class="form-group pull-right">

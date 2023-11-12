@@ -21,6 +21,7 @@ namespace ThuVien.Controllers
             return View();
         }
 
+
         // ĐĂNG KÝ PHƯƠNG THỨC POST
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,7 +77,12 @@ namespace ThuVien.Controllers
             }
         }
 
+        public ActionResult Changepass()
+        {
+            return View();
+        }
 
+        
         [AllowAnonymous]
         public ActionResult Dangnhap()
         {

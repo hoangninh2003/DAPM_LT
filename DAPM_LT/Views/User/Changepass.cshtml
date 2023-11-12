@@ -1,0 +1,99 @@
+﻿@model  DAPM_LT.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "Quenmk";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var useReg = Session["useReg"] as DAPM_LT.Models.TaiKhoan;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Đăng kí</title>
+    <link href="~/Content/css/login.css" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="login-container center-block" style="margin-top:100px">
+        <div class="card">
+            <div class="card-header">
+                <h3 style="text-align: center">Đổi mật khẩu</h3>
+            </div>
+
+            <div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <form>
+                        <div class="form-group">
+                            <label for="inputPassword">Mật khẩu hiện tại</label>
+                            @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { type = "Email", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu mới</label>
+                            @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { type = "Password", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu mới</label>
+                            @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { type = "Password", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
+                        </div>
+
+                        <p class="text-danger">@ViewBag.RegOk</p>
+                        <div class="form-group">
+                            <input type="submit" value="Xác nhận" class="btn btn-danger" />
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
+<style>
+    .login-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+        max-width: 100%;
+        background: transparent;
+        color: #000000;
+        border: 2px solid #ffffff;
+    }
+
+    body {
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group a {
+            color: #ffffff;
+        }
+
+    .small a {
+        color: #ffffff;
+    }
+</style>
