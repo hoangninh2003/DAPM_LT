@@ -75,13 +75,15 @@
     <div class="container content-container">
 
         @if (TempData["AlertMessage"] != null)
-            {
-                <div class="form-group">
-                    <div class="alert @TempData["AlertMessage"] hide">
-                        @TempData["AlertMessage"]
-                    </div>
+        {
+            <div class="form-group">
+                <div class="alert @TempData["AlertMessage"] hide">
+                    @TempData["AlertMessage"]
                 </div>
-            }
+            </div>
+        }
+
+    
 
         @RenderBody()
     </div>

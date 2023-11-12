@@ -29,31 +29,41 @@
             <th>
                 Trạng thái sách
             </th>
+            <th>
+
+            </th>
+            <th>
+               
+            </th>
         </tr>
 
 
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Idkiemsoat)
-                </td>
-                <td>
-                    <img src="~/Content/@item.Imgtrangthai" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Trangthaisach)
-                </td>
-                <td style="text-align:center">
-                    <a href="@Url.Action("Edit", new { id = item.Idkiemsoat })" class="btn btn-primary" style="color: white;">
-                        Sửa trạng thái
-                    </a>
-                    <a href="@Url.Action("Delete", new { id = item.Idkiemsoat })" class="btn btn-danger" style="color: white;">
-                        Xóa sách
-                    </a>
-                </td>
-            </tr>
+    <tr style="text-align:center">
+        <td>
+            @Html.DisplayFor(modelItem => item.Idkiemsoat)
+        </td>
+        <td>
+            <img src="~/Content/@item.Imgtrangthai" style="height:20%; width:20%" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trangthaisach)
+        </td>
+        <td style="text-align:center">
+            <a href="@Url.Action("Edit", new { id = item.Idkiemsoat })" class="btn btn-primary" style="color: white;">
+                Sửa
+            </a>
+            
+        </td>
+        <td style="text-align:center">
+            
+            <a href="@Url.Action("Delete", new { id = item.Idkiemsoat })" class="btn btn-danger" style="color: white;">
+                Xóa
+            </a>
+
+</tr>
         }
 
     </table>

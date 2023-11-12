@@ -14,16 +14,16 @@ namespace DAPM_LT.Controllers
 
         public ActionResult Index(string _selectedValue, string _name)
         {
-            
+           
+
             IQueryable<Sach> query = db.Saches;
 
             
             if (!string.IsNullOrEmpty(_selectedValue) && _selectedValue != "Tất cả")
             {
-                query = query.Where(s => s.Loai.Tenloai == _selectedValue);
+                query = query.Where(l => l.Loai.Tenloai.Contains(_selectedValue));
             }
 
-            
             if (!string.IsNullOrEmpty(_name))
             {
                 query = query.Where(s => s.Tieude.Contains(_name));
@@ -33,7 +33,7 @@ namespace DAPM_LT.Controllers
             List<Sach> sachList = query.ToList();
 
            
-            List<string> dsl = db.Saches.Select(s => s.Loai.Tenloai).Distinct().ToList();
+            List<string> dsl = db.Saches.Select(l => l.Loai.Tenloai).Distinct().ToList();
             ViewBag.Categories = dsl;
 
            

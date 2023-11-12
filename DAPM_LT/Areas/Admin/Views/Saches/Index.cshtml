@@ -12,125 +12,109 @@
         <a href="@Url.Action("Create")" class="btn btn-success" style="margin-right:auto">Thêm</a>
     </div>
 </div>
+@using (Html.BeginForm("Index", "Saches", FormMethod.Get))
+{
 
-<div style="display:flex">
-    <div class="Boloc">
-        <div class="Tiemkiem_1">
-            <div class="form-group">
-                <label>Id sản phẩm:</label>
-                <input class="form-control" type="text" placeholder="" aria-label="Id sản phẩm" aria-describedby="basic-addon2" name="_id" />
-            </div>
-        </div>
-
-        <div class="Tiemkiem_2">
-            <div class="form-group">
-                <label>Loại sách:</label>
-                <select class="select2" style="width: 100%;" name="_selectedValue">
-                    <option value="">Tất cả</option>
-                    @foreach (var item1 in ViewBag.Categories)
-                    {
-                        <option value="@item1">@item1</option>
-                    }
-                </select>
-            </div>
-        </div>
-
-        <div class="Tiemkiem_2">
-            <div class="form-group">
-                <label>Tác giả:</label>
-                <select class="select2" style="width: 100%;" name="_author">
-                    <option value="">Tất cả</option>
-                    @foreach (var item2 in ViewBag.Tacgia)
-                    {
-                        <option value="@item2">@item2</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="Tiemkiem_2">
-            <div class="form-group">
-                <div class="input-group-append">
-                    <input type="submit" value="Tìm" class="btn btn-primary" />
+    <div style="display:flex">
+        <div class="Boloc">
+            <div class="Tiemkiem_1">
+                <div class="form-group">
+                    <label>Id sản phẩm:</label>
+                    <input class="form-control" type="text" placeholder="12..." aria-label="Id sản phẩm" aria-describedby="basic-addon2" name="_id" />
                 </div>
             </div>
+
+            <div class="Tiemkiem_2">
+                <div class="form-group">
+                    <label>Loại sách:</label>
+                    <select class="select2" style="width: 100%;" name="_selectedValue">
+                        <option value="Tất cả">Tất cả</option>
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <option value="@category">@category</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
         </div>
-    </div>
 
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="margin-right:20px">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2" name="_name" />
+        <form class="Tiemkiem_2">
+            <div class="input-group" style="display:flex">
+                <input class="form-control" style="flex:0.5" type="text" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2" name="_name" />
                 <div class="input-group-append">
-                    <input type="submit" value="Tìm" class="btn btn-primary" />
+                    <button class="btn-primary" type="submit" value="Tìm kiếm"><i class="fa-solid fa-magnifying-glass" style="width:30px"></i></button>
                 </div>
             </div>
         </form>
     </div>
 
-<table class="table fa-border" style="text-align:center">
-    <tr>
-        <th>
-            Hình Ảnh
-        </th>
-        <th>
-            Mã Sách
-        </th>
-        <th>
-            Tên Sách
-        </th>
+    <table class="table fa-border" style="text-align:center">
+        <tr>
+            <th>
+                Hình Ảnh
+            </th>
+            <th>
+                Mã Sách
+            </th>
+            <th>
+                Tên Sách
+            </th>
 
-        <th>
-            Tác Giả
-        </th>
-        <th>
-            Năm Xuất Bản
-        </th>
-        <th>
-            Thể Loại
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="table-row" data-id="@item.Idsach">
-            <td>
-
-                <img src="~/Content/@item.ImgSach" style="height:100px; width:auto" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Idsach)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tieude)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Tacgia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Namxuatban)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Loai.Tenloai)
-            </td>
-            <td>
-                <button class="btn btn-success ">
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.Idsach }, new { @style = "color:white;" })
-                </button>
-                <button class="btn btn-primary ">
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Idsach }, new { @style = "color:white;" })
-                </button>
-                <button class="btn btn-danger">
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.Idsach }, new { @style = "color:white;" })
-                </button>
-            </td>
+            <th>
+                Tác Giả
+            </th>
+            <th>
+                Năm Xuất Bản
+            </th>
+            <th>
+                Thể Loại
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-<script>
+        @foreach (var item in Model)
+        {
+            <tr class="table-row" data-id="@item.Idsach">
+                <td>
+
+                    <img src="~/Content/@item.ImgSach" style="height:100px; width:auto" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idsach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tieude)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tacgia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Namxuatban)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Loai.Tenloai)
+                </td>
+                <td>
+                    <button class="btn btn-success ">
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.Idsach }, new { @style = "color:white;" })
+                    </button>
+                    <button class="btn btn-primary ">
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Idsach }, new { @style = "color:white;" })
+                    </button>
+                    <button class="btn btn-danger">
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.Idsach }, new { @style = "color:white;" })
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+    <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Chọn tất cả các hàng có class "table-row"
         var rows = document.querySelectorAll('.table-row');
@@ -149,82 +133,82 @@
             });
         });
     });
-</script>
+    </script>
 
 
-<style type="text/css">
-    .sp-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
+    <style type="text/css">
+        .sp-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
 
-    .sp-item {
-        width: 200px;
-        height: 300px;
-        margin: 20px;
-        padding: 10px;
-        text-align: center;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        .sp-item {
+            width: 200px;
+            height: 300px;
+            margin: 20px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .sp-image {
-        max-width: 150px;
-        max-height: 150px;
-        object-fit: cover;
-        margin-bottom: 10px;
-    }
+        .sp-image {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
 
-    .sp-title {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
+        .sp-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
 
-    .sp-status {
-        font-style: italic;
-        color: #888;
-    }
-</style>
+        .sp-status {
+            font-style: italic;
+            color: #888;
+        }
+    </style>
 
-@*-------------Bộ lọc sản phẩm-------------------------------------------*@
-<style>
-    .Boloc {
-        display: flex;
-        padding: 10px 0px;
-        height: 100px;
-        width: auto;
-    }
+    @*-------------Bộ lọc sản phẩm-------------------------------------------*@
+    <style>
+        .Boloc {
+            display: flex;
+            padding: 10px 0px;
+            height: 120px;
+            width: auto;
+        }
 
-    .Tiemkiem_1 {
-        padding: 0px 5px;
-        width: auto;
-        position: relative;
-    }
+        .Tiemkiem_1 {
+            padding: 0px 5px;
+            width: auto;
+            position: relative;
+        }
 
-    .Tiemkiem_2 {
-        padding: 0px 5px;
-        width: auto;
-        position: relative;
-    }
+        .Tiemkiem_2 {
+            padding: 0px 5px;
+            width: auto;
+            position: relative;
+        }
 
-    .form-group {
-        width: 130px;
-        height: 35px;
-    }
+        .form-group {
+            width: 130px;
+            height: 35px;
+        }
 
-    .select2 {
-        width: 100%;
-        height: 40px;
-        border-radius: 5px;
-    }
+        .select2 {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+        }
 
-    .input-group {
-        padding: 42px 0px;
-    }
-</style>
+        .input-group {
+            padding: 42px 0px;
+        }
+    </style>
 

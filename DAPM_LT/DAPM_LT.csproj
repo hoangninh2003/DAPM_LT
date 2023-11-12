@@ -220,6 +220,8 @@
     <Content Include="Content\Image\snn.jpg" />
     <Content Include="Content\Image\tbm.jpg" />
     <Content Include="Content\Image\th.jpg" />
+    <Content Include="Content\Image\tt1.jpg" />
+    <Content Include="Content\Image\tt2.jpg" />
     <Content Include="Content\js\chart-area-demo.js" />
     <Content Include="Content\js\chart-bar-demo.js" />
     <Content Include="Content\js\datatables-demo.js" />

@@ -14,36 +14,49 @@ namespace DAPM_LT.Areas.Admin.Controllers
     {
         private dapmEntities db = new dapmEntities();
 
-        public ActionResult Index(string _name, string _category, string _author)
+        public ActionResult Index(string _name, string _selectedValue, int? _id)
         {
-            // Lấy danh sách sách từ cơ sở dữ liệu
-            var sachList = db.Saches.Include(s => s.Loai);
 
-            // Áp dụng các điều kiện tìm kiếm
+            IQueryable<Sach> query = db.Saches;
+
+
+            if (_id != null)
+            {
+                query = query.Where(i => i.Idsach == _id);
+            }
+
+            if (!string.IsNullOrEmpty(_selectedValue) && _selectedValue != "Tất cả")
+            {
+                query = query.Where(l => l.Loai.Tenloai.Contains(_selectedValue));
+            }
+
             if (!string.IsNullOrEmpty(_name))
             {
-                sachList = sachList.Where(s => s.Tieude.Contains(_name));
+                query = query.Where(s => s.Tieude.Contains(_name));
             }
 
-            if (!string.IsNullOrEmpty(_category))
-            {
-                sachList = sachList.Where(s => s.Loai.Tenloai == _category);
-            }
 
-            if (!string.IsNullOrEmpty(_author))
-            {
-                sachList = sachList.Where(s => s.Tacgia == _author);
-            }
+            List<Sach> sachList = query.ToList();
 
-           
-            var dsl = db.Loais.Select(l => l.Tenloai).Distinct().ToList();
+
+            List<string> dsl = db.Saches.Select(l => l.Loai.Tenloai).Distinct().ToList();
             ViewBag.Categories = dsl;
 
-            
-            var tacGiaList = sachList.Select(s => s.Tacgia).Distinct().ToList();
-            ViewBag.Tacgia = tacGiaList;
 
-            return View(sachList.ToList());
+            foreach (var sach in sachList)
+            {
+                sach.GiaMua = (decimal)Math.Floor(sach.GiaMua ?? 0);
+            }
+
+
+            Random random = new Random();
+            foreach (var sach in sachList)
+            {
+
+            }
+
+
+            return View(sachList);
         }
 
 
