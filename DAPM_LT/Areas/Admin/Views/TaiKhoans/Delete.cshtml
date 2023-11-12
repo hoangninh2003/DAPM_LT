@@ -1,19 +1,18 @@
 ﻿@model DAPM_LT.Models.TaiKhoan
 
+
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+    Layout = "~/Areas/Areas/Views/Shared/_LayoutAd.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<a href="@Url.Action("Index", "TaiKhoans")" class="btn btn-primary" style="color: white;">Trở về</a>
 <div>
-    <h4>TaiKhoan</h4>
+    <h4>Xóa tài khoản</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Holot)
+            Họ lót
         </dt>
 
         <dd>
@@ -21,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Ten)
+            Tên
         </dt>
 
         <dd>
@@ -29,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </dt>
 
         <dd>
@@ -37,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Dienthoai)
+            Điện thoại
         </dt>
 
         <dd>
@@ -45,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Matkhau)
+            Mật khẩu
         </dt>
 
         <dd>
@@ -53,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ImgU)
+            Hình ảnh
         </dt>
 
         <dd>
@@ -61,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Diachi)
+            Địa chỉ
         </dt>
 
         <dd>
@@ -69,7 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PhanQuyen.TenQuyen)
+            Công việc
         </dt>
 
         <dd>
@@ -78,11 +77,12 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

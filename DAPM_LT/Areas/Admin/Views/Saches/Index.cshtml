@@ -18,51 +18,54 @@
         <div class="Tiemkiem_1">
             <div class="form-group">
                 <label>Id sản phẩm:</label>
-                <input class="form-control" type="text" placeholder="" aria-label="Id sản phẩm" aria-describedby="basic-addon2" name="_name" />
+                <input class="form-control" type="text" placeholder="" aria-label="Id sản phẩm" aria-describedby="basic-addon2" name="_id" />
             </div>
         </div>
 
         <div class="Tiemkiem_2">
             <div class="form-group">
-                <label>Loại hàng:</label>
-                <select class="select2" style="width: 100%;">
-                    <option selected>Cọ</option>
-                    <option>Màu</option>
-                    <option>Giấy</option>
+                <label>Loại sách:</label>
+                <select class="select2" style="width: 100%;" name="_selectedValue">
+                    <option value="">Tất cả</option>
+                    @foreach (var item1 in ViewBag.Categories)
+                    {
+                        <option value="@item1">@item1</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="Tiemkiem_2">
+            <div class="form-group">
+                <label>Tác giả:</label>
+                <select class="select2" style="width: 100%;" name="_author">
+                    <option value="">Tất cả</option>
+                    @foreach (var item2 in ViewBag.Tacgia)
+                    {
+                        <option value="@item2">@item2</option>
+                    }
                 </select>
             </div>
         </div>
         <div class="Tiemkiem_2">
             <div class="form-group">
-                <label>Loại hàng:</label>
-                <select class="select2" style="width: 100%;">
-                    <option selected>Cọ</option>
-                    <option>Màu</option>
-                    <option>Giấy</option>
-                </select>
-            </div>
-        </div>
-        <div class="Tiemkiem_2">
-            <div class="form-group">
-                <label>Loại hàng:</label>
-                <select class="select2" style="width: 100%;">
-                    <option selected>Cọ</option>
-                    <option>Màu</option>
-                    <option>Giấy</option>
-                </select>
+                <div class="input-group-append">
+                    <input type="submit" value="Tìm" class="btn btn-primary" />
+                </div>
             </div>
         </div>
     </div>
-    <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="margin-right:20px">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2" name="_name" />
-            <div class="input-group-append">
-                <input type="button" value="Tìm" class="btn btn-primary" />
+
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="margin-right:20px">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2" name="_name" />
+                <div class="input-group-append">
+                    <input type="submit" value="Tìm" class="btn btn-primary" />
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
 <table class="table fa-border" style="text-align:center">
     <tr>
@@ -147,6 +150,7 @@
         });
     });
 </script>
+
 
 <style type="text/css">
     .sp-container {

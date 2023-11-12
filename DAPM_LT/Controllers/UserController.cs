@@ -1,6 +1,7 @@
 ﻿using DAPM_LT.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -35,21 +36,33 @@ namespace ThuVien.Controllers
                     var check = db.TaiKhoans.FirstOrDefault(s => s.Email == taiKhoan.Email);
                     if (check == null)
                     {
-                        // Set quyền mặc định cho tài khoản mới(dùng tên luôn)
-                        taiKhoan.PhanQuyen = new PhanQuyen { TenQuyen = "Member" };
+                        // Kiểm tra tồn tạo member chưa (lấy id nó luôn)
+                        var memberRole = db.PhanQuyens.FirstOrDefault(pq => pq.TenQuyen == "Member");
 
-                        //ViewBag.RegOk = "Đăng kí thành công. Đăng nhập ngay";
+                        // Nếu quyền không tồn tại tạo mưới
+                        if (memberRole == null)
+                        {
+                            memberRole = new PhanQuyen { TenQuyen = "Member" };
+                            db.PhanQuyens.Add(memberRole);
+                        }
+                        taiKhoan.PhanQuyen = memberRole;
+                        //// Set quyền mặc định cho tài khoản mới(dùng tên luôn)
+                        //taiKhoan.PhanQuyen = new PhanQuyen { IDQuyen = 2 };
+
+                        ViewBag.RegOk = "Đăng kí thành công. Đăng nhập ngay";
                         ViewBag.isReg = true;
                         // Thêm người dùng mới
                         db.TaiKhoans.Add(taiKhoan);
 
                         db.SaveChanges();
-                        return View("Dangky");
+                        ViewBag.RegOk = "Đăng kí thành công.";
+                        return RedirectToAction("Dangnhap", "User");
                     }
                     else
                     {
+                        
                         ViewBag.RegOk = "Email đã tồn tại! Vui lòng chọn 1 email khác";
-                        return View("Dangky");
+                        return RedirectToAction("Dangky", "User");
                     }
                 }
                 else
@@ -120,7 +133,7 @@ namespace ThuVien.Controllers
             }
             return View(taiKhoan);
         }
-
+        // GET: Admin/TaiKhoans/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -136,23 +149,23 @@ namespace ThuVien.Controllers
             return View(taiKhoan);
         }
 
-        // POST: Admin/Nguoidungs/Edit/5
+        // POST: Admin/TaiKhoans/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Idtaikhoan,Holot,Ten,Email,Dienthoai,Matkhau,IDQuyen,Diachi")] TaiKhoan taiKhoan)
+        public ActionResult Edit([Bind(Include = "Idtaikhoan,Holot,Ten,Email,Dienthoai,Matkhau,ImgU,IDQuyen,Diachi")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(taiKhoan).State = EntityState.Modified;
                 db.SaveChanges();
-                //@ViewBag.show = "Chỉnh sửa hồ sơ thành công";
-                //return View(nguoidung);
                 return RedirectToAction("Profile", new { id = taiKhoan.Idtaikhoan });
-
             }
             ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", taiKhoan.IDQuyen);
             return View(taiKhoan);
         }
+
         public static byte[] encryptData(string data)
         {
             System.Security.Cryptography.MD5CryptoServiceProvider md5Hasher = new System.Security.Cryptography.MD5CryptoServiceProvider();
@@ -161,6 +174,23 @@ namespace ThuVien.Controllers
             hashedBytes = md5Hasher.ComputeHash(encoder.GetBytes(data));
             return hashedBytes;
         }
+
+         protected void SetAlert(string messange, string type)
+        {
+            TempData["AlertMessage"] = messange;
+            switch (type)
+            {
+                case "success":
+                    TempData["AlertType"] = "success"; break;
+                case "warning":
+                    TempData["AlertType"] = "warning"; break;
+                case "error":
+                    TempData["AlertType"] = "error"; break;
+                default: 
+                    TempData["AlertType"] = ""; break;
+            }
+        }
+
         public static string md5(string data)
         {
             return BitConverter.ToString(encryptData(data)).Replace("-", "").ToLower();

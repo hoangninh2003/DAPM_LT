@@ -5,20 +5,31 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
 }
 
-<h2>Edit</h2>
+
+
+<a href="@Url.Action("Index", "Kiemsoats", new { id = Model.Idsach })" class="btn btn-primary" style="color: white;">Trở về</a>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    <h4 style="text-align:center">Chỉnh sửa trạng thái</h4>
     <div class="form-horizontal">
-        <h4>Kiemsoat</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Idkiemsoat)
 
+
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Imgtrangthai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>Tên sách:    </p>
+            @Html.DisplayFor(model => model.Sach.Tieude, new { htmlAttributes = new { @class = "input-container" } })
+            @Html.HiddenFor(model => model.Idsach)
+            @Html.ValidationMessageFor(model => model.Idsach, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Imgtrangthai, "Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Imgtrangthai, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Imgtrangthai, "", new { @class = "text-danger" })
@@ -26,29 +37,83 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Trangthaisach, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Trangthaisach, "Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Trangthaisach, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Trangthaisach, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Idsach, "Idsach", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Idsach", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Idsach, "", new { @class = "text-danger" })
-            </div>
+            <p>Mã sách:    </p>
+            @Html.DisplayFor(model => model.Idsach, new { htmlAttributes = new { @class = "input-container" } })
+            @Html.HiddenFor(model => model.Idsach)
+            @Html.ValidationMessageFor(model => model.Idsach, "", new { @class = "text-danger" })
+
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Lưu" class="btn btn-danger" style="color:white" />
             </div>
         </div>
     </div>
 }
+<style>
+    .input-container {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    .form-horizontal {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        color: #495057;
+        background-color: #fff;
+        border-color: #ced4da;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .control-label {
+        color: #495057;
+        background-color: transparent;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>

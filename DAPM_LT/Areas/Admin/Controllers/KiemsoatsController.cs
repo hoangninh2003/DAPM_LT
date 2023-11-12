@@ -65,7 +65,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
             {
                 db.Kiemsoats.Add(kiemsoat);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = kiemsoat.Idsach });
             }
 
             ViewBag.Idsach = new SelectList(db.Saches, "Idsach", "Tieude", kiemsoat.Idsach);

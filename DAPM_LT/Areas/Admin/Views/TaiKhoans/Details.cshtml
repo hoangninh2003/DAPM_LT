@@ -2,82 +2,52 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+    <link rel="stylesheet" type="text/css" href="~/Content/css/profile.css">
 }
 
-<h2>Details</h2>
+<a href="@Url.Action("Index", "TaiKhoans")" class="btn btn-primary" style="color: white;">Trở về</a>
+<body>
+    <br />
+    <h2 style="text-align:center">Đăng nhập</h2>
+    <br />
+    <div class="profile-container">
 
-<div>
-    <h4>TaiKhoan</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Holot)
-        </dt>
+        <div class="profile-left">
+            <div class="profile-picture-container">
+                <img src="~/Content/@Model.ImgU" alt="Hình ảnh đại diện" class="profile-picture">
+            </div>
+            <div class="profile-actions">
+                <a href="@Url.Action("Edit", new { id = Model.Idtaikhoan })">Chỉnh sửa hồ sơ</a>
+            </div>
+        </div>
+        <div class="profile-right">
+            <div class="profile-info">
+                <div class="profile-field">
+                    <span class="profile-label">Mã tài khoản:</span>
+                    <span class="profile-value" style="color:red">@Model.Idtaikhoan</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Họ và tên:</span>
+                    <span class="profile-value">@Model.Holot @Model.Ten</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Email:</span>
+                    <span class="profile-value">@Model.Email</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Điện thoại:</span>
+                    <span class="profile-value">@Model.Dienthoai</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Chức vụ:</span>
+                    <span class="profile-value">@Model.PhanQuyen.TenQuyen</span>
+                </div>
+                <div class="profile-field">
+                    <span class="profile-label">Địa chỉ:</span>
+                    <span class="profile-value">@Model.Diachi</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
-        <dd>
-            @Html.DisplayFor(model => model.Holot)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dienthoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dienthoai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Matkhau)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Matkhau)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImgU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImgU)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Diachi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Diachi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhanQuyen.TenQuyen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhanQuyen.TenQuyen)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Idtaikhoan }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

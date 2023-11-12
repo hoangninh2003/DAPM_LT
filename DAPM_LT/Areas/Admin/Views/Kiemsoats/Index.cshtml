@@ -1,46 +1,64 @@
-﻿@model IEnumerable<DAPM_LT.Models.Kiemsoat>
+﻿@model List<DAPM_LT.Models.Kiemsoat>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Imgtrangthai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Trangthaisach)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sach.Tieude)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Imgtrangthai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trangthaisach)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sach.Tieude)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Idkiemsoat }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Idkiemsoat }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Idkiemsoat })
-        </td>
-    </tr>
+<h2>Quản lí từng quyển sách</h2>
+<br />
+<a href="@Url.Action("Index","Saches")" class="btn btn-primary" style="color: white;">
+    Trở về
+</a>
+<a href="@Url.Action("Create")" class="btn btn-success pull-right" style="color: white;">
+    Thêm sách
+</a>
+<br />
+@if (Model.Any())
+{
+    <table class="table fa-border">
+        <tr>
+            <th>
+                Mã đầu sách
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Trạng thái sách
+            </th>
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idkiemsoat)
+                </td>
+                <td>
+                    <img src="~/Content/@item.Imgtrangthai" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trangthaisach)
+                </td>
+                <td style="text-align:center">
+                    <a href="@Url.Action("Edit", new { id = item.Idkiemsoat })" class="btn btn-primary" style="color: white;">
+                        Sửa trạng thái
+                    </a>
+                    <a href="@Url.Action("Delete", new { id = item.Idkiemsoat })" class="btn btn-danger" style="color: white;">
+                        Xóa sách
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
 }
-
-</table>
+else
+{
+    <p> Sách này hiện không có.</p>
+}

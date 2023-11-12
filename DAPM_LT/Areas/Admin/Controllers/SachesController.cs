@@ -14,12 +14,38 @@ namespace DAPM_LT.Areas.Admin.Controllers
     {
         private dapmEntities db = new dapmEntities();
 
-        // GET: Admin/Saches
-        public ActionResult Index()
+        public ActionResult Index(string _name, string _category, string _author)
         {
-            var saches = db.Saches.Include(s => s.Loai);
-            return View(saches.ToList());
+            // Lấy danh sách sách từ cơ sở dữ liệu
+            var sachList = db.Saches.Include(s => s.Loai);
+
+            // Áp dụng các điều kiện tìm kiếm
+            if (!string.IsNullOrEmpty(_name))
+            {
+                sachList = sachList.Where(s => s.Tieude.Contains(_name));
+            }
+
+            if (!string.IsNullOrEmpty(_category))
+            {
+                sachList = sachList.Where(s => s.Loai.Tenloai == _category);
+            }
+
+            if (!string.IsNullOrEmpty(_author))
+            {
+                sachList = sachList.Where(s => s.Tacgia == _author);
+            }
+
+           
+            var dsl = db.Loais.Select(l => l.Tenloai).Distinct().ToList();
+            ViewBag.Categories = dsl;
+
+            
+            var tacGiaList = sachList.Select(s => s.Tacgia).Distinct().ToList();
+            ViewBag.Tacgia = tacGiaList;
+
+            return View(sachList.ToList());
         }
+
 
         // GET: Admin/Saches/Details/5
         public ActionResult Details(int? id)
@@ -36,14 +62,14 @@ namespace DAPM_LT.Areas.Admin.Controllers
             return View(sach);
         }
 
-        // GET: Admin/Saches/Create
+        // GET: Admin/Saches1/Create
         public ActionResult Create()
         {
             ViewBag.Idloai = new SelectList(db.Loais, "Idloai", "Tenloai");
             return View();
         }
 
-        // POST: Admin/Saches/Create
+        // POST: Admin/Saches1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

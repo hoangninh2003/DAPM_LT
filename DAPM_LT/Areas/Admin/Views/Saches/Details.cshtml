@@ -2,13 +2,28 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+    Layout = "~/Areas/Areas/Views/Shared/_LayoutAd.cshtml";
 }
+<style>
+    .dl-horizontal dt {
+        width: 100px;
+        text-align: right;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 
-<h2>Details</h2>
+    .dl-horizontal dd {
+        margin-left: 120px;
+    }
 
+    .form-actions {
+        margin-top: 20px;
+    }
+</style>
+<a href="@Url.Action("Index", "Saches")" class="btn btn-primary" style="color: white;">Trở về</a>
 <div>
-    <h4>Sach</h4>
+    <h4 style="text-align:center">Chi tiết sách</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

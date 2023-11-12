@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrangThaiSachMuonsController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,9 +204,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\account.css" />
     <Content Include="Content\css\admin.css" />
+    <Content Include="Content\css\admin1.css" />
     <Content Include="Content\css\IndexUser.css" />
     <Content Include="Content\css\Layout.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\profile.css" />
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\Image\admin.jpg" />
     <Content Include="Content\Image\conan.jpg" />
@@ -293,6 +296,8 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -325,6 +330,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
