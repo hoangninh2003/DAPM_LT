@@ -22,7 +22,7 @@ namespace DAPM_LT.Models
                 var ngayMuon = (DateTime)value;
                 var ngayHienTai = DateTime.Now.Date;
 
-                if (ngayMuon.Date < ngayHienTai)
+                if (ngayMuon.Date > ngayHienTai)
                 {
                     return new ValidationResult(ErrorMessage);
                 }
@@ -32,7 +32,7 @@ namespace DAPM_LT.Models
                 if (ngayTraProperty != null)
                 {
                     var ngayTra = (DateTime?)ngayTraProperty.GetValue(validationContext.ObjectInstance, null);
-                    if (ngayTra.HasValue && ngayMuon.Date >= ngayTra.Value.Date)
+                    if (ngayTra.HasValue && ngayMuon.Date <= ngayTra.Value.Date)
                     {
                         return new ValidationResult(ErrorMessage);
                     }

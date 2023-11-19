@@ -55,9 +55,9 @@ namespace DAPM_LT.Controllers
 
 
 
-        public ActionResult About()
+        public ActionResult Thanhtoan()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Thanh toán thành công.";
 
             return View();
         }
