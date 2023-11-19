@@ -24,7 +24,7 @@
                 | Twitter
                 <i class="fa-brands fa-twitter"></i>
             </div>
-            Nhóm 10
+            Nhóm 9
         </div>
         <div class="navbar-menu">
 
@@ -34,7 +34,7 @@
                 <li> @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "white" })</li>
                 @{ if (u != null)
                     {
-                        <li>@Html.ActionLink("Giỏ hàng", "Index", "DatSaches")</li>
+                        <li>@Html.ActionLink("Giỏ hàng", "Index", "Base")</li>
                         
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
 
@@ -60,7 +60,7 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Giỏ hàng", "Index", "DatSaches")</li>
+                        <li>@Html.ActionLink("Giỏ hàng", "Dangnhap", "User")</li>
                         
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
                         <li class="main-nav-link">
@@ -92,7 +92,7 @@
         <div class="footer">
             <div class="columns">
                 <div class="column">
-                    <h3>Giới Thiệu Nhóm 10</h3>
+                    <h3>Giới Thiệu Nhóm 9</h3>
                     <ul>
                         <li><a href="" style="color:white;text-decoration:none">Giới Thiệu</a></li>
                         <li><a href="" style="color:white;text-decoration:none">Nội Quy</a></li>
@@ -124,7 +124,7 @@
                 </div>
             </div>
         </div>
-        <p>&copy; @DateTime.Now.Year - nhom 10</p>
+        <p>&copy; @DateTime.Now.Year - nhom 9</p>
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

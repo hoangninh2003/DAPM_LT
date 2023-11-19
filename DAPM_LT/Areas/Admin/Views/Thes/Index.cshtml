@@ -19,8 +19,6 @@
                 <th>ID Thẻ</th>
                 <th>Ngày Mở Thẻ</th>
                 <th>Trạng Thái Thẻ</th>
-
-
                 <th>Thao Tác</th>
             </tr>
         </thead>
@@ -31,7 +29,18 @@
                 <td><img src="~/Content/@item.TaiKhoan.ImgU" alt="Ảnh Đại Diện" class="profile-image" /></td>
                 <td>@Html.DisplayFor(modelItem => item.Idthe)</td>
                 <td>@Html.DisplayFor(modelItem => item.Ngaymothe)</td>
-                <td>@Html.DisplayFor(modelItem => item.Trangthaithe)</td>
+                @if (item.Trangthaithe == 1)
+                {
+                    <td>Thẻ còn hạn sử dụng</td>
+                }
+                else if (item.Trangthaithe == 1)
+                {
+                    <td>Thẻ đanng chờ gia hạn</td>
+                }
+                else
+                {
+                    <td>Thẻ không thể sử dụng</td>
+                }
 
 
                 <td>
