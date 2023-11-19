@@ -112,7 +112,5 @@ namespace DAPM_LT.Controllers
             return View("Details", sach);
         }
 
-
-
     }
 }

@@ -19,28 +19,35 @@ namespace DAPM_LT.Models
         {
             protected override ValidationResult IsValid(object value, ValidationContext validationContext)
             {
-                var ngayMuon = (DateTime)value;
-                var ngayHienTai = DateTime.Now.Date;
-
-                if (ngayMuon.Date > ngayHienTai)
+                if (value is DateTime ngayMuon)
                 {
-                    return new ValidationResult(ErrorMessage);
-                }
+                    ngayMuon = ngayMuon.Date;
 
-                // Kiểm tra ngày mượn có nhỏ hơn ngày trả không (nếu có)
-                var ngayTraProperty = validationContext.ObjectType.GetProperty("Ngaytra");
-                if (ngayTraProperty != null)
-                {
-                    var ngayTra = (DateTime?)ngayTraProperty.GetValue(validationContext.ObjectInstance, null);
-                    if (ngayTra.HasValue && ngayMuon.Date <= ngayTra.Value.Date)
+                    var ngayHienTai = DateTime.Now.Date;
+
+                    if (ngayMuon > ngayHienTai)
                     {
                         return new ValidationResult(ErrorMessage);
                     }
+
+                    
+                    var ngayTraProperty = validationContext.ObjectType.GetProperty("Ngaytra");
+                    if (ngayTraProperty != null)
+                    {
+                        var ngayTra = (DateTime?)ngayTraProperty.GetValue(validationContext.ObjectInstance, null);
+                        if (ngayTra.HasValue && ngayMuon <= ngayTra.Value.Date)
+                        {
+                            return new ValidationResult(ErrorMessage);
+                        }
+                    }
+
+                    return ValidationResult.Success;
                 }
 
-                return ValidationResult.Success;
+                return new ValidationResult("Giá trị không phải là kiểu DateTime.");
             }
         }
+
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
