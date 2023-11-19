@@ -48,7 +48,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Idphieu,Idsach,Idthe,Ngaymuon,Ngaytra,Trangthaimuon")] PhieuMuon phieuMuon)
+        public ActionResult Create([Bind(Include = "Idphieu,Idthe,Ngaymuon,Ngaytra,Trangthaimuon")] PhieuMuon phieuMuon)
         {
             if (ModelState.IsValid)
             {

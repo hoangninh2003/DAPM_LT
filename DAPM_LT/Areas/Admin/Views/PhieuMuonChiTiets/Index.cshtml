@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DAPM_LT.Models.PhieuMuonChiTiet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (Model.Any())
+{
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Mã sách
+            </th>
+            <th>
+                Tên sách
+            </th>
+            <th>
+                Chất lượng sách trả
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Kiemsoat.Idkiemsoat)
+            </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kiemsoat.Sach.Tieude)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.PhieuMuon.Trangthaimuon)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IdPhieuMuonChiTiet }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdPhieuMuonChiTiet }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdPhieuMuonChiTiet })
+        </td>
+    </tr>
+        }
+
+    </table>
+    }
+else
+{
+<p> Sách này hiện không có.</p>
+}
