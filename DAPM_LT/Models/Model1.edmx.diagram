@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="569bbb81f4914a32aa352e2e7a5d4fb9" Name="Diagram1">
+      <Diagram DiagramId="569bbb81f4914a32aa352e2e7a5d4fb9" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="dapmModel.Kiemsoat" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.Loai" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.PhanQuyen" Width="1.5" PointX="1.5" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.PhieuMua" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dapmModel.PhieuMuaChiTiet" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dapmModel.PhieuMuaChiTiet" Width="1.5" PointX="6.125" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.PhieuMuon" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.PhieuMuonChiTiet" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.Sach" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />

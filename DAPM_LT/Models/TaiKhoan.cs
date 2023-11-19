@@ -63,7 +63,7 @@ namespace DAPM_LT.Models
         [StringLength(200, MinimumLength = 5, ErrorMessage = "Địa chỉ phải từ 5-200 ký tự")]
         [Required]
         public string Diachi { get; set; }
-    
+
         public virtual PhanQuyen PhanQuyen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuMua> PhieuMuas { get; set; }

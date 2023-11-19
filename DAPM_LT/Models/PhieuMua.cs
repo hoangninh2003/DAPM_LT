@@ -49,7 +49,7 @@ namespace DAPM_LT.Models
         [DataType(DataType.Date)]
         [ckNgayMua(ErrorMessage = "Ngày mua không được lớn hơn ngày hiện tại.")]
         public Nullable<System.DateTime> Ngaymua { get; set; }
-    
+
         public virtual TaiKhoan TaiKhoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuMuaChiTiet> PhieuMuaChiTiets { get; set; }
