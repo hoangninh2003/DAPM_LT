@@ -135,6 +135,29 @@ namespace DAPM_LT.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetSachData(string searchTerm)
+        {
+            var sachData = db.Saches
+                .Where(s => s.Tieude.Contains(searchTerm))
+                .Select(s => new { id = s.Idsach, text = s.Tieude })
+                .ToList();
+
+            return Json(sachData, JsonRequestBehavior.AllowGet);
+        }
+
+
+        //public JsonResult GetSachData(int idkiemsoat)
+        //{
+        //    string con = "Còn";
+        //    var sachData = db.Kiemsoats
+        //        .Where(s => s.Idkiemsoat == idkiemsoat && s.Muontra == con) 
+        //        .Select(s => new { id = s.Idkiemsoat, text = s.Sach.Tieude })
+        //        .ToList();
+
+        //    return Json(sachData, JsonRequestBehavior.AllowGet);
+        //}
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

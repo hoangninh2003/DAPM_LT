@@ -52,14 +52,27 @@ namespace DAPM_LT.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Kiểm tra mã thẻ tồn tại
+                var the = db.Thes.Find(phieuMuon.Idthe);
+                if (the == null)
+                {
+                    // trả về thông báo lỗi
+                    ModelState.AddModelError("Idthe", "Mã thẻ không tồn tại");
+                    ViewBag.Idthe = new SelectList(db.Thes, "Idthe", "Idthe", phieuMuon.Idthe);
+                    return View(phieuMuon);
+                }
+
+                
                 db.PhieuMuons.Add(phieuMuon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            //hiển thị lại form với thông báo lỗi
             ViewBag.Idthe = new SelectList(db.Thes, "Idthe", "Idthe", phieuMuon.Idthe);
             return View(phieuMuon);
         }
+
 
         // GET: Admin/PhieuMuons/Edit/5
         public ActionResult Edit(int? id)

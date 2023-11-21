@@ -25,6 +25,8 @@ namespace DAPM_LT.Models
         public int Idkiemsoat { get; set; }
         public string Imgtrangthai { get; set; }
         public string Trangthaisach { get; set; }
+        public string Muontra { get; set; }
+        public Nullable<int> Solanmuon { get; set; }
         public Nullable<int> Idsach { get; set; }
     
         public virtual Sach Sach { get; set; }

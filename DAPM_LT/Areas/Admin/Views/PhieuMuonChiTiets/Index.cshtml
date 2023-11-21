@@ -18,29 +18,37 @@
             <th>
                 Mã sách
             </th>
+
             <th>
                 Tên sách
             </th>
             <th>
-                Chất lượng sách trả
+                Ảnh thực trạng
             </th>
+            <th>
+                Tình trạng sách
+            </th>
+           
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-    <tr>
-       
+    <tr style="text-align: center">
+
         <td>
             @Html.DisplayFor(modelItem => item.Kiemsoat.Idkiemsoat)
-            </td>
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Kiemsoat.Sach.Tieude)
         </td>
-        
         <td>
-            @Html.DisplayFor(modelItem => item.PhieuMuon.Trangthaimuon)
+            <img src="~/Content/Image/@item.Kiemsoat.Imgtrangthai" style="height:20%; width:20%" />
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kiemsoat.Trangthaisach)
+        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.IdPhieuMuonChiTiet }) |
             @Html.ActionLink("Details", "Details", new { id = item.IdPhieuMuonChiTiet }) |

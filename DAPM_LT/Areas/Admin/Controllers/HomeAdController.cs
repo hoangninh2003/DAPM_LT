@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DAPM_LT.Models;
 
 namespace DAPM_LT.Areas.Admin.Controllers
 {
     public class HomeAdController : Controller
     {
+        private dapmEntities db = new dapmEntities();
         // GET: Admin/HomeAd
         public ActionResult Index()
         {
@@ -23,5 +28,13 @@ namespace DAPM_LT.Areas.Admin.Controllers
                 return View();
 
         }
+        
+        public ActionResult Sachpartial()
+        {
+            var kiemsoats = db.Kiemsoats.Include(k => k.Sach);
+            return View(kiemsoats.ToList());
+
+        }
+
     }
 }

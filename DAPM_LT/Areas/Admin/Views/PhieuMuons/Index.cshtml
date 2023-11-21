@@ -37,6 +37,7 @@
                                             <tr>
                                                 <th> Mã phiếu mượn</th>
                                                 <th> Mã thẻ</th>
+                                                <th> Tên người mượn</th>
                                                 <th>Ngày Mượn</th>
                                                 <th>Ngày Trả</th>
                                                 <th>Đang mượn/Đã trả</th>
@@ -50,6 +51,7 @@
 
                                                     <td class="center">@Html.DisplayFor(modelItem => item.Idphieu)</td>
                                                     <td class="center">@Html.DisplayFor(modelItem => item.The.Idthe)</td>
+                                                    <td class="center">@Html.DisplayFor(modelItem => item.The.TaiKhoan.Holot) @Html.DisplayFor(modelItem => item.The.TaiKhoan.Ten)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.Ngaymuon)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.Ngaytra)</td>
                                                     <td class="center">@Html.DisplayFor(modelItem => item.Trangthaimuon)</td>

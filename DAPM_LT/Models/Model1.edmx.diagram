@@ -4,30 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b5798c25adbc4b88bb8dfa85c0dd4e65" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="dapmModel.Kiemsoat" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="1180ce6debb14bc78f29dab70d42e734" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="dapmModel.Kiemsoat" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.Loai" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dapmModel.PhanQuyen" Width="1.5" PointX="2.5" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dapmModel.PhieuMua" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dapmModel.PhanQuyen" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dapmModel.PhieuMua" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.PhieuMuaChiTiet" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.PhieuMuon" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dapmModel.PhieuMuonChiTiet" Width="1.5" PointX="7.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dapmModel.PhieuMuonChiTiet" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.Sach" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="dapmModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="dapmModel.The" Width="1.5" PointX="3.375" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="dapmModel.TrangThaiSachMuon" Width="1.5" PointX="9.875" PointY="8" IsExpanded="true" />
-        <AssociationConnector Association="dapmModel.FK__Kiemsoat__Idsach__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__PhieuMuaC__Idkie__571DF1D5" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__PhieuMuon__Idkie__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__TrangThai__Idkie__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__Sach__Idloai__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__TaiKhoan__IDQuye__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__PhieuMua__Idtaik__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__PhieuMuaC__IdPhi__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__PhieuMuon__IdPhi__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__PhieuMuon__Idthe__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__TrangThai__Idsac__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="dapmModel.FK__The__Idtaikhoan__47DBAE45" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dapmModel.The" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dapmModel.TrangThaiSachMuon" Width="1.5" PointX="10.25" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="dapmModel.FK__Kiemsoat__Idsach__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__PhieuMuaC__Idkie__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__PhieuMuon__Idkie__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__TrangThai__Idkie__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__Sach__Idloai__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__TaiKhoan__IDQuye__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__PhieuMua__Idtaik__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__PhieuMuaC__IdPhi__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__PhieuMuon__IdPhi__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__PhieuMuon__Idthe__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__TrangThai__Idsac__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="dapmModel.FK__The__Idtaikhoan__59FA5E80" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

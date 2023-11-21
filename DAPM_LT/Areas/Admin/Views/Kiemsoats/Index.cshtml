@@ -21,19 +21,23 @@
     <table class="table fa-border">
         <tr>
             <th>
-                Mã đầu sách
+                Mã sách
             </th>
+
             <th>
                 Hình ảnh
             </th>
             <th>
-                Trạng thái sách
+                Tên sách
+            </th>
+            <th>
+                Hiện trạng
+            </th>
+            <th>
+                Mượn/Còn
             </th>
             <th>
 
-            </th>
-            <th>
-               
             </th>
         </tr>
 
@@ -45,25 +49,28 @@
         <td>
             @Html.DisplayFor(modelItem => item.Idkiemsoat)
         </td>
+
         <td>
             <img src="~/Content/@item.Imgtrangthai" style="height:20%; width:20%" />
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Sach.Tieude)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Trangthaisach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Muontra)
         </td>
         <td style="text-align:center">
             <a href="@Url.Action("Edit", new { id = item.Idkiemsoat })" class="btn btn-primary" style="color: white;">
                 Sửa
             </a>
-            
-        </td>
-        <td style="text-align:center">
-            
             <a href="@Url.Action("Delete", new { id = item.Idkiemsoat })" class="btn btn-danger" style="color: white;">
                 Xóa
             </a>
-
-</tr>
+        </td>
+    </tr>
         }
 
     </table>

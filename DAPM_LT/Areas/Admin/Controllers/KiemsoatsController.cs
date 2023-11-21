@@ -59,10 +59,12 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Idkiemsoat,Imgtrangthai,Trangthaisach,Idsach")] Kiemsoat kiemsoat)
+        public ActionResult Create([Bind(Include = "Idkiemsoat,Imgtrangthai,Trangthaisach,Muontra,Idsach")] Kiemsoat kiemsoat)
         {
+            kiemsoat.Solanmuon = 0;
             if (ModelState.IsValid)
             {
+                
                 db.Kiemsoats.Add(kiemsoat);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { id = kiemsoat.Idsach });
