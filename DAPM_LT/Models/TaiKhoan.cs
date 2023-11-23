@@ -11,7 +11,10 @@ namespace DAPM_LT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
+
     public partial class TaiKhoan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,7 +30,12 @@ namespace DAPM_LT.Models
         public string Email { get; set; }
         public string Dienthoai { get; set; }
         public string Matkhau { get; set; }
-        public string ImgU { get; set; }
+        [Display(Name = "T?i ?nh lên")]
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
+
+        public byte[] ImgU { get; set; } // Change the type to byte[]
+
         public Nullable<int> IDQuyen { get; set; }
         public string Diachi { get; set; }
     

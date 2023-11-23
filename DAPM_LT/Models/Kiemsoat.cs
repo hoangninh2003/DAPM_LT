@@ -11,7 +11,10 @@ namespace DAPM_LT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
+
     public partial class Kiemsoat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +26,12 @@ namespace DAPM_LT.Models
         }
     
         public int Idkiemsoat { get; set; }
-        public string Imgtrangthai { get; set; }
+
+        [Display(Name = "T?i ?nh lên")]
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
+
+        public byte[] Imgtrangthai { get; set; }
         public string Trangthaisach { get; set; }
         public string Muontra { get; set; }
         public Nullable<int> Solanmuon { get; set; }

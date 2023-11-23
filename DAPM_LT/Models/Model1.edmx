@@ -10,7 +10,7 @@
             <PropertyRef Name="Idkiemsoat" />
           </Key>
           <Property Name="Idkiemsoat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Imgtrangthai" Type="nvarchar" MaxLength="255" />
+          <Property Name="Imgtrangthai" Type="varbinary(max)" />
           <Property Name="Trangthaisach" Type="nvarchar" MaxLength="255" />
           <Property Name="Muontra" Type="nvarchar" MaxLength="30" />
           <Property Name="Solanmuon" Type="int" />
@@ -75,7 +75,7 @@
           </Key>
           <Property Name="Idsach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tieude" Type="nvarchar" MaxLength="255" />
-          <Property Name="ImgSach" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImgSach" Type="varbinary(max)" />
           <Property Name="Tacgia" Type="nvarchar" MaxLength="255" />
           <Property Name="GiaMua" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Namxuatban" Type="int" />
@@ -92,7 +92,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Dienthoai" Type="varchar" MaxLength="50" />
           <Property Name="Matkhau" Type="varchar" MaxLength="50" />
-          <Property Name="ImgU" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImgU" Type="varbinary(max)" />
           <Property Name="IDQuyen" Type="int" />
           <Property Name="Diachi" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -115,7 +115,7 @@
           <Property Name="Idphieu" Type="int" />
           <Property Name="Trangthaism" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__Kiemsoat__Idsach__534D60F1">
+        <Association Name="FK__Kiemsoat__Idsach__412EB0B6">
           <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -127,7 +127,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMua__Idtaik__6383C8BA">
+        <Association Name="FK__PhieuMua__Idtaik__5165187F">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="PhieuMua" Type="Self.PhieuMua" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuaC__Idkie__6754599E">
+        <Association Name="FK__PhieuMuaC__Idkie__5535A963">
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="0..1" />
           <End Role="PhieuMuaChiTiet" Type="Self.PhieuMuaChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +151,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuaC__IdPhi__66603565">
+        <Association Name="FK__PhieuMuaC__IdPhi__5441852A">
           <End Role="PhieuMua" Type="Self.PhieuMua" Multiplicity="0..1" />
           <End Role="PhieuMuaChiTiet" Type="Self.PhieuMuaChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +163,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuon__Idkie__60A75C0F">
+        <Association Name="FK__PhieuMuon__Idkie__4E88ABD4">
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="0..1" />
           <End Role="PhieuMuonChiTiet" Type="Self.PhieuMuonChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +175,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuon__IdPhi__5FB337D6">
+        <Association Name="FK__PhieuMuon__IdPhi__4D94879B">
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="0..1" />
           <End Role="PhieuMuonChiTiet" Type="Self.PhieuMuonChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -187,7 +187,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuon__Idthe__5CD6CB2B">
+        <Association Name="FK__PhieuMuon__Idthe__4AB81AF0">
           <End Role="The" Type="Self.The" Multiplicity="0..1" />
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -199,7 +199,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sach__Idloai__5070F446">
+        <Association Name="FK__Sach__Idloai__3E52440B">
           <End Role="Loai" Type="Self.Loai" Multiplicity="0..1" />
           <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,7 +211,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TaiKhoan__IDQuye__4BAC3F29">
+        <Association Name="FK__TaiKhoan__IDQuye__398D8EEE">
           <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="0..1" />
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +223,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__The__Idtaikhoan__59FA5E80">
+        <Association Name="FK__The__Idtaikhoan__47DBAE45">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="The" Type="Self.The" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,7 +235,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrangThai__Idkie__571DF1D5">
+        <Association Name="FK__TrangThai__Idkie__44FF419A">
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="0..1" />
           <End Role="TrangThaiSachMuon" Type="Self.TrangThaiSachMuon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -247,7 +247,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrangThai__Idsac__5629CD9C">
+        <Association Name="FK__TrangThai__Idsac__440B1D61">
           <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
           <End Role="TrangThaiSachMuon" Type="Self.TrangThaiSachMuon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -271,51 +271,51 @@
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="The" EntityType="Self.The" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrangThaiSachMuon" EntityType="Self.TrangThaiSachMuon" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Kiemsoat__Idsach__534D60F1" Association="Self.FK__Kiemsoat__Idsach__534D60F1">
+          <AssociationSet Name="FK__Kiemsoat__Idsach__412EB0B6" Association="Self.FK__Kiemsoat__Idsach__412EB0B6">
             <End Role="Sach" EntitySet="Sach" />
             <End Role="Kiemsoat" EntitySet="Kiemsoat" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMua__Idtaik__6383C8BA" Association="Self.FK__PhieuMua__Idtaik__6383C8BA">
+          <AssociationSet Name="FK__PhieuMua__Idtaik__5165187F" Association="Self.FK__PhieuMua__Idtaik__5165187F">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="PhieuMua" EntitySet="PhieuMua" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuaC__Idkie__6754599E" Association="Self.FK__PhieuMuaC__Idkie__6754599E">
+          <AssociationSet Name="FK__PhieuMuaC__Idkie__5535A963" Association="Self.FK__PhieuMuaC__Idkie__5535A963">
             <End Role="Kiemsoat" EntitySet="Kiemsoat" />
             <End Role="PhieuMuaChiTiet" EntitySet="PhieuMuaChiTiet" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuaC__IdPhi__66603565" Association="Self.FK__PhieuMuaC__IdPhi__66603565">
+          <AssociationSet Name="FK__PhieuMuaC__IdPhi__5441852A" Association="Self.FK__PhieuMuaC__IdPhi__5441852A">
             <End Role="PhieuMua" EntitySet="PhieuMua" />
             <End Role="PhieuMuaChiTiet" EntitySet="PhieuMuaChiTiet" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuon__Idkie__60A75C0F" Association="Self.FK__PhieuMuon__Idkie__60A75C0F">
+          <AssociationSet Name="FK__PhieuMuon__Idkie__4E88ABD4" Association="Self.FK__PhieuMuon__Idkie__4E88ABD4">
             <End Role="Kiemsoat" EntitySet="Kiemsoat" />
             <End Role="PhieuMuonChiTiet" EntitySet="PhieuMuonChiTiet" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuon__IdPhi__5FB337D6" Association="Self.FK__PhieuMuon__IdPhi__5FB337D6">
+          <AssociationSet Name="FK__PhieuMuon__IdPhi__4D94879B" Association="Self.FK__PhieuMuon__IdPhi__4D94879B">
             <End Role="PhieuMuon" EntitySet="PhieuMuon" />
             <End Role="PhieuMuonChiTiet" EntitySet="PhieuMuonChiTiet" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuon__Idthe__5CD6CB2B" Association="Self.FK__PhieuMuon__Idthe__5CD6CB2B">
+          <AssociationSet Name="FK__PhieuMuon__Idthe__4AB81AF0" Association="Self.FK__PhieuMuon__Idthe__4AB81AF0">
             <End Role="The" EntitySet="The" />
             <End Role="PhieuMuon" EntitySet="PhieuMuon" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sach__Idloai__5070F446" Association="Self.FK__Sach__Idloai__5070F446">
+          <AssociationSet Name="FK__Sach__Idloai__3E52440B" Association="Self.FK__Sach__Idloai__3E52440B">
             <End Role="Loai" EntitySet="Loai" />
             <End Role="Sach" EntitySet="Sach" />
           </AssociationSet>
-          <AssociationSet Name="FK__TaiKhoan__IDQuye__4BAC3F29" Association="Self.FK__TaiKhoan__IDQuye__4BAC3F29">
+          <AssociationSet Name="FK__TaiKhoan__IDQuye__398D8EEE" Association="Self.FK__TaiKhoan__IDQuye__398D8EEE">
             <End Role="PhanQuyen" EntitySet="PhanQuyen" />
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
-          <AssociationSet Name="FK__The__Idtaikhoan__59FA5E80" Association="Self.FK__The__Idtaikhoan__59FA5E80">
+          <AssociationSet Name="FK__The__Idtaikhoan__47DBAE45" Association="Self.FK__The__Idtaikhoan__47DBAE45">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="The" EntitySet="The" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrangThai__Idkie__571DF1D5" Association="Self.FK__TrangThai__Idkie__571DF1D5">
+          <AssociationSet Name="FK__TrangThai__Idkie__44FF419A" Association="Self.FK__TrangThai__Idkie__44FF419A">
             <End Role="Kiemsoat" EntitySet="Kiemsoat" />
             <End Role="TrangThaiSachMuon" EntitySet="TrangThaiSachMuon" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrangThai__Idsac__5629CD9C" Association="Self.FK__TrangThai__Idsac__5629CD9C">
+          <AssociationSet Name="FK__TrangThai__Idsac__440B1D61" Association="Self.FK__TrangThai__Idsac__440B1D61">
             <End Role="Sach" EntitySet="Sach" />
             <End Role="TrangThaiSachMuon" EntitySet="TrangThaiSachMuon" />
           </AssociationSet>
@@ -330,15 +330,15 @@
             <PropertyRef Name="Idkiemsoat" />
           </Key>
           <Property Name="Idkiemsoat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Imgtrangthai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Imgtrangthai" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Trangthaisach" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Muontra" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Solanmuon" Type="Int32" />
           <Property Name="Idsach" Type="Int32" />
-          <NavigationProperty Name="Sach" Relationship="Self.FK__Kiemsoat__Idsach__534D60F1" FromRole="Kiemsoat" ToRole="Sach" />
-          <NavigationProperty Name="PhieuMuaChiTiets" Relationship="Self.FK__PhieuMuaC__Idkie__6754599E" FromRole="Kiemsoat" ToRole="PhieuMuaChiTiet" />
-          <NavigationProperty Name="PhieuMuonChiTiets" Relationship="Self.FK__PhieuMuon__Idkie__60A75C0F" FromRole="Kiemsoat" ToRole="PhieuMuonChiTiet" />
-          <NavigationProperty Name="TrangThaiSachMuons" Relationship="Self.FK__TrangThai__Idkie__571DF1D5" FromRole="Kiemsoat" ToRole="TrangThaiSachMuon" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK__Kiemsoat__Idsach__412EB0B6" FromRole="Kiemsoat" ToRole="Sach" />
+          <NavigationProperty Name="PhieuMuaChiTiets" Relationship="Self.FK__PhieuMuaC__Idkie__5535A963" FromRole="Kiemsoat" ToRole="PhieuMuaChiTiet" />
+          <NavigationProperty Name="PhieuMuonChiTiets" Relationship="Self.FK__PhieuMuon__Idkie__4E88ABD4" FromRole="Kiemsoat" ToRole="PhieuMuonChiTiet" />
+          <NavigationProperty Name="TrangThaiSachMuons" Relationship="Self.FK__TrangThai__Idkie__44FF419A" FromRole="Kiemsoat" ToRole="TrangThaiSachMuon" />
         </EntityType>
         <EntityType Name="Loai">
           <Key>
@@ -346,7 +346,7 @@
           </Key>
           <Property Name="Idloai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tenloai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Saches" Relationship="Self.FK__Sach__Idloai__5070F446" FromRole="Loai" ToRole="Sach" />
+          <NavigationProperty Name="Saches" Relationship="Self.FK__Sach__Idloai__3E52440B" FromRole="Loai" ToRole="Sach" />
         </EntityType>
         <EntityType Name="PhanQuyen">
           <Key>
@@ -354,7 +354,7 @@
           </Key>
           <Property Name="IDQuyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenQuyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TaiKhoans" Relationship="Self.FK__TaiKhoan__IDQuye__4BAC3F29" FromRole="PhanQuyen" ToRole="TaiKhoan" />
+          <NavigationProperty Name="TaiKhoans" Relationship="Self.FK__TaiKhoan__IDQuye__398D8EEE" FromRole="PhanQuyen" ToRole="TaiKhoan" />
         </EntityType>
         <EntityType Name="PhieuMua">
           <Key>
@@ -364,8 +364,8 @@
           <Property Name="Idsach" Type="Int32" />
           <Property Name="Idtaikhoan" Type="Int32" />
           <Property Name="Ngaymua" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__PhieuMua__Idtaik__6383C8BA" FromRole="PhieuMua" ToRole="TaiKhoan" />
-          <NavigationProperty Name="PhieuMuaChiTiets" Relationship="Self.FK__PhieuMuaC__IdPhi__66603565" FromRole="PhieuMua" ToRole="PhieuMuaChiTiet" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__PhieuMua__Idtaik__5165187F" FromRole="PhieuMua" ToRole="TaiKhoan" />
+          <NavigationProperty Name="PhieuMuaChiTiets" Relationship="Self.FK__PhieuMuaC__IdPhi__5441852A" FromRole="PhieuMua" ToRole="PhieuMuaChiTiet" />
         </EntityType>
         <EntityType Name="PhieuMuaChiTiet">
           <Key>
@@ -376,8 +376,8 @@
           <Property Name="Idkiemsoat" Type="Int32" />
           <Property Name="Tongtien" Type="Double" />
           <Property Name="SoLuong" Type="Int32" />
-          <NavigationProperty Name="Kiemsoat" Relationship="Self.FK__PhieuMuaC__Idkie__6754599E" FromRole="PhieuMuaChiTiet" ToRole="Kiemsoat" />
-          <NavigationProperty Name="PhieuMua" Relationship="Self.FK__PhieuMuaC__IdPhi__66603565" FromRole="PhieuMuaChiTiet" ToRole="PhieuMua" />
+          <NavigationProperty Name="Kiemsoat" Relationship="Self.FK__PhieuMuaC__Idkie__5535A963" FromRole="PhieuMuaChiTiet" ToRole="Kiemsoat" />
+          <NavigationProperty Name="PhieuMua" Relationship="Self.FK__PhieuMuaC__IdPhi__5441852A" FromRole="PhieuMuaChiTiet" ToRole="PhieuMua" />
         </EntityType>
         <EntityType Name="PhieuMuon">
           <Key>
@@ -389,8 +389,8 @@
           <Property Name="Ngaymuon" Type="DateTime" Precision="0" />
           <Property Name="Ngaytra" Type="DateTime" Precision="0" />
           <Property Name="Trangthaimuon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PhieuMuonChiTiets" Relationship="Self.FK__PhieuMuon__IdPhi__5FB337D6" FromRole="PhieuMuon" ToRole="PhieuMuonChiTiet" />
-          <NavigationProperty Name="The" Relationship="Self.FK__PhieuMuon__Idthe__5CD6CB2B" FromRole="PhieuMuon" ToRole="The" />
+          <NavigationProperty Name="PhieuMuonChiTiets" Relationship="Self.FK__PhieuMuon__IdPhi__4D94879B" FromRole="PhieuMuon" ToRole="PhieuMuonChiTiet" />
+          <NavigationProperty Name="The" Relationship="Self.FK__PhieuMuon__Idthe__4AB81AF0" FromRole="PhieuMuon" ToRole="The" />
         </EntityType>
         <EntityType Name="PhieuMuonChiTiet">
           <Key>
@@ -400,8 +400,8 @@
           <Property Name="IdPhieuMuon" Type="Int32" />
           <Property Name="Idkiemsoat" Type="Int32" />
           <Property Name="TrangThaiSach" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Kiemsoat" Relationship="Self.FK__PhieuMuon__Idkie__60A75C0F" FromRole="PhieuMuonChiTiet" ToRole="Kiemsoat" />
-          <NavigationProperty Name="PhieuMuon" Relationship="Self.FK__PhieuMuon__IdPhi__5FB337D6" FromRole="PhieuMuonChiTiet" ToRole="PhieuMuon" />
+          <NavigationProperty Name="Kiemsoat" Relationship="Self.FK__PhieuMuon__Idkie__4E88ABD4" FromRole="PhieuMuonChiTiet" ToRole="Kiemsoat" />
+          <NavigationProperty Name="PhieuMuon" Relationship="Self.FK__PhieuMuon__IdPhi__4D94879B" FromRole="PhieuMuonChiTiet" ToRole="PhieuMuon" />
         </EntityType>
         <EntityType Name="Sach">
           <Key>
@@ -409,15 +409,15 @@
           </Key>
           <Property Name="Idsach" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tieude" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ImgSach" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImgSach" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Tacgia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="GiaMua" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Namxuatban" Type="Int32" />
           <Property Name="Mota" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Idloai" Type="Int32" />
-          <NavigationProperty Name="Kiemsoats" Relationship="Self.FK__Kiemsoat__Idsach__534D60F1" FromRole="Sach" ToRole="Kiemsoat" />
-          <NavigationProperty Name="Loai" Relationship="Self.FK__Sach__Idloai__5070F446" FromRole="Sach" ToRole="Loai" />
-          <NavigationProperty Name="TrangThaiSachMuons" Relationship="Self.FK__TrangThai__Idsac__5629CD9C" FromRole="Sach" ToRole="TrangThaiSachMuon" />
+          <NavigationProperty Name="Kiemsoats" Relationship="Self.FK__Kiemsoat__Idsach__412EB0B6" FromRole="Sach" ToRole="Kiemsoat" />
+          <NavigationProperty Name="Loai" Relationship="Self.FK__Sach__Idloai__3E52440B" FromRole="Sach" ToRole="Loai" />
+          <NavigationProperty Name="TrangThaiSachMuons" Relationship="Self.FK__TrangThai__Idsac__440B1D61" FromRole="Sach" ToRole="TrangThaiSachMuon" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -429,12 +429,12 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Dienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ImgU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImgU" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IDQuyen" Type="Int32" />
           <Property Name="Diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PhanQuyen" Relationship="Self.FK__TaiKhoan__IDQuye__4BAC3F29" FromRole="TaiKhoan" ToRole="PhanQuyen" />
-          <NavigationProperty Name="PhieuMuas" Relationship="Self.FK__PhieuMua__Idtaik__6383C8BA" FromRole="TaiKhoan" ToRole="PhieuMua" />
-          <NavigationProperty Name="Thes" Relationship="Self.FK__The__Idtaikhoan__59FA5E80" FromRole="TaiKhoan" ToRole="The" />
+          <NavigationProperty Name="PhanQuyen" Relationship="Self.FK__TaiKhoan__IDQuye__398D8EEE" FromRole="TaiKhoan" ToRole="PhanQuyen" />
+          <NavigationProperty Name="PhieuMuas" Relationship="Self.FK__PhieuMua__Idtaik__5165187F" FromRole="TaiKhoan" ToRole="PhieuMua" />
+          <NavigationProperty Name="Thes" Relationship="Self.FK__The__Idtaikhoan__47DBAE45" FromRole="TaiKhoan" ToRole="The" />
         </EntityType>
         <EntityType Name="The">
           <Key>
@@ -444,8 +444,8 @@
           <Property Name="Idtaikhoan" Type="Int32" />
           <Property Name="Ngaymothe" Type="DateTime" Precision="0" />
           <Property Name="Trangthaithe" Type="Int32" />
-          <NavigationProperty Name="PhieuMuons" Relationship="Self.FK__PhieuMuon__Idthe__5CD6CB2B" FromRole="The" ToRole="PhieuMuon" />
-          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__The__Idtaikhoan__59FA5E80" FromRole="The" ToRole="TaiKhoan" />
+          <NavigationProperty Name="PhieuMuons" Relationship="Self.FK__PhieuMuon__Idthe__4AB81AF0" FromRole="The" ToRole="PhieuMuon" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__The__Idtaikhoan__47DBAE45" FromRole="The" ToRole="TaiKhoan" />
         </EntityType>
         <EntityType Name="TrangThaiSachMuon">
           <Key>
@@ -456,10 +456,10 @@
           <Property Name="Idkiemsoat" Type="Int32" />
           <Property Name="Idphieu" Type="Int32" />
           <Property Name="Trangthaism" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Kiemsoat" Relationship="Self.FK__TrangThai__Idkie__571DF1D5" FromRole="TrangThaiSachMuon" ToRole="Kiemsoat" />
-          <NavigationProperty Name="Sach" Relationship="Self.FK__TrangThai__Idsac__5629CD9C" FromRole="TrangThaiSachMuon" ToRole="Sach" />
+          <NavigationProperty Name="Kiemsoat" Relationship="Self.FK__TrangThai__Idkie__44FF419A" FromRole="TrangThaiSachMuon" ToRole="Kiemsoat" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK__TrangThai__Idsac__440B1D61" FromRole="TrangThaiSachMuon" ToRole="Sach" />
         </EntityType>
-        <Association Name="FK__Kiemsoat__Idsach__534D60F1">
+        <Association Name="FK__Kiemsoat__Idsach__412EB0B6">
           <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -471,7 +471,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuaC__Idkie__6754599E">
+        <Association Name="FK__PhieuMuaC__Idkie__5535A963">
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="0..1" />
           <End Role="PhieuMuaChiTiet" Type="Self.PhieuMuaChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -483,7 +483,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuon__Idkie__60A75C0F">
+        <Association Name="FK__PhieuMuon__Idkie__4E88ABD4">
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="0..1" />
           <End Role="PhieuMuonChiTiet" Type="Self.PhieuMuonChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,7 +495,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrangThai__Idkie__571DF1D5">
+        <Association Name="FK__TrangThai__Idkie__44FF419A">
           <End Role="Kiemsoat" Type="Self.Kiemsoat" Multiplicity="0..1" />
           <End Role="TrangThaiSachMuon" Type="Self.TrangThaiSachMuon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -507,7 +507,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sach__Idloai__5070F446">
+        <Association Name="FK__Sach__Idloai__3E52440B">
           <End Role="Loai" Type="Self.Loai" Multiplicity="0..1" />
           <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
           <ReferentialConstraint>
@@ -519,7 +519,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TaiKhoan__IDQuye__4BAC3F29">
+        <Association Name="FK__TaiKhoan__IDQuye__398D8EEE">
           <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="0..1" />
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +531,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMua__Idtaik__6383C8BA">
+        <Association Name="FK__PhieuMua__Idtaik__5165187F">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="PhieuMua" Type="Self.PhieuMua" Multiplicity="*" />
           <ReferentialConstraint>
@@ -543,7 +543,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuaC__IdPhi__66603565">
+        <Association Name="FK__PhieuMuaC__IdPhi__5441852A">
           <End Role="PhieuMua" Type="Self.PhieuMua" Multiplicity="0..1" />
           <End Role="PhieuMuaChiTiet" Type="Self.PhieuMuaChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -555,7 +555,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuon__IdPhi__5FB337D6">
+        <Association Name="FK__PhieuMuon__IdPhi__4D94879B">
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="0..1" />
           <End Role="PhieuMuonChiTiet" Type="Self.PhieuMuonChiTiet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -567,7 +567,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhieuMuon__Idthe__5CD6CB2B">
+        <Association Name="FK__PhieuMuon__Idthe__4AB81AF0">
           <End Role="The" Type="Self.The" Multiplicity="0..1" />
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -579,7 +579,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrangThai__Idsac__5629CD9C">
+        <Association Name="FK__TrangThai__Idsac__440B1D61">
           <End Role="Sach" Type="Self.Sach" Multiplicity="0..1" />
           <End Role="TrangThaiSachMuon" Type="Self.TrangThaiSachMuon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -591,7 +591,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__The__Idtaikhoan__59FA5E80">
+        <Association Name="FK__The__Idtaikhoan__47DBAE45">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="The" Type="Self.The" Multiplicity="*" />
           <ReferentialConstraint>
@@ -615,51 +615,51 @@
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
           <EntitySet Name="Thes" EntityType="Self.The" />
           <EntitySet Name="TrangThaiSachMuons" EntityType="Self.TrangThaiSachMuon" />
-          <AssociationSet Name="FK__Kiemsoat__Idsach__534D60F1" Association="Self.FK__Kiemsoat__Idsach__534D60F1">
+          <AssociationSet Name="FK__Kiemsoat__Idsach__412EB0B6" Association="Self.FK__Kiemsoat__Idsach__412EB0B6">
             <End Role="Sach" EntitySet="Saches" />
             <End Role="Kiemsoat" EntitySet="Kiemsoats" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuaC__Idkie__6754599E" Association="Self.FK__PhieuMuaC__Idkie__6754599E">
+          <AssociationSet Name="FK__PhieuMuaC__Idkie__5535A963" Association="Self.FK__PhieuMuaC__Idkie__5535A963">
             <End Role="Kiemsoat" EntitySet="Kiemsoats" />
             <End Role="PhieuMuaChiTiet" EntitySet="PhieuMuaChiTiets" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuon__Idkie__60A75C0F" Association="Self.FK__PhieuMuon__Idkie__60A75C0F">
+          <AssociationSet Name="FK__PhieuMuon__Idkie__4E88ABD4" Association="Self.FK__PhieuMuon__Idkie__4E88ABD4">
             <End Role="Kiemsoat" EntitySet="Kiemsoats" />
             <End Role="PhieuMuonChiTiet" EntitySet="PhieuMuonChiTiets" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrangThai__Idkie__571DF1D5" Association="Self.FK__TrangThai__Idkie__571DF1D5">
+          <AssociationSet Name="FK__TrangThai__Idkie__44FF419A" Association="Self.FK__TrangThai__Idkie__44FF419A">
             <End Role="Kiemsoat" EntitySet="Kiemsoats" />
             <End Role="TrangThaiSachMuon" EntitySet="TrangThaiSachMuons" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sach__Idloai__5070F446" Association="Self.FK__Sach__Idloai__5070F446">
+          <AssociationSet Name="FK__Sach__Idloai__3E52440B" Association="Self.FK__Sach__Idloai__3E52440B">
             <End Role="Loai" EntitySet="Loais" />
             <End Role="Sach" EntitySet="Saches" />
           </AssociationSet>
-          <AssociationSet Name="FK__TaiKhoan__IDQuye__4BAC3F29" Association="Self.FK__TaiKhoan__IDQuye__4BAC3F29">
+          <AssociationSet Name="FK__TaiKhoan__IDQuye__398D8EEE" Association="Self.FK__TaiKhoan__IDQuye__398D8EEE">
             <End Role="PhanQuyen" EntitySet="PhanQuyens" />
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMua__Idtaik__6383C8BA" Association="Self.FK__PhieuMua__Idtaik__6383C8BA">
+          <AssociationSet Name="FK__PhieuMua__Idtaik__5165187F" Association="Self.FK__PhieuMua__Idtaik__5165187F">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="PhieuMua" EntitySet="PhieuMuas" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuaC__IdPhi__66603565" Association="Self.FK__PhieuMuaC__IdPhi__66603565">
+          <AssociationSet Name="FK__PhieuMuaC__IdPhi__5441852A" Association="Self.FK__PhieuMuaC__IdPhi__5441852A">
             <End Role="PhieuMua" EntitySet="PhieuMuas" />
             <End Role="PhieuMuaChiTiet" EntitySet="PhieuMuaChiTiets" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuon__IdPhi__5FB337D6" Association="Self.FK__PhieuMuon__IdPhi__5FB337D6">
+          <AssociationSet Name="FK__PhieuMuon__IdPhi__4D94879B" Association="Self.FK__PhieuMuon__IdPhi__4D94879B">
             <End Role="PhieuMuon" EntitySet="PhieuMuons" />
             <End Role="PhieuMuonChiTiet" EntitySet="PhieuMuonChiTiets" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhieuMuon__Idthe__5CD6CB2B" Association="Self.FK__PhieuMuon__Idthe__5CD6CB2B">
+          <AssociationSet Name="FK__PhieuMuon__Idthe__4AB81AF0" Association="Self.FK__PhieuMuon__Idthe__4AB81AF0">
             <End Role="The" EntitySet="Thes" />
             <End Role="PhieuMuon" EntitySet="PhieuMuons" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrangThai__Idsac__5629CD9C" Association="Self.FK__TrangThai__Idsac__5629CD9C">
+          <AssociationSet Name="FK__TrangThai__Idsac__440B1D61" Association="Self.FK__TrangThai__Idsac__440B1D61">
             <End Role="Sach" EntitySet="Saches" />
             <End Role="TrangThaiSachMuon" EntitySet="TrangThaiSachMuons" />
           </AssociationSet>
-          <AssociationSet Name="FK__The__Idtaikhoan__59FA5E80" Association="Self.FK__The__Idtaikhoan__59FA5E80">
+          <AssociationSet Name="FK__The__Idtaikhoan__47DBAE45" Association="Self.FK__The__Idtaikhoan__47DBAE45">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="The" EntitySet="Thes" />
           </AssociationSet>

@@ -11,7 +11,10 @@ namespace DAPM_LT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
+
     public partial class Sach
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +26,10 @@ namespace DAPM_LT.Models
     
         public int Idsach { get; set; }
         public string Tieude { get; set; }
-        public string ImgSach { get; set; }
+        [Display(Name = "T?i ?nh lên")]
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
+        public byte[] ImgSach { get; set; }
         public string Tacgia { get; set; }
         public Nullable<decimal> GiaMua { get; set; }
         public Nullable<int> Namxuatban { get; set; }

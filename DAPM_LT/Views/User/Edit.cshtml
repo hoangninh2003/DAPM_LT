@@ -13,7 +13,7 @@
     <h2 class="text-center">Chỉnh sửa thông tin</h2>
 
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -24,12 +24,33 @@
             @Html.HiddenFor(model => model.Matkhau)
             <div class="profile-left">
                 <div class="profile-picture-container">
-                    <img src="~/Content/@Model.ImgU" alt="Hình ảnh đại diện" class="profile-picture">
+
+                    @if (Model.ImgU != null)
+                    {
+                        <!-- Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu -->
+                        <img id="imgPreview" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImgU)" alt="User Image" />
+                    }
+
                 </div>
                 <div class="profile-actions">
-                    @Html.EditorFor(model => model.ImgU, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ImgU, "", new { @class = "text-danger" })
+                    <label for="ImageFile" class="btn btn-default">Chọn ảnh</label>
+                    <input type="file" name="ImageFile" id="ImageFile" accept="image/*" style="display:none;" onchange="displayImagePreview(this)" />
+                    <span id="selectedFileName"></span>
                 </div>
+                <script>
+                    function displayImagePreview(input) {
+                        var fileName = input.files[0].name;
+                        document.getElementById("selectedFileName").innerHTML = fileName;
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var imgPreview = document.getElementById("imgPreview");
+                            imgPreview.src = e.target.result;
+                            imgPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                </script>
             </div>
             <div class="profile-right">
                 <div class="profile-info">
@@ -68,39 +89,39 @@
 
                     <div class="profile-field">
                         <span class="profile-value" style="color:red">@Model.Idtaikhoan</span>
-                        </div>
-                        <div class="profile-field">
+                    </div>
+                    <div class="profile-field">
 
-                            @Html.EditorFor(model => model.Holot, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Holot, "", new { @class = "text-danger" })
-                        </div>
+                        @Html.EditorFor(model => model.Holot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Holot, "", new { @class = "text-danger" })
+                    </div>
 
-                        <div class="profile-field">
-                            @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
-                        </div>
-
-
-                        <div class="profile-field">
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                        </div>
-
-
-                        <div class="profile-field">
-                            @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Dienthoai, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="profile-field">
-                            @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
-                        </div>
-
+                    <div class="profile-field">
+                        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
                     </div>
 
 
+                    <div class="profile-field">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="profile-field">
+                        @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Dienthoai, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="profile-field">
+                        @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
+                    </div>
+
                 </div>
+
+
+            </div>
         </div>
 
         <div class="form-group pull-right">
