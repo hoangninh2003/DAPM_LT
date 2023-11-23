@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -120,15 +121,53 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Idsach,Tieude,ImgSach,Tacgia,GiaMua,Namxuatban,Mota,Idloai")] Sach sach)
+        [ValidateAntiForgeryToken]       
+        public ActionResult Edit(Sach sach)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sach).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // Kiểm tra có thay đổi ảnh không
+                bool hasImageChanged = sach.ImageFile != null && sach.ImageFile.ContentLength > 0;
+
+                // Lấy đối tượng từ database để kiểm tra và giữ lại ảnh cũ (nếu có)
+                Sach existingTaiKhoan = db.Saches.Find(sach.Idsach);
+
+                if (existingTaiKhoan != null)
+                {
+                    // Giữ lại ảnh cũ nếu không có sự thay đổi
+                    if (!hasImageChanged)
+                    {
+                        sach.ImgSach = existingTaiKhoan.ImgSach;
+                    }
+
+                    // Cập nhật chỉ các trường cần thiết từ taiKhoan
+                    db.Entry(existingTaiKhoan).CurrentValues.SetValues(sach);
+
+                    // Nếu có thay đổi ảnh, cập nhật ảnh
+                    if (hasImageChanged)
+                    {
+                        byte[] imageData;
+                        using (Stream inputStream = sach.ImageFile.InputStream)
+                        {
+                            using (MemoryStream outputStream = new MemoryStream())
+                            {
+                                inputStream.CopyTo(outputStream);
+                                imageData = outputStream.ToArray();
+                            }
+                        }
+                        existingTaiKhoan.ImgSach = imageData;
+                    }
+
+                    db.SaveChanges();
+
+                    // Cập nhật lại session cho profile
+                    //Session["use"] = existingTaiKhoan;
+
+                    return RedirectToAction("Details", new { id = existingTaiKhoan.Idsach });
+                }
             }
+
+            // ModelState không hợp lệ hoặc có lỗi xảy ra, trả về view với dữ liệu hiện tại
             ViewBag.Idloai = new SelectList(db.Loais, "Idloai", "Tenloai", sach.Idloai);
             return View(sach);
         }

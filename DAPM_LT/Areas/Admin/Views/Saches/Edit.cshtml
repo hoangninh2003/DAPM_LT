@@ -6,77 +6,119 @@
     <link href="~/Content/css/admin1.css" rel="stylesheet" />
 }
 
-<a href="@Url.Action("Index", "Saches")" class="btn btn-primary" style="color: white;">Trở về</a>
 
-@using (Html.BeginForm())
+<a href="@Url.Action("Index", "Saches")" class="btn btn-primary" style="color: white">Trở về</a>
+
+@using (Html.BeginForm("Edit", "Saches", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Sach</h4>
+        <h4 style="text-align: center">Sửa nội dung sách</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Idsach)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tieude, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tieude, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tieude, "", new { @class = "text-danger" })
+        <div class="nd">
+            <div class="form-group">
+                <div class="tennd">
+                    Tiêu đề:
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tieude, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tieude, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImgSach, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImgSach, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImgSach, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="tennd">
+                    Hình sách:
+                </div>
+                <!--Chọn ảnh-->
+                <div class="profile-left" style="flex-basis: 70%; width: auto; padding: 0px 10px">
+                    <div class="profile-picture-container" style="text-align: center">
+                        @if (Model.ImgSach != null)
+                        {
+                            <!-- Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu -->
+                            <img id="imgPreview" style="width: 360px; margin: auto" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImgSach)" alt="User Image" />
+                        }
+                        <span id="selectedFileName" style="text-align: center"></span>
+                    </div>
+                    <div class="profile-actions" style="padding: 0px 10px; margin-left: 250px ">
+                        <label for="ImageFile" class="btn2 btn-default">Chọn ảnh</label>
+                        <input type="file" name="ImageFile" id="ImageFile" accept="image/*" style="display:none;" onchange="displayImagePreview(this)" />                        
+                    </div>
+                    <script>
+                        function displayImagePreview(input) {
+                            var fileName = input.files[0].name;
+                            document.getElementById("selectedFileName").innerHTML = fileName;
+
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var imgPreview = document.getElementById("imgPreview");
+                                imgPreview.src = e.target.result;
+                                imgPreview.style.display = "block";
+                            };
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    </script>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tacgia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tacgia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tacgia, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="tennd">
+                    Tác giả:
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tacgia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tacgia, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.GiaMua, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GiaMua, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GiaMua, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="tennd">
+                    Giá mua:
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GiaMua, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GiaMua, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Namxuatban, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Namxuatban, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Namxuatban, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="tennd">
+                    Năm sản xuất:
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Namxuatban, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Namxuatban, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="tennd">
+                    Mô tả:
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Idloai, "Idloai", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Idloai", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Idloai, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="tennd">
+                    Thể loại:
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownList("Idloai", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Idloai, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn1 btn-default" />
             </div>
         </div>
     </div>
@@ -86,3 +128,53 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<style>
+    /*nội dung*/
+    .form-group {
+        display: flex;
+    }
+
+    .tennd {
+        flex-basis: 30%;
+        padding: 10px 0px;
+    }
+
+    .col-md-10 {
+        flex-basis: 70%;
+    }
+
+    .form-control {
+        height: auto;
+    }
+    /*Nút chọn hình ảnh*/
+    .btn2 {
+        display: inline-block;
+        font-weight: 400;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid #808080;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    /*nút save*/
+    .btn1 {
+        margin-left: 490px;
+        border: none;
+        background: #28a745;
+        color: white;
+        border-radius: 5px;
+        border: 2px solid #206530;
+    }
+</style>
