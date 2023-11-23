@@ -15,10 +15,22 @@ namespace DAPM_LT.Areas.Admin.Controllers
         private dapmEntities db = new dapmEntities();
 
         // GET: Admin/PhieuMuaChiTiets
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var phieuMuaChiTiets = db.PhieuMuaChiTiets.Include(p => p.Kiemsoat).Include(p => p.PhieuMua);
-            return View(phieuMuaChiTiets.ToList());
+            if (id == null)
+            {
+                var phieuMuaChiTiets = db.PhieuMuaChiTiets.Include(p => p.Kiemsoat).Include(p => p.PhieuMua);
+                return View(phieuMuaChiTiets.ToList());
+            }
+            else
+            {
+
+                TempData["Idtruyentiep"] = id;
+
+                var phieuMuonChiTiets = db.PhieuMuaChiTiets.Include(p => p.Kiemsoat).Include(p => p.PhieuMua).Where(k => k.IdPhieuMua == id);
+                return View(phieuMuonChiTiets.ToList());
+            }
+           
         }
 
         // GET: Admin/PhieuMuaChiTiets/Details/5
@@ -53,9 +65,34 @@ namespace DAPM_LT.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.PhieuMuaChiTiets.Add(phieuMuaChiTiet);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int? idtruyen = TempData["Idtruyentiep"] as int?;
+                if (idtruyen != null)
+                {
+                    phieuMuaChiTiet.IdPhieuMua = idtruyen.Value;
+                }
+                var kiemsoat = db.Kiemsoats.Find(phieuMuaChiTiet.Idkiemsoat);
+                if (kiemsoat != null)
+                {
+                    if (kiemsoat.Muontra == "Mượn" || kiemsoat.Muontra == "Bán")
+                    {
+
+                        ViewBag.Idkiemsoat = new SelectList(db.Kiemsoats, "Idkiemsoat", "Imgtrangthai", phieuMuaChiTiet.Idkiemsoat);
+                        ViewBag.IdPhieuMuon = new SelectList(db.PhieuMuons, "Idphieu", "Trangthaimuon", phieuMuaChiTiet.IdPhieuMua);
+                        ModelState.AddModelError("", "Sách này đã được mượn. Vui lòng chọn sách khác.");
+                        return View(phieuMuaChiTiet);
+                    }
+
+                    kiemsoat.Muontra = "Bán";
+
+
+                    phieuMuaChiTiet.Kiemsoat = kiemsoat;
+
+                    db.PhieuMuaChiTiets.Add(phieuMuaChiTiet);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+          
             }
 
             ViewBag.Idkiemsoat = new SelectList(db.Kiemsoats, "Idkiemsoat", "Trangthaisach", phieuMuaChiTiet.Idkiemsoat);
