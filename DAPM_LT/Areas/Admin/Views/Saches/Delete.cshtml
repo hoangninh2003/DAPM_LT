@@ -5,93 +5,95 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
 }
 
+
+<a href="@Url.Action("Index", "Saches")" class="btn btn-primary" style="color: white;">Trở về</a>
+@using (Html.BeginForm("Delete", "Saches", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <h4 style="text-align:center">Chi tiết sách</h4>
+        <hr />
+        <div class="nd" style="display: flex">
+            <div class="form-group">
+                <div class="tennd"> Hình sách: </div>
+                <!--Chọn ảnh-->
+                <div class="profile-left" style="flex-basis: 70%; width: auto; padding: 0px 10px">
+                    <div class="profile-picture-container" style="text-align: center">
+                        @if (Model.ImgSach != null)
+                        {
+                            <!-- Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu -->
+                            <img id="imgPreview" style="width: 200px; margin: auto" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImgSach)" alt="User Image" />
+                        }
+                        <span id="selectedFileName" style="text-align: center"></span>
+                    </div>
+                    @*<div class="profile-actions" style="padding: 0px 10px; margin-left: 250px ">
+                            <label for="ImageFile" class="btn2 btn-default">Chọn ảnh</label>
+                            <input type="file" name="ImageFile" id="ImageFile" accept="image/*" style="display:none;" onchange="displayImagePreview(this)" />
+                        </div>*@
+                    @*<script>
+                            function displayImagePreview(input) {
+                                var fileName = input.files[0].name;
+                                document.getElementById("selectedFileName").innerHTML = fileName;
+
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var imgPreview = document.getElementById("imgPreview");
+                                    imgPreview.src = e.target.result;
+                                    imgPreview.style.display = "block";
+                                };
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        </script>*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group1">
+                    <div class="tennd"> Tiêu đề: </div>
+                    <div>@Html.DisplayFor(model => model.Tieude)</div>
+                </div>
+
+                <div class="form-group1">
+                    <div class="tennd"> Tác giả: </div>
+                    <div> @Html.DisplayFor(model => model.Tacgia)</div>
+                </div>
+
+                <div class="form-group1">
+                    <div class="tennd"> Giá mua: </div>
+                    <div>@Html.DisplayFor(model => model.GiaMua)</div>
+                </div>
+
+                <div class="form-group1">
+                    <div class="tennd"> Năm xuất bản: </div>
+                    <div>@Html.DisplayFor(model => model.Namxuatban)</div>
+                </div>
+
+                <div class="form-group1">
+                    <div class="tennd"> Mô tả: </div>
+                    <div>@Html.DisplayFor(model => model.Mota)</div>
+                </div>
+
+                <div class="form-group1">
+                    <div class="tennd"> Thể loại: </div>
+                    <div>@Html.DisplayFor(model => model.Loai.Tenloai)</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Idsach }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+
 <style>
-    .dl-horizontal dt {
-        width: 100px;
-        text-align: right;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+    .form-group1 {
+        display: flex;
+        padding: 10px;
     }
 
-    .dl-horizontal dd {
-        margin-left: 120px;
-    }
-
-    .form-actions {
-        margin-top: 20px;
+    .tennd {
+        padding: 0px 10px;
     }
 </style>
-<a href="@Url.Action("Index", "Saches")" class="btn btn-primary" style="color: white;">Trở về</a>
-<div>
-    <h4 style="text-align:center">Xóa thông tin sách</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Tieude)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tieude)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImgSach)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImgSach)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tacgia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tacgia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GiaMua)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GiaMua)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Namxuatban)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Namxuatban)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Mota)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Mota)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Loai.Tenloai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Loai.Tenloai)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>

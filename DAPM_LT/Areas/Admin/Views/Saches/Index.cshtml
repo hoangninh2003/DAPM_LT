@@ -76,11 +76,25 @@
 
         @foreach (var item in Model)
         {
-            <tr class="table-row" data-id="@item.Idsach">
+            <tr class="table-row" style="height: 100px" data-id="@item.Idsach">
                 <td>
-
-                    <img src="~/Content/@item.ImgSach" style="height:100px; width:auto" />
+                    <div>
+                        <div class="form-group-index">
+                            <!--Chọn ảnh-->
+                            <div class="profile-left" style="width: auto; padding: 0px 10px">
+                                <div class="profile-picture-container" style="text-align: center">
+                                    @if (item.ImgSach != null)
+                                    {
+                                        <!-- Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu -->
+                                        <img id="imgPreview" style="width: 100px; height: 100%" src="data:image/jpeg;base64,@Convert.ToBase64String(item.ImgSach)" alt="User Image" />
+                                    }
+                                    <span id="selectedFileName" style="text-align: center"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Idsach)
                 </td>
@@ -114,7 +128,7 @@
 
     </table>
 }
-    <script>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
         // Chọn tất cả các hàng có class "table-row"
         var rows = document.querySelectorAll('.table-row');
@@ -133,82 +147,81 @@
             });
         });
     });
-    </script>
+</script>
 
 
-    <style type="text/css">
-        .sp-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-        }
+<style type="text/css">
+    .sp-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
 
-        .sp-item {
-            width: 200px;
-            height: 300px;
-            margin: 20px;
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .sp-item {
+        width: 200px;
+        height: 300px;
+        margin: 20px;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .sp-image {
-            max-width: 150px;
-            max-height: 150px;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
+    .sp-image {
+        max-width: 150px;
+        max-height: 150px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
 
-        .sp-title {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
+    .sp-title {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
 
-        .sp-status {
-            font-style: italic;
-            color: #888;
-        }
-    </style>
+    .sp-status {
+        font-style: italic;
+        color: #888;
+    }
+</style>
 
-    @*-------------Bộ lọc sản phẩm-------------------------------------------*@
-    <style>
-        .Boloc {
-            display: flex;
-            padding: 10px 0px;
-            height: 120px;
-            width: auto;
-        }
+@*-------------Bộ lọc sản phẩm-------------------------------------------*@
+<style>
+    .Boloc {
+        display: flex;
+        padding: 10px 0px;
+        height: 120px;
+        width: auto;
+    }
 
-        .Tiemkiem_1 {
-            padding: 0px 5px;
-            width: auto;
-            position: relative;
-        }
+    .Tiemkiem_1 {
+        padding: 0px 5px;
+        width: auto;
+        position: relative;
+    }
 
-        .Tiemkiem_2 {
-            padding: 0px 5px;
-            width: auto;
-            position: relative;
-        }
+    .Tiemkiem_2 {
+        padding: 0px 5px;
+        width: auto;
+        position: relative;
+    }
 
-        .form-group {
-            width: 130px;
-            height: 35px;
-        }
+    .form-group {
+        width: 130px;
+        height: 35px;
+    }
 
-        .select2 {
-            width: 100%;
-            height: 40px;
-            border-radius: 5px;
-        }
+    .select2 {
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+    }
 
-        .input-group {
-            padding: 42px 0px;
-        }
-    </style>
-
+    .input-group {
+        padding: 42px 0px;
+    }
+</style>
