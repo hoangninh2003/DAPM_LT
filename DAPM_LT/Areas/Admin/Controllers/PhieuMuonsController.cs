@@ -15,11 +15,25 @@ namespace DAPM_LT.Areas.Admin.Controllers
         private dapmEntities db = new dapmEntities();
 
         // GET: Admin/PhieuMuons
-        public ActionResult Index()
+        public ActionResult Index(string _name, int? _id)
         {
-            var phieuMuons = db.PhieuMuons.Include(p => p.The);
-            return View(phieuMuons.ToList());
+            IQueryable<PhieuMuon> query = db.PhieuMuons;
+            if (_id != null)
+            {
+                query = query.Where(i => i.The.Idthe == _id);
+            }
+           
+
+            if (!string.IsNullOrEmpty(_name))
+            {
+                query = query.Where(s => s.The.TaiKhoan.Ten.Contains(_name));
+            }
+
+            List<PhieuMuon> sachList = query.ToList();
+           
+            return View(sachList);
         }
+       
 
         // GET: Admin/PhieuMuons/Details/5
         public ActionResult Details(int? id)

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DAPM_LT.Models.PhieuMuaChiTiet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tongtien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kiemsoat.Trangthaisach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhieuMua.Idphieu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tongtien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kiemsoat.Trangthaisach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhieuMua.Idphieu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPhieuMuaChiTiet }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPhieuMuaChiTiet }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPhieuMuaChiTiet })
+        </td>
+    </tr>
+}
+
+</table>
