@@ -48,10 +48,20 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Idphieu,Idsach,Idtaikhoan,Ngaymua")] PhieuMua phieuMua)
+        public ActionResult Create([Bind(Include = "Idphieu,Idtaikhoan,Ngaymua")] PhieuMua phieuMua)
         {
             if (ModelState.IsValid)
             {
+                // Kiểm tra mã thẻ tồn tại
+                var the = db.Thes.Find(phieuMua.Idtaikhoan);
+                if (the == null)
+                {
+                    // trả về thông báo lỗi
+                    ModelState.AddModelError("Idtaikhoan", "Mã tài khoản không tồn tại");
+                    ViewBag.Idthe = new SelectList(db.TaiKhoans, "Idtaikhoan", "Idtaikhoan", phieuMua.Idtaikhoan);
+                    return View(phieuMua);
+                }
+
                 db.PhieuMuas.Add(phieuMua);
                 db.SaveChanges();
                 return RedirectToAction("Index");

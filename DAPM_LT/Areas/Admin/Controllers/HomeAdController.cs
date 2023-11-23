@@ -36,5 +36,11 @@ namespace DAPM_LT.Areas.Admin.Controllers
 
         }
 
+
+        public ActionResult TKpartial()
+        {
+            var taiKhoans = db.TaiKhoans.Include(t => t.PhanQuyen);
+            return View(taiKhoans.ToList());
+        }
     }
 }

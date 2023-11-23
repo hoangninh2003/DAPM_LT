@@ -1,0 +1,46 @@
+﻿@model List<DAPM_LT.Models.TaiKhoan>
+
+
+<table class="table fa-border">
+    <tr>
+        <th>
+            Mã Tài khoản
+        </th>
+
+        <th>
+            Họ và tên
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Số Điện Thoại
+        </th>
+        
+       
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Idtaikhoan)
+            </td>
+
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Holot)  @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dienthoai)
+            </td>
+            
+        </tr>
+    }
+
+</table>

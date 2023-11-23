@@ -34,28 +34,26 @@
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>@Html.DisplayNameFor(model => model.Idsach)</th>
-                                                <th>@Html.DisplayNameFor(model => model.Ngaymua)</th>
-                                                <th>  @Html.DisplayNameFor(model => model.TaiKhoan.Holot)</th>
+                                                <th>Mã Phiếu Mua</th>
+                                                <th>Họ và Tên</th>
+                                                <th>Ngày Mua</th>
+
                                             </tr>
                                         </thead>
                                         @foreach (var item in Model)
                                         {
                                             <tbody>
-                                                <tr class="gradeC">
-                                                    <td>@Html.DisplayNameFor(model => model.Idsach)</td>
+                                                <tr class="table-row" data-id="@item.Idphieu">
+                                                    <td>@Html.DisplayFor(modelItem => item.Idphieu)</td>
+
+                                                    <td>@Html.DisplayFor(modelItem => item.TaiKhoan.Holot) @Html.DisplayFor(modelItem => item.TaiKhoan.Ten)</td>
+
                                                     <td>@Html.DisplayFor(modelItem => item.Ngaymua)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.TaiKhoan.Holot)</td>
+
                                                 </tr>
-                                                <tr class="gradeU">
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>-</td>
-                                                    <td class="center">-</td>
-                                                    <td class="center">U</td>
-                                                </tr>
+
                                             </tbody>
-}
+                                        }
                                     </table>
                                 </div>
 
@@ -67,7 +65,26 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Chọn tất cả các hàng có class "table-row"
+        var rows = document.querySelectorAll('.table-row');
 
+        // Thêm sự kiện click cho mỗi hàng
+        rows.forEach(function (row) {
+            row.addEventListener('click', function () {
+                // Lấy giá trị id từ thuộc tính data-id
+                var id = row.getAttribute('data-id');
+
+                // Xây dựng URL chuyển hướng
+                var redirectUrl = '@Url.Action("Index", "PhieuMuaChiTiets/Index")' + '/' + id;
+
+                // Gửi yêu cầu chuyển hướng
+                window.location.href = redirectUrl;
+            });
+        });
+    });
+</script>
 </html>
 
 @*<table class="table">
