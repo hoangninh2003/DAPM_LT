@@ -23,9 +23,9 @@ namespace DAPM_LT.Areas.Admin.Controllers
             //    return View();
             //}
             //return RedirectPermanent("~/HomeAd/Index");
-            
-           
-                return View();
+
+
+            return View();
 
         }
         
