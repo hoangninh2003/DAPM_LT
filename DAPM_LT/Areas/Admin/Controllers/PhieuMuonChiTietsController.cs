@@ -19,17 +19,17 @@ namespace DAPM_LT.Areas.Admin.Controllers
         {
             if (id == null)
             {
-
                 var phieuMuonChiTiets = db.PhieuMuonChiTiets.Include(p => p.Kiemsoat).Include(p => p.PhieuMuon);
                 return View(phieuMuonChiTiets.ToList());
             }
             else
             {
-                var phieuMuonChiTiets = db.PhieuMuonChiTiets.Include(p => p.Kiemsoat).Include(p => p.PhieuMuon).Where(k => k.IdPhieuMuon == id);
                 
+                TempData["Idtruyentiep"] = id;
+
+                var phieuMuonChiTiets = db.PhieuMuonChiTiets.Include(p => p.Kiemsoat).Include(p => p.PhieuMuon).Where(k => k.IdPhieuMuon == id);
                 return View(phieuMuonChiTiets.ToList());
             }
-
         }
 
         // GET: Admin/PhieuMuonChiTiets/Details/5
@@ -50,23 +50,48 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // GET: Admin/PhieuMuonChiTiets/Create
         public ActionResult Create()
         {
-            ViewBag.Idkiemsoat = new SelectList(db.Kiemsoats, "Idkiemsoat", "Imgtrangthai");
+            var kiemsoats = db.Kiemsoats.ToList();
+            ViewBag.Idkiemsoat = new SelectList(kiemsoats, "Idkiemsoat", "Imgtrangthai");
             ViewBag.IdPhieuMuon = new SelectList(db.PhieuMuons, "Idphieu", "Trangthaimuon");
             return View();
         }
 
         // POST: Admin/PhieuMuonChiTiets/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdPhieuMuonChiTiet,IdPhieuMuon,Idkiemsoat,TrangThaiSach")] PhieuMuonChiTiet phieuMuonChiTiet)
         {
             if (ModelState.IsValid)
             {
-                db.PhieuMuonChiTiets.Add(phieuMuonChiTiet);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int? idtruyen = TempData["Idtruyentiep"] as int?;
+                if (idtruyen != null)
+                {
+                    phieuMuonChiTiet.IdPhieuMuon = idtruyen.Value;
+                }
+
+                // Lấy đối tượng Kiemsoat từ cơ sở dữ liệu theo Idkiemsoat
+                var kiemsoat = db.Kiemsoats.Find(phieuMuonChiTiet.Idkiemsoat);
+                if (kiemsoat != null)
+                {
+                    if (kiemsoat.Muontra == "Mượn")
+                    {
+                        
+                        ViewBag.Idkiemsoat = new SelectList(db.Kiemsoats, "Idkiemsoat", "Imgtrangthai", phieuMuonChiTiet.Idkiemsoat);
+                        ViewBag.IdPhieuMuon = new SelectList(db.PhieuMuons, "Idphieu", "Trangthaimuon", phieuMuonChiTiet.IdPhieuMuon);
+                        ModelState.AddModelError("", "Sách này đã được mượn. Vui lòng chọn sách khác.");
+                        return View(phieuMuonChiTiet);
+                    }
+
+                    kiemsoat.Muontra = "Mượn";
+
+                   
+                    phieuMuonChiTiet.Kiemsoat = kiemsoat;
+
+                    db.PhieuMuonChiTiets.Add(phieuMuonChiTiet);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.Idkiemsoat = new SelectList(db.Kiemsoats, "Idkiemsoat", "Imgtrangthai", phieuMuonChiTiet.Idkiemsoat);

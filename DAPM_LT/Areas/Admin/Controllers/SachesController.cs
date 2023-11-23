@@ -163,7 +163,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
                     // Cập nhật lại session cho profile
                     //Session["use"] = existingTaiKhoan;
 
-                    return RedirectToAction("Details", new { id = existingTaiKhoan.Idsach });
+                    return RedirectToAction("Index", new { id = existingTaiKhoan.Idsach });
                 }
             }
 
