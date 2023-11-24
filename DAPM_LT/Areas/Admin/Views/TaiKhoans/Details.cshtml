@@ -14,9 +14,16 @@
     <br />
     <div class="profile-container">
 
+        <!--Chọn ảnh-->
         <div class="profile-left">
             <div class="profile-picture-container">
-                <img src="~/Content/@Model.ImgU" alt="Hình ảnh đại diện" class="profile-picture">
+
+                @if (Model.ImgU != null)
+                {
+                    <!-- Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu -->
+                    <img id="imgPreview" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImgU)" alt="User Image" />
+                }
+
             </div>
             
         </div>

@@ -13,5 +13,7 @@ namespace DAPM_LT.Models
         public string userMail { get; set; }
         [Display(Name = "Mật khẩu")]
         public string password { get; set; }
+        [Display(Name = "Vai trò")]
+        public string TenQuyen { get; set; }
     }
 }

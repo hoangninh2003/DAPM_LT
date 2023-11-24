@@ -7,31 +7,58 @@
 }
 
 <a href="@Url.Action("Index", "TaiKhoans")" class="btn btn-primary" style="color: white;">Trở về</a>
-<h2 class="text-center">Thêm mới nhân viên</h2>
 
-<div class="container">
+<div class="container1">
     <div class="row">
+        
         <div class="col-md-6 col-md-offset-3">
-            @using (Html.BeginForm())
+
+            @using (Html.BeginForm("Create", "TaiKhoans", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
+                
+            <div class="form-group">
+                <h2 class="text-center">Thêm mới nhân viên</h2>
+                <div class="td">
                     Hình ảnh thẻ 4x6
-                    <div class="col-md-10">
-                        <input type="file" id="imgU" accept="image/*" class="form-control" onchange="previewImage()">
-                        <img id="imagePreview" src="#" alt="Ảnh đại diện" style="max-width: 100%; max-height: 200px;">
-                        @Html.ValidationMessageFor(model => model.ImgU, "", new { @class = "text-danger" })
-                    </div>
                 </div>
+
+                <div class="profile-picture-container" style="text-align: center">
+
+                    @*Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu*@
+                    <img id="imgPreview" style="width: 360px; margin: auto" src="data:image/jpeg;base64" />
+
+                    <span id="selectedFileName" style="text-align: center"></span>
+                </div>
+                <div class="profile-actions" style="padding: 0px 10px; margin-left: auto; border: 1px solid; border-radius: 5px; width: 100px;">
+                    <label for="ImageFile" class="btn2 btn-default">Chọn ảnh</label>
+                    <input type="file" name="ImageFile" id="ImageFile" accept="image/*" style="display:none;" onchange="displayImagePreview(this)" />
+                </div>
+                <script>
+                    function displayImagePreview(input) {
+                        var fileName = input.files[0].name;
+                        document.getElementById("selectedFileName").innerHTML = fileName;
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var imgPreview = document.getElementById("imgPreview");
+                            imgPreview.src = e.target.result;
+                            imgPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                </script>
+
+            </div>
                 <div class="form-group">
                     <div class="col-md-10">
-                        <p>Họ: </p>
+                        <div class="td">Họ: </div>
                         @Html.EditorFor(model => model.Holot, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Holot, "", new { @class = "text-danger" })
 
                     </div>
-                    Tên
+                    <div class="td">Tên:</div>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
@@ -41,7 +68,7 @@
 
 
                 <div class="form-group">
-                    Email
+                    <div class="td">Email:</div>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -49,15 +76,16 @@
                 </div>
 
                 <div class="form-group">
-                    Số điện thoại
+                    <div class="td">Số điện thoại:</div>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Dienthoai, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    Mật khẩu
+<div class="form-group">
+                    <div class="td">
+                        Mật khẩu:
+                    </div>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
@@ -68,7 +96,9 @@
 
 
                 <div class="form-group">
-                    Công việc
+                    <div class="td">
+                        Công việc:
+                    </div>
                     <div class="col-md-10">
                         @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.IDQuyen, "", new { @class = "text-danger" })
@@ -76,7 +106,9 @@
                 </div>
 
                 <div class="form-group">
-                    Địa chỉ
+                    <div class="td">
+                        Địa chỉ:
+                    </div>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
@@ -112,4 +144,25 @@ function previewImage() {
     }
 </script>
 
+<style>
+    .container1 {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
+        justify-content: center;
+        align-items: center;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
 
+    .col-md-6 {
+        margin: auto;
+    }
+    .form-group {
+        font-size: 20px;
+        width: 400px;
+        height: auto;
+    }
+    .td{
+        padding: 0px 10px;
+    }
+</style>

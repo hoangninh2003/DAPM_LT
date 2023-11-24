@@ -13,7 +13,7 @@
     </a>
     <form class="form-inline" role="form">
         <div class="form-group">
-            @Html.Label("Tên người dùng: ")
+            <label style="padding: 0px 10px">Tên người dùng: </label>
             <div class="input-group">
                 <input type="text" name="_name" class="form-control form-control-sm" />
                 <div class="input-group-append">
@@ -29,21 +29,32 @@
 <ul class="user-list">
     @foreach (var item in Model)
     {
-        <li class="user-item">
-            <div class="profile-pic">
-                <img src="~/Content/@item.ImgU" alt="Profile Picture" />
+    <li class="user-item">
+        <!--Chọn ảnh-->
+        <div class="profile-left">
+            <div class="profile-picture-container" >
+
+                @if (item.ImgU != null)
+                {
+                    <!-- Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu -->
+                    <img id="imgPreview" src="data:image/jpeg;base64,@Convert.ToBase64String(item.ImgU)" alt="User Image" style="width: 150px; height: 150px; border-radius: 50%" />
+                }
+
             </div>
-            <div class="user-details">
-                <div class="name">@Html.DisplayFor(modelItem => item.Holot) @Html.DisplayFor(modelItem => item.Ten)</div>
-                <div class="role">@item.PhanQuyen.TenQuyen</div>
-            </div>
-            <div class="actions">
-                <a href="@Url.Action("Details", "TaiKhoans", new { id = item.Idtaikhoan })" class="btn btn-info">Xem Chi Tiết</a>
-            </div>
-            <div class="actions">
-                <a href="@Url.Action("Delete", "TaiKhoans", new { id = item.Idtaikhoan })" class="btn btn-danger">Xóa</a>
-            </div>
-        </li>
+            
+           
+        </div>
+        <div class="user-details">
+            <div class="name">@Html.DisplayFor(modelItem => item.Holot) @Html.DisplayFor(modelItem => item.Ten)</div>
+            <div class="role">@item.PhanQuyen.TenQuyen</div>
+        </div>
+        <div class="actions">
+            <a href="@Url.Action("Details", "TaiKhoans", new { id = item.Idtaikhoan })" class="btn btn-info">Xem Chi Tiết</a>
+        </div>
+        <div class="actions">
+            <a href="@Url.Action("Delete", "TaiKhoans", new { id = item.Idtaikhoan })" class="btn btn-danger">Xóa</a>
+        </div>
+    </li>
     }
 </ul>
 
@@ -73,5 +84,18 @@
     input[type="submit"] {
         margin-top: 10px;
     }
-    
+
+    .form-control {
+        position: relative;
+        flex: 1 1 0%;
+        min-width: 0;
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 40px;
+    }
+
+    .input-group-append {
+        margin-left: -10px;
+        padding: 5px 0px;
+    }
 </style>

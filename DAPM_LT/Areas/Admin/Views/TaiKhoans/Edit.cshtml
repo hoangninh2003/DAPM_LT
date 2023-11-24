@@ -8,59 +8,81 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/profile.css">
 }
 
-<body>
-    <a href="@Url.Action("Details", "TaiKhoans", new { id = Model.Idtaikhoan })" class="btn btn-success" style="color: white;">Trở về</a>
+<body style="margin-top:100px">
+    <a href="@Url.Action("Details", new { id = Model.Idtaikhoan })" class="btn btn-success" style="color: white;">Trở về</a>
     <h2 class="text-center">Chỉnh sửa thông tin</h2>
 
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "TaiKhoans", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
-        <div class="profile-container1">
+        <div class="profile-container">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Idtaikhoan)
-            
+            @Html.HiddenFor(model => model.IDQuyen)
+            @Html.HiddenFor(model => model.Matkhau)
+
+            <!--Chọn ảnh-->
             <div class="profile-left">
                 <div class="profile-picture-container">
-                    <img src="~/Content/@Model.ImgU" alt="Hình ảnh đại diện" class="profile-picture">
+
+                    @if (Model.ImgU != null)
+                    {
+                        <!-- Hiển thị ảnh từ cột ImgU nếu nó không trống và có ảnh từ cơ sở dữ liệu -->
+                        <img id="imgPreview" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImgU)" alt="User Image" />
+                    }
+
                 </div>
                 <div class="profile-actions">
-                    @Html.EditorFor(model => model.ImgU, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ImgU, "", new { @class = "text-danger" })
+                    <label for="ImageFile" class="btn btn-default">Chọn ảnh</label>
+                    <input type="file" name="ImageFile" id="ImageFile" accept="image/*" style="display:none;" onchange="displayImagePreview(this)" />
+                    <span id="selectedFileName"></span>
                 </div>
+                <script>
+                    function displayImagePreview(input) {
+                        var fileName = input.files[0].name;
+                        document.getElementById("selectedFileName").innerHTML = fileName;
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var imgPreview = document.getElementById("imgPreview");
+                            imgPreview.src = e.target.result;
+                            imgPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                </script>
             </div>
+
+
             <div class="profile-right">
                 <div class="profile-info">
-                    <div class="profile-field1">
+                    <div class="profile-field">
                         <span class="profile-label">Mã tài khoản:</span>
 
                     </div>
-                    <div class="profile-field1">
+                    <div class="profile-field">
                         <span class="profile-label">Họ:</span>
 
                     </div>
-                    <div class="profile-field1">
+                    <div class="profile-field">
                         <span class="profile-label">Tên:</span>
 
                     </div>
-                    <div class="profile-field1">
+                    <div class="profile-field">
                         <span class="profile-label">Email:</span>
 
                     </div>
-                    <div class="profile-field1">
-                        <span class="profile-label">Mật khẩu:</span>
-
-                    </div>
-                    <div class="profile-field1">
+                    <div class="profile-field">
                         <span class="profile-label">Điện thoại:</span>
 
                     </div>
-                    <div class="profile-field1">
+                    <div class="profile-field">
                         <span class="profile-label">Loại tài khoản:</span>
 
                     </div>
-                    <div class="profile-field1">
+                    <div class="profile-field">
                         <span class="profile-label">Địa chỉ:</span>
 
                     </div>
@@ -68,8 +90,8 @@
             </div>
             <div class="profile-right">
                 <div class="profile-info">
-                    <div class="profile-field">
 
+                    <div class="profile-field">
                         <span class="profile-value" style="color:red">@Model.Idtaikhoan</span>
                     </div>
                     <div class="profile-field">
@@ -88,10 +110,7 @@
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
-                    <div class="profile-field">
-                        @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
-                    </div>
+
 
                     <div class="profile-field">
                         @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control" } })
@@ -101,7 +120,6 @@
                         @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.IDQuyen, "", new { @class = "text-danger" })
                     </div>
-
                     <div class="profile-field">
                         @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
@@ -121,17 +139,3 @@
     }
 
 </body>
-<style>
-    .profile-field1 {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 34px;
-    }
-    .profile-container1 {
-        display: flex;
-        background-color: #f5f5f5;
-        padding: 20px;
-        align-items: center;
-        height: 600px;
-    }
-</style>

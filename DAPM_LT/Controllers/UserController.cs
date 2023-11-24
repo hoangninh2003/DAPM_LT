@@ -97,19 +97,27 @@ namespace ThuVien.Controllers
         {
             string userMail = userlog["userMail"].ToString();
             string password = userlog["password"].ToString();
-            var islogin = db.TaiKhoans.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
 
-            if (islogin != null)
+            // Lấy thông tin tài khoản từ cơ sở dữ liệu
+            var taiKhoan = db.TaiKhoans.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
+
+            if (taiKhoan != null)
             {
-                if (userMail == "Admin@gmail.com")
+                // Kiểm tra vai trò của người dùng
+                string vaiTro = taiKhoan.PhanQuyen.TenQuyen;
+
+                Session["use"] = taiKhoan;
+
+                if (vaiTro == "Adminstrator")
                 {
-                    Session["use"] = islogin;
                     return RedirectToAction("Index", "Admin/HomeAd");
                 }
-
+                else if(vaiTro == "Nhanvien")
+                {
+                    return RedirectToAction("Index", "Admin/HomeAd");
+                }
                 else
                 {
-                    Session["use"] = islogin;
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -118,7 +126,6 @@ namespace ThuVien.Controllers
                 ViewBag.Fail = "Tài khoản hoặc mật khẩu không chính xác.";
                 return View("Dangnhap");
             }
-
         }
         public ActionResult DangXuat()
         {
