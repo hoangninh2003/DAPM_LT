@@ -25,7 +25,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
             }
             else
             {
-                
+                TempData["Idtruyentiep"] = id;
                 var kiemsoats = db.Kiemsoats.Include(k => k.Sach).Where(k => k.Idsach == id);
                 return View(kiemsoats.ToList());
             }
@@ -61,10 +61,15 @@ namespace DAPM_LT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Idkiemsoat,Imgtrangthai,Trangthaisach,Muontra,Idsach")] Kiemsoat kiemsoat)
         {
+           
             kiemsoat.Solanmuon = 0;
             if (ModelState.IsValid)
             {
-                
+                int? idtruyen = TempData["Idtruyentiep"] as int?;
+                if (idtruyen != null)
+                {
+                   kiemsoat.Idsach = idtruyen.Value;
+                }
                 db.Kiemsoats.Add(kiemsoat);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { id = kiemsoat.Idsach });
