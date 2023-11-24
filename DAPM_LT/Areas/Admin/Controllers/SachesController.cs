@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAPM_LT.Models;
+using PagedList.Mvc;
+using PagedList;
 
 
 namespace DAPM_LT.Areas.Admin.Controllers
@@ -16,11 +18,11 @@ namespace DAPM_LT.Areas.Admin.Controllers
     {
         private dapmEntities db = new dapmEntities();
 
-        public ActionResult Index(string _name, string _selectedValue, int? _id)
+        public ActionResult Index(string _name, string _selectedValue, int? _id, int? page)
         {
+            int pageSize = 10;
 
             IQueryable<Sach> query = db.Saches;
-
 
             if (_id != null)
             {
@@ -36,29 +38,40 @@ namespace DAPM_LT.Areas.Admin.Controllers
             {
                 query = query.Where(s => s.Tieude.Contains(_name));
             }
+            //phân trang 41 - 55
+            query = query.OrderByDescending(s => s.Idsach); // sắp sếp
 
+            int totalItems = query.Count(); // Lấy tổng số mục
 
-            List<Sach> sachList = query.ToList();
+            int pageNumber = (page ?? 1);
 
+            // Sử dụng Skip và Take sau khi đã sắp xếp
+            var sachList = query.Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            // Chuyển đổi danh sách sang kiểu PagedList
+            IPagedList<Sach> pagedList = new StaticPagedList<Sach>(sachList, pageNumber, pageSize, totalItems);
 
             List<string> dsl = db.Saches.Select(l => l.Loai.Tenloai).Distinct().ToList();
             ViewBag.Categories = dsl;
 
-
-            foreach (var sach in sachList)
+            foreach (var sach in pagedList)
             {
                 sach.GiaMua = (decimal)Math.Floor(sach.GiaMua ?? 0);
             }
 
-
             Random random = new Random();
-            foreach (var sach in sachList)
+            foreach (var sach in pagedList)
             {
-            
+                // Thực hiện công việc với mỗi mục trong danh sách
             }
 
-            return View(sachList);
+            return View(pagedList);
         }
+
+
+
 
 
         // GET: Admin/Saches/Details/5

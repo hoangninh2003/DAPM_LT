@@ -24,6 +24,7 @@ namespace DAPM_LT
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/PagedList.css",
                       "~/Content/site.css"));
         }
     }

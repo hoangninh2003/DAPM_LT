@@ -1,5 +1,6 @@
-﻿@model IEnumerable<DAPM_LT.Models.Sach>
-
+﻿@*@model IEnumerable<DAPM_LT.Models.Sach>*@
+@model PagedList.IPagedList<DAPM_LT.Models.Sach>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAd.cshtml";
@@ -128,6 +129,61 @@
 
     </table>
 }
+<br />
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+
+<style>
+    .MenuTrang {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+        .MenuTrang .pagination {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+            .MenuTrang .pagination li {
+                display: inline;
+                margin-right: 5px;
+            }
+
+                .MenuTrang .pagination li a,
+                .MenuTrang .pagination li span {
+                    color: #333;
+                    padding: 6px 12px;
+                    text-decoration: none;
+                    border: 1px solid #ddd;
+                    background-color: #fff;
+                }
+
+            .MenuTrang .pagination .disabled span,
+            .MenuTrang .pagination .disabled a,
+            .MenuTrang .pagination .disabled a:hover,
+            .MenuTrang .pagination .disabled a:focus {
+                color: #999;
+                cursor: not-allowed;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+            .MenuTrang .pagination .active span,
+            .MenuTrang .pagination .active a,
+            .MenuTrang .pagination .active a:hover,
+            .MenuTrang .pagination .active a:focus {
+                z-index: 2;
+                color: #fff;
+                background-color: #337ab7;
+                border-color: #337ab7;
+            }
+</style>
+
+
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Chọn tất cả các hàng có class "table-row"
