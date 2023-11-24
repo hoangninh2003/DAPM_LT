@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAPM_LT.Models;
-using PagedList;
+
 
 namespace DAPM_LT.Areas.Admin.Controllers
 {
@@ -16,7 +16,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
     {
         private dapmEntities db = new dapmEntities();
 
-        public ActionResult Index(string _name, string _selectedValue, int? _id, int page)
+        public ActionResult Index(string _name, string _selectedValue, int? _id)
         {
 
             IQueryable<Sach> query = db.Saches;
@@ -54,7 +54,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
             Random random = new Random();
             foreach (var sach in sachList)
             {
-
+            
             }
 
             return View(sachList);
