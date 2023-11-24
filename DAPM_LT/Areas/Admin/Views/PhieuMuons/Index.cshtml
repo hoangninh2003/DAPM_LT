@@ -35,7 +35,7 @@
 
                 <!-- Navbar Search-->
                 <form class="Tiemkiem_2">
-                    <div class="input-group" style="display:flex">
+                    <div class="input-group" style="display:flex; padding: 32px 0px">
                         <input class="form-control" style="flex:0.5" type="text" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2" name="_name" />
                         <div class="input-group-append">
                             <button class="btn-primary" type="submit" value="Tìm kiếm"><i class="fa-solid fa-magnifying-glass" style="width:30px"></i></button>
@@ -65,7 +65,7 @@
                                                 <th>Ngày Mượn</th>
                                                 <th>Ngày Trả</th>
                                                 <th>Đang mượn/Đã trả</th>
-
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         @foreach (var item in Model)
@@ -79,7 +79,17 @@
                                                     <td>@Html.DisplayFor(modelItem => item.Ngaymuon)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.Ngaytra)</td>
                                                     <td class="center">@Html.DisplayFor(modelItem => item.Trangthaimuon)</td>
-
+                                                    <td>
+                                                        <button class="btn btn-success ">
+                                                            @Html.ActionLink("Sửa", "Edit", new { id = item.Idphieu }, new { @style = "color:white;" })
+                                                        </button>
+                                                        <button class="btn btn-primary ">
+                                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.Idphieu }, new { @style = "color:white;" })
+                                                        </button>
+                                                        <button class="btn btn-danger">
+                                                            @Html.ActionLink("Xóa", "Delete", new { id = item.Idphieu }, new { @style = "color:white;" })
+                                                        </button>
+                                                    </td>
 
                                                 </tr>
                                                 @*<tr class="gradeU">

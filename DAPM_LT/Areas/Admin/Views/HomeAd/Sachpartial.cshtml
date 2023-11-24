@@ -19,9 +19,7 @@
         <th>
             Mượn/Còn
         </th>
-        <th>
-
-        </th>
+       
     </tr>
 
 
@@ -45,14 +43,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Muontra)
             </td>
-            <td style="text-align:center">
-                <a href="@Url.Action("Edit", new { id = item.Idkiemsoat })" class="btn btn-primary" style="color: white;">
-                    Sửa
-                </a>
-                <a href="@Url.Action("Delete", new { id = item.Idkiemsoat })" class="btn btn-danger" style="color: white;">
-                    Xóa
-                </a>
-            </td>
+            
         </tr>
     }
 

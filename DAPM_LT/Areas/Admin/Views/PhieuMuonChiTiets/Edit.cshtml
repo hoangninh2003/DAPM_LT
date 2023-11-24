@@ -19,15 +19,15 @@
         @Html.HiddenFor(model => model.IdPhieuMuonChiTiet)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdPhieuMuon, "IdPhieuMuon", htmlAttributes: new { @class = "control-label col-md-2" })
+            Má sách
             <div class="col-md-10">
                 @Html.DropDownList("IdPhieuMuon", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdPhieuMuon, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div>Ảnh</div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Idkiemsoat, "Idkiemsoat", htmlAttributes: new { @class = "control-label col-md-2" })
+            Tên sách
             <div class="col-md-10">
                 @Html.DropDownList("Idkiemsoat", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Idkiemsoat, "", new { @class = "text-danger" })
@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TrangThaiSach, htmlAttributes: new { @class = "control-label col-md-2" })
+            Trạng thái sách
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TrangThaiSach, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TrangThaiSach, "", new { @class = "text-danger" })
