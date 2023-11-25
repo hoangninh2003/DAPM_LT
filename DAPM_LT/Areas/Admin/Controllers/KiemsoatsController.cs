@@ -15,11 +15,19 @@ namespace DAPM_LT.Areas.Admin.Controllers
         private dapmEntities db = new dapmEntities();
 
         // GET: Admin/Kiemsoats/Index/{id}
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, string _selectedValue)
         {
+            //if (id == null || _selectedValue == null)
+            //{
+
+            //    var kiemsoats = db.Kiemsoats.Include(k => k.Sach).Where(k => k.Muontra == "Còn");
+            //    return View(kiemsoats.ToList());
+            //}
+            //else
+            //{
             if (id == null)
             {
-               
+
                 var kiemsoats = db.Kiemsoats.Include(k => k.Sach);
                 return View(kiemsoats.ToList());
             }
@@ -29,6 +37,17 @@ namespace DAPM_LT.Areas.Admin.Controllers
                 var kiemsoats = db.Kiemsoats.Include(k => k.Sach).Where(k => k.Idsach == id);
                 return View(kiemsoats.ToList());
             }
+
+
+                //var kiemsoats = db.Kiemsoats.Include(k => k.Sach);
+
+                //if (!string.IsNullOrEmpty(_selectedValue) && _selectedValue != "Tất cả")
+                //{
+                //    kiemsoats = kiemsoats.Where(k => k.Muontra == _selectedValue);
+                //}
+
+                
+            //}
         }
 
 

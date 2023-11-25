@@ -45,9 +45,9 @@
         <th>
             Hiện trạng
         </th>
-        <th>
+        @*<th>
             Mượn/Còn
-        </th>
+        </th>*@
 
     </tr>
 
@@ -60,9 +60,16 @@
                 @Html.DisplayFor(modelItem => item.Idkiemsoat)
             </td>
 
+             @if (item.Imgtrangthai == null)
+        {
             <td>
-                <img src="~/Content/Image/@item.Imgtrangthai" style="height:20%; width:20%" />
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.Sach.ImgSach)" style="height:20%; width:20%" />
             </td>
+        }
+        else
+        {
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.Sach.ImgSach)" style="height:20%; width:20%" />
+        }
             <td>
                 @Html.DisplayFor(modelItem => item.Sach.Tieude)
             </td>
@@ -72,9 +79,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Trangthaisach)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Muontra)
-            </td>
+            </td>*@
 
         </tr>
     }

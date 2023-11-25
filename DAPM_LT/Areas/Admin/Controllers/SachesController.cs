@@ -61,11 +61,11 @@ namespace DAPM_LT.Areas.Admin.Controllers
                 sach.GiaMua = (decimal)Math.Floor(sach.GiaMua ?? 0);
             }
 
-            Random random = new Random();
-            foreach (var sach in pagedList)
-            {
-                // Thực hiện công việc với mỗi mục trong danh sách
-            }
+            //Random random = new Random();
+            //foreach (var sach in pagedList)
+            //{
+            //    // Thực hiện công việc với mỗi mục trong danh sách
+            //}
 
             return View(pagedList);
         }

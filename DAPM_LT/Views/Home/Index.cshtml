@@ -28,15 +28,20 @@
             <button class="search-btn" type="submit" value="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <br />
-        <div class="title homePage" style="font-size: 40px">Sách Đề Cử</div>
+        <div class="title homePage" style="font-size: 40px">Danh sách</div>
         <div class="products">
             @foreach (var sach in Model)
             {
                 <div class="prod-item">
-                    <div class="image" style="width: auto"><img src="~/Content/@sach.ImgSach" alt="@sach.Tieude" /></div>
+                    @if(sach.ImgSach == null)
+                    {
+                   <p>lỗi ảnh</p>
+                    }
+                    else {<div class="image" style="width: auto"><img src="data:image/jpeg;base64,@Convert.ToBase64String(sach.ImgSach)" alt="@sach.Tieude" /></div>}
+                    
                     <div class="title">@sach.Tieude</div>
-                    <div class="price">Thể loại: @sach.Loai.Tenloai</div>
-                    <div><span style="font-size: 1.5em; color: red; margin-right: 0px;">@sach.GiaMua.ToString("N0") VND</span></div>
+                    <div class="price" style="text-align:center">Thể loại: @sach.Loai.Tenloai</div>
+                    <div><span style="font-size: 1.5em; color: red; margin-left: 90px;">@sach.GiaMua.ToString("N0")đ</span></div>
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.Idsach })*@
                     <a class="btn" href="@Url.Action("Details", "Home", new { id = sach.Idsach})">
                         <span>
