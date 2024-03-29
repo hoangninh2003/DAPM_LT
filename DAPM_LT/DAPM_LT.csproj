@@ -147,6 +147,9 @@
     <Compile Include="Areas\Admin\Controllers\ThesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrangThaiSachMuonsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\Design Pattern\Factory\IProductFactory.cs" />
+    <Compile Include="Controllers\Design Pattern\Factory\ProductFactory.cs" />
+    <Compile Include="Controllers\FavoriteProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Design Pattern\Decorator\BlackFridaySales.cs" />
@@ -155,19 +158,13 @@
     <Compile Include="Design Pattern\Decorator\SalesOff.cs" />
     <Compile Include="Design Pattern\Decorator\SalesOffDecorator.cs" />
     <Compile Include="Design Pattern\Facade\QuanLyLoaiFacade.cs" />
-    <Compile Include="Design Pattern\Factory\FavoriteProductInterator.cs" />
-    <Compile Include="Design Pattern\Factory\IFavoriteProductInterator.cs" />
-    <Compile Include="Design Pattern\Factory\IProductFactory.cs" />
-    <Compile Include="Design Pattern\Factory\ProductFactory.cs" />
-    <Compile Include="Design Pattern\Factory_Method\IProductFactory.cs" />
-    <Compile Include="Design Pattern\Factory_Method\ProductFactory.cs" />
     <Compile Include="Design Pattern\Froxy\IRoleManager.cs" />
     <Compile Include="Design Pattern\Froxy\LoginProxy.cs" />
     <Compile Include="Design Pattern\Froxy\LoginService.cs" />
-    <Compile Include="Design Pattern\Interator\FavoriteProductInterator.cs" />
-    <Compile Include="Design Pattern\Interator\IFavoriteProductInterator.cs" />
-    <Compile Include="Design Pattern\Singleton\DatabaseManager.cs" />
-    <Compile Include="Design Pattern\Singleton\SessionManage.cs" />
+    <Compile Include="Controllers\Design Pattern\Interator\FavoriteProductInterator.cs" />
+    <Compile Include="Controllers\Design Pattern\Interator\IFavoriteProductInterator.cs" />
+    <Compile Include="Controllers\Design Pattern\Singleton\DatabaseManager.cs" />
+    <Compile Include="Controllers\Design Pattern\Singleton\SessionManage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

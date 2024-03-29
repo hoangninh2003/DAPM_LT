@@ -32,10 +32,12 @@
 
             <ul class="navbar-menu">
                 <li> @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "white" })</li>
+
                 @{ if (u != null)
                     {
                         <li>@Html.ActionLink("Giỏ hàng", "Index", "Base")</li>
-                        
+                        <li> @Html.ActionLink("Yêu thích", "FavoriteList", "FavoriteProduct", new { area = "" }, new { @class = "white" })</li>
+
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
 
 
@@ -60,7 +62,8 @@
                     else
                     {
                         <li>@Html.ActionLink("Giỏ hàng", "Dangnhap", "User")</li>
-                        
+                        <li> @Html.ActionLink("Yêu thích", "FavoriteList", "FavoriteProduct",  new { id = 1 }, new { @class = "white" })</li>
+
                         <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
                         <li class="main-nav-link">
                             @Html.ActionLink("Đăng nhập", "Dangnhap", "User", new { area = "" }, new { @class = "custom-btn" })

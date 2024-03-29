@@ -20,25 +20,24 @@ namespace DAPM_LT.Areas.Admin.Controllers
             productFactory = new ProductFactory(db);
         }
 
-        //// GET: FavoriteProduct/FavoriteList/5
-        //public ActionResult FavoriteList(int id)
-        //{
-        //    var saches = db.Saches.Where(n => n.GiaMua == id).ToList();
+        // GET: FavoriteProduct/FavoriteList/5
+        public ActionResult FavoriteList(int id)
+        {
+            var saches = db.Saches.Where(n => n.GiaMua == id).ToList();
 
-        //    List<Sach> favoriteProductList = new List<Sach>();
-        //    foreach (var sach in saches)
-        //    {
-        //        int sachId = sach.Idsach ?? 0; // Truy cập vào thuộc tính Idsach của từng đối tượng Sach
-        //        favoriteProductList.Add(productFactory.CreateProduct(sachId));
-        //    }
+            List<Sach> favoriteProductList = new List<Sach>();
+            foreach (var sach in saches)
+            {
+                int sachId = sach.Idsach;
+                favoriteProductList.Add(productFactory.CreateProduct(sachId));
+            }
 
 
-        //    ViewBag.ProductInfor = favoriteProductList; // Updated ViewBag
-        //    return View(favoriteProductList);
-        //}
+            ViewBag.ProductInfor = favoriteProductList; // Updated ViewBag
+            return View(favoriteProductList);
+        }
 
-        // POST: FavoriteProduct/InsertListFavorite
-        [HttpPost]
+       [HttpPost]
         public ActionResult InsertListFavorite(Sach favoriteProd) // Corrected parameter type
         {
             if (ModelState.IsValid)
