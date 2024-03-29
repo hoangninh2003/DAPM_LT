@@ -19,16 +19,14 @@ namespace DAPM_LT.Areas.Admin.Controllers
         // GET: Admin/HomeAd
         public ActionResult Index()
         {
-            //var u = Session["use"] as DAPM_LT.Models.TaiKhoan;
-            ////Kiểm tra nếu tên quyền Administrator mới được truy cập trang admin
-            //if (u.PhanQuyen.TenQuyen == "Adminstrator")
-            //{
-            //    return View();
-            //}
-            //return RedirectPermanent("~/HomeAd/Index");
+            var currentUser = Session["use"] as DAPM_LT.Models.TaiKhoan;
+            //Kiểm tra nếu tên quyền Administrator mới được truy cập trang admin
+            if (currentUser != null && (currentUser.PhanQuyen.TenQuyen == "Adminstrator" || currentUser.PhanQuyen.TenQuyen == "Nhanvien"))
+            {
+                return View();
+            }
+            return RedirectPermanent("~/Home/Index");
 
-
-            return View();
 
         }
 

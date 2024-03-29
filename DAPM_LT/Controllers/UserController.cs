@@ -1,4 +1,5 @@
-﻿using DAPM_LT.Models;
+﻿using DAPM_LT.Design_Pattern.Froxy;
+using DAPM_LT.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,7 @@ namespace ThuVien.Controllers
     public class UserController : Controller
     {
         dapmEntities db = new dapmEntities();
+        private IRoleManager _loginProxy = new LoginProxy();
 
         // ĐĂNG KÝ
         public ActionResult Dangky()
@@ -99,20 +101,13 @@ namespace ThuVien.Controllers
             string password = userlog["password"].ToString();
 
             // Lấy thông tin tài khoản từ cơ sở dữ liệu
-            var taiKhoan = db.TaiKhoans.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
+            bool loginResult = _loginProxy.ValidateLogin(new LoginModel { userMail = userMail, password = password });
 
-            if (taiKhoan != null)
+            if (loginResult)
             {
-                // Kiểm tra vai trò của người dùng
-                string vaiTro = taiKhoan.PhanQuyen.TenQuyen;
-
-                Session["use"] = taiKhoan;
-
-                if (vaiTro == "Adminstrator")
-                {
-                    return RedirectToAction("Index", "Admin/HomeAd");
-                }
-                else if(vaiTro == "Nhanvien")
+                var account = db.TaiKhoans.FirstOrDefault(u => u.Email == userMail);
+                Session["use"] = account;
+                if (account.PhanQuyen.TenQuyen == "Adminstrator" || account.PhanQuyen.TenQuyen == "Nhanvien")
                 {
                     return RedirectToAction("Index", "Admin/HomeAd");
                 }
@@ -134,7 +129,7 @@ namespace ThuVien.Controllers
 
         }
 
-        public ActionResult Profile(int? id)
+        public ActionResult sProfile(int? id)
         {
             if (id == null)
             {
@@ -145,6 +140,7 @@ namespace ThuVien.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", taiKhoan.IDQuyen);
             return View(taiKhoan);
         }
         //// GET: Admin/TaiKhoans/Edit/5

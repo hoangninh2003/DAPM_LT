@@ -5,15 +5,14 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/IndexUser.css">
 }
 
+
+@using DAPM_LT.Design_Pattern.Decorator;
+
 @using (Html.BeginForm("Index", "Home", FormMethod.Get))
 {
-
-    <div class="" style="width: auto; height: 100px"></div>
-
-
-
-    <div id="menu1" class="container-lg" style="flex-basis: 80%">
-
+    <div style="width: 100%; height: 100px;"></div>
+    <br />
+    <div id="menu1" class="container-lg" style="flex-basis: 100%; width: 100%;">
         <div class="search-bar1">
             <div class="dropdown">
                 <select id="categoryDropdown" class="dropbtn" name="_selectedValue">
@@ -28,175 +27,236 @@
             <button class="search-btn" type="submit" value="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <br />
+        <div class="title homePage" style="font-size: 40px; text-align: center;">Khuyến mãi đầu năm học</div>
+        <div class="products">
+            @foreach (var sach in Model)
+            {
+                var sales = new SalesOff(sach.Idsach);
+                var newSchoolYearSale = new NewSchoolYearSales(sales);
+                if (sach.Loai.Tenloai == "Học tập")
+                {
+                    <div class="prod-item">
+                        @if (sach.ImgSach == null)
+                        {
+                            <p>lỗi ảnh</p>
+                        }
+                        else
+                        {
+                            <div class="image" style="width: auto">
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(sach.ImgSach)" alt="@sach.Tieude" />
+                            </div>
+                        }
+                        <div class="title">@sach.Tieude</div>
+                        <div class="price" style="text-align:center">Thể loại: @sach.Loai.Tenloai</div>
+                        <div>
+                            <span style="font-size: 1.5em; color: red; margin-left: 90px;">@newSchoolYearSale.GetSalesPrice().ToString("N0")đ</span>
+                        </div>
+                        <a class="btn" href="@Url.Action("Details", "Home", new { id = sach.Idsach })">
+                            <span>Mua ngay!</span>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+        <br />
+        <br />
+        <div class="title homePage" style="font-size: 40px; text-align: center;">Siêu sale black friday</div>
+        <div class="products">
+            @{
+                foreach (var sach in Model)
+                {
+                    var sales = new SalesOff(sach.Idsach);
+                    var blackFridaySales = new BlackFridaySales(sales);
+                    <div class="prod-item">
+                        @if (sach.ImgSach == null)
+                        {
+                            <p>lỗi ảnh</p>
+                        }
+                        else
+                        {
+                            <div class="image" style="width: auto">
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(sach.ImgSach)" alt="@sach.Tieude" />
+                            </div>
+                        }
+                        <div class="title">@sach.Tieude</div>
+                        <div class="price" style="text-align:center">Thể loại: @sach.Loai.Tenloai</div>
+                        <div>
+                            <span style="font-size: 1.5em; color: red; margin-left: 90px;">@blackFridaySales.GetSalesPrice().ToString("N0")đ</span>
+                        </div>
+                        <a class="btn" href="@Url.Action("Details", "Home", new { id = sach.Idsach })">
+                            <span>Mua ngay!</span>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
         <div class="title homePage" style="font-size: 40px">Danh sách</div>
         <div class="products">
             @foreach (var sach in Model)
             {
                 <div class="prod-item">
-                    @if(sach.ImgSach == null)
+                    @if (sach.ImgSach == null)
                     {
-                   <p>lỗi ảnh</p>
+                        <p>lỗi ảnh</p>
                     }
-                    else {<div class="image" style="width: auto"><img src="data:image/jpeg;base64,@Convert.ToBase64String(sach.ImgSach)" alt="@sach.Tieude" /></div>}
-                    
+                    else
+                    {
+                        <div class="image" style="width: auto">
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(sach.ImgSach)" alt="@sach.Tieude" />
+                        </div>
+                    }
                     <div class="title">@sach.Tieude</div>
                     <div class="price" style="text-align:center">Thể loại: @sach.Loai.Tenloai</div>
-                    <div><span style="font-size: 1.5em; color: red; margin-left: 90px;">@sach.GiaMua.ToString("N0")đ</span></div>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Idsach })*@
-                    <a class="btn" href="@Url.Action("Details", "Home", new { id = sach.Idsach})">
-                        <span>
-                            Mua ngay!
-                        </span>
+                    <div>
+                        <span style="font-size: 1.5em; color: red; margin-left: 90px;">@sach.GiaMua.ToString("N0")đ</span>
+                    </div>
+                    <a class="btn" href="@Url.Action("Details", "Home", new { id = sach.Idsach })">
+                        <span>Mua ngay!</span>
                     </a>
-
                 </div>
             }
         </div>
-
     </div>
-}
+    <style>
 
-<style>
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-        border: 2px solid #d85151;
-        outline: none;
-        margin-right: 15px;
-    }
-
-        .dropdown .dropbtn {
-            background: #f39c12;
-            color: white;
-            padding: 10px;
+        .dropdown {
+            position: relative;
+            display: inline-block;
             border: 2px solid #d85151;
-            cursor: pointer;
-            width: 230px;
-            height: 35px;
+            outline: none;
+            margin-right: 15px;
         }
 
-    .menuPage {
-        background-color: #f9f9f9;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-
-    .nav-tabs {
-        display: flex;
-        list-style: none;
-        margin: 0px;
-        padding: 2px 0px;
-        border-bottom: 1px solid #bbbbbb;
-    }
-
-        .nav-tabs li {
-            margin-right: 10px;
-        }
-
-            .nav-tabs li a {
-                display: block;
-                padding: 5px 10px;
-                text-decoration: none;
-                position: relative;
+            .dropdown .dropbtn {
+                background: #f39c12;
+                color: white;
+                padding: 10px;
+                border: 2px solid #d85151;
+                cursor: pointer;
+                width: 230px;
+                height: 35px;
             }
 
-                .nav-tabs li a::after {
-                    content: "";
-                    height: 3px;
-                    width: 100%;
-                    position: absolute;
-                    left: 0px;
-                    bottom: -3px;
-                    background: transparent;
+        .menuPage {
+            background-color: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            margin: 0px;
+            padding: 2px 0px;
+            border-bottom: 1px solid #bbbbbb;
+        }
+
+            .nav-tabs li {
+                margin-right: 10px;
+            }
+
+                .nav-tabs li a {
+                    display: block;
+                    padding: 5px 10px;
+                    text-decoration: none;
+                    position: relative;
                 }
 
-            .nav-tabs li.tabs_sp a::after, .nav-tabs li:hover a::after {
-                background: #d25a05;
+                    .nav-tabs li a::after {
+                        content: "";
+                        height: 3px;
+                        width: 100%;
+                        position: absolute;
+                        left: 0px;
+                        bottom: -3px;
+                        background: transparent;
+                    }
+
+                .nav-tabs li.tabs_sp a::after, .nav-tabs li:hover a::after {
+                    background: #d25a05;
+                }
+    </style>
+    <style>
+        /*----Nút đặt sách--------------------------------------------------------*/
+        .btn {
+            margin: 3px 2px;
+            border: 2px solid #d85151;
+            display: inline-block;
+            color: #000000;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+            background-color: #d85151;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+            .btn::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: #ff0000;
+                right: -100%;
+                top: 0;
+                transition: all 0.5s ease-in-out;
+                z-index: -1;
             }
-</style>
-<style>
-    /*----Nút đặt sách--------------------------------------------------------*/
-    .btn {
-        margin: 3px 2px;
-        border: 2px solid #d85151;
-        display: inline-block;
-        color: #000000;
-        position: relative;
-        overflow: hidden;
-        text-align: center;
-        padding: 10px;
-        background-color: #d85151;
-        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
 
-        .btn::before {
-            content: "";
-            position: absolute;
-            width: 100%;
+            .btn:hover::before {
+                right: 0;
+            }
+
+            .btn:hover span {
+                transition: all 0.3s ease-in-out;
+                color: #000000;
+            }
+
+            .btn:hover {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+        /*--------Nút tìm kiếm-------------------------------------------------------*/
+        .container-lg .search-bar1 {
+            margin-left: auto;
+            height: 35px;
+            width: 290px;
+            background: #ffffff;
+            border-radius: 30px;
+            border: 2px solid #f39c12;
+            display: flex;
+            flex-direction: column-reverse;
+            flex-wrap: wrap;
+            align-content: flex-end;
+            justify-content: center;
+            align-items: baseline;
+        }
+
+        .search-bar1 .search-text {
+            border: none;
+            outline: none;
+            background: none;
+            padding: 15px 14px;
+            font-size: 18px;
             height: 100%;
-            background: #ff0000;
-            right: -100%;
-            top: 0;
-            transition: all 0.5s ease-in-out;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            right: 0;
-        }
-
-        .btn:hover span {
-            transition: all 0.3s ease-in-out;
             color: #000000;
         }
 
-        .btn:hover {
-            background-color: #ffffff;
-            color: #000000;
+        .search-bar1 .search-btn {
+            background: #f39c12;
+            border: none;
+            padding: 7px 10px;
+            height: 100%;
+            border-radius: 30px;
         }
 
-    /*--------Nút tìm kiếm-------------------------------------------------------*/
-    .container-lg .search-bar1 {
-        margin-left: auto;
-        height: 35px;
-        width: 290px;
-        background: #ffffff;
-        border-radius: 30px;
-        border: 2px solid #f39c12;
-        display: flex;
-        flex-direction: column-reverse;
-        flex-wrap: wrap;
-        align-content: flex-end;
-        justify-content: center;
-        align-items: baseline;
-    }
+        input[type="submit"] {
+            margin-top: 10px;
+        }
+    </style>
 
-    .search-bar1 .search-text {
-        border: none;
-        outline: none;
-        background: none;
-        padding: 15px 14px;
-        font-size: 18px;
-        height: 100%;
-        color: #000000;
-    }
-
-    .search-bar1 .search-btn {
-        background: #f39c12;
-        border: none;
-        padding: 7px 10px;
-        height: 100%;
-        border-radius: 30px;
-    }
-
-    input[type="submit"] {
-        margin-top: 10px;
-    }
-</style>
-
-
-
+}

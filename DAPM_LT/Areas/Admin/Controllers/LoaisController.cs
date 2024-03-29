@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DAPM_LT.Facade;
 using DAPM_LT.Models;
 
 namespace DAPM_LT.Areas.Admin.Controllers
 {
     public class LoaisController : Controller
     {
-        private dapmEntities db = new dapmEntities();
+        private QuanLyLoaiFacade quanLyLoaiFacade = new QuanLyLoaiFacade();
 
         // GET: Admin/Loais
         public ActionResult Index()
         {
-            return View(db.Loais.ToList());
+            return View(quanLyLoaiFacade.LayTatCaLoai());
         }
 
         // GET: Admin/Loais/Details/5
@@ -27,7 +28,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Loai loai = db.Loais.Find(id);
+            Loai loai = quanLyLoaiFacade.TimLoaiTheoId(id.Value);
             if (loai == null)
             {
                 return HttpNotFound();
@@ -42,16 +43,13 @@ namespace DAPM_LT.Areas.Admin.Controllers
         }
 
         // POST: Admin/Loais/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Idloai,Tenloai")] Loai loai)
         {
             if (ModelState.IsValid)
             {
-                db.Loais.Add(loai);
-                db.SaveChanges();
+                quanLyLoaiFacade.ThemLoai(loai);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +63,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Loai loai = db.Loais.Find(id);
+            Loai loai = quanLyLoaiFacade.TimLoaiTheoId(id.Value);
             if (loai == null)
             {
                 return HttpNotFound();
@@ -74,16 +72,13 @@ namespace DAPM_LT.Areas.Admin.Controllers
         }
 
         // POST: Admin/Loais/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Idloai,Tenloai")] Loai loai)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(loai).State = EntityState.Modified;
-                db.SaveChanges();
+                quanLyLoaiFacade.CapNhatLoai(loai);
                 return RedirectToAction("Index");
             }
             return View(loai);
@@ -96,7 +91,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Loai loai = db.Loais.Find(id);
+            Loai loai = quanLyLoaiFacade.TimLoaiTheoId(id.Value);
             if (loai == null)
             {
                 return HttpNotFound();
@@ -109,9 +104,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Loai loai = db.Loais.Find(id);
-            db.Loais.Remove(loai);
-            db.SaveChanges();
+            quanLyLoaiFacade.XoaLoai(id);
             return RedirectToAction("Index");
         }
 
@@ -119,7 +112,7 @@ namespace DAPM_LT.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                quanLyLoaiFacade.Dispose();
             }
             base.Dispose(disposing);
         }
